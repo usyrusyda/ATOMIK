@@ -550,38 +550,26 @@ function escapeHTML(str) {
     .replaceAll("'", "&#039;");
 }
 
-function callDiskusiAPI(params) {
-  return new Promise((resolve, reject) => {
-    const callbackName = "diskusiCallback_" + Date.now() + "_" + Math.floor(Math.random() * 10000);
+async function callDiskusiAPI(params) {
+  const query = new URLSearchParams(params).toString();
+  const url = DISKUSI_SCRIPT_URL + "?" + query;
 
-    params.callback = callbackName;
+  console.log("Memanggil Apps Script:", url);
 
-    const query = new URLSearchParams(params).toString();
-    const script = document.createElement("script");
+  const response = await fetch(url);
+  const text = await response.text();
 
-    window[callbackName] = function(data) {
-      resolve(data);
-      delete window[callbackName];
-      script.remove();
+  console.log("Respons mentah Apps Script:", text);
+
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    console.error("Respons bukan JSON:", text);
+    return {
+      success: false,
+      message: "Respons Apps Script bukan JSON. Cek deploy Apps Script."
     };
-
-    script.onerror = function() {
-      reject(new Error("Gagal memanggil Apps Script."));
-      delete window[callbackName];
-      script.remove();
-    };
-
-    script.src = DISKUSI_SCRIPT_URL + "?" + query;
-    document.body.appendChild(script);
-
-    setTimeout(() => {
-      if (window[callbackName]) {
-        reject(new Error("Koneksi ke Apps Script terlalu lama."));
-        delete window[callbackName];
-        script.remove();
-      }
-    }, 12000);
-  });
+  }
 }
 
 function openDiskusiPanel() {
