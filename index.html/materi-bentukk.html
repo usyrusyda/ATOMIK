@@ -1963,11 +1963,15 @@ function showTeacherOnlyIfOwner(){
       mcq5: { b: '✅ Benar! VSEPR = Valence Shell Electron Pair Repulsion — teori tolakan pasangan elektron valensi.', wrong: '❌ Kurang tepat. Teori VSEPR-lah yang digunakan untuk memprediksi bentuk berdasarkan tolakan pasangan elektron.' }
     };
 
-    const quizBentukData = [
+   const quizBentukData = [
   {
     id: 1,
-    level: "C2 - Menjelaskan",
-    q: "Bentuk molekul terutama ditentukan oleh...",
+    stimulus: `
+      Bentuk molekul menunjukkan susunan atom-atom dalam ruang tiga dimensi.
+      Untuk menentukan bentuk molekul, perlu diperhatikan atom pusat dan pasangan elektron di sekitarnya.
+      Pasangan elektron tersebut terdiri atas pasangan elektron ikatan dan pasangan elektron bebas.
+    `,
+    stem: "Faktor utama yang digunakan untuk menentukan bentuk molekul adalah ....",
     options: {
       A: "warna atom penyusun molekul",
       B: "susunan pasangan elektron di sekitar atom pusat",
@@ -1978,8 +1982,12 @@ function showTeacherOnlyIfOwner(){
   },
   {
     id: 2,
-    level: "C2 - Menjelaskan",
-    q: "Pasangan elektron ikatan atau PEI adalah...",
+    stimulus: `
+      Pada suatu molekul, atom pusat berikatan dengan atom-atom lain.
+      Pasangan elektron yang digunakan untuk membentuk ikatan antara atom pusat dan atom lain disebut PEI.
+      PEI berperan dalam menentukan susunan atom di sekitar atom pusat.
+    `,
+    stem: "Pernyataan yang tepat tentang pasangan elektron ikatan atau PEI adalah ....",
     options: {
       A: "pasangan elektron yang tidak berada pada atom pusat",
       B: "pasangan elektron yang hanya terdapat pada atom bebas",
@@ -1990,8 +1998,12 @@ function showTeacherOnlyIfOwner(){
   },
   {
     id: 3,
-    level: "C2 - Membedakan",
-    q: "Pasangan elektron bebas atau PEB adalah...",
+    stimulus: `
+      Selain PEI, atom pusat dapat memiliki pasangan elektron yang tidak digunakan untuk berikatan.
+      Pasangan elektron tersebut tetap menempati ruang di sekitar atom pusat.
+      Keberadaannya dapat memengaruhi bentuk molekul.
+    `,
+    stem: "Pernyataan yang tepat tentang pasangan elektron bebas atau PEB adalah ....",
     options: {
       A: "pasangan elektron pada atom pusat yang tidak digunakan untuk membentuk ikatan",
       B: "pasangan elektron yang selalu digunakan untuk membentuk ikatan rangkap",
@@ -2002,8 +2014,12 @@ function showTeacherOnlyIfOwner(){
   },
   {
     id: 4,
-    level: "C2 - Mengklasifikasikan",
-    q: "Molekul CO₂ memiliki 2 PEI dan 0 PEB pada atom pusat. Bentuk molekul CO₂ adalah...",
+    stimulus: `
+      Molekul CO<sub>2</sub> memiliki atom pusat C.
+      Pada atom pusat C terdapat 2 PEI dan 0 PEB.
+      Susunan pasangan elektron tersebut membuat atom-atom dalam CO<sub>2</sub> berada pada satu garis lurus.
+    `,
+    stem: "Bentuk molekul CO<sub>2</sub> berdasarkan data tersebut adalah ....",
     options: {
       A: "bengkok",
       B: "trigonal piramida",
@@ -2014,8 +2030,12 @@ function showTeacherOnlyIfOwner(){
   },
   {
     id: 5,
-    level: "C2 - Menghubungkan",
-    q: "Molekul H₂O memiliki 2 PEI dan 2 PEB pada atom pusat. Bentuk molekul H₂O adalah...",
+    stimulus: `
+      Molekul H<sub>2</sub>O memiliki atom pusat O.
+      Pada atom pusat O terdapat 2 PEI dan 2 PEB.
+      Pasangan elektron bebas memberikan tolakan yang memengaruhi posisi atom H di sekitar atom O.
+    `,
+    stem: "Bentuk molekul H<sub>2</sub>O berdasarkan data tersebut adalah ....",
     options: {
       A: "linear",
       B: "bengkok",
@@ -2026,32 +2046,44 @@ function showTeacherOnlyIfOwner(){
   },
   {
     id: 6,
-    level: "C2 - Mengklasifikasikan",
-    q: "BF₃ memiliki atom pusat B dengan 3 PEI dan 0 PEB. Rumus umum dan bentuk molekulnya adalah...",
+    stimulus: `
+      Molekul BF<sub>3</sub> memiliki atom pusat B.
+      Pada atom pusat B terdapat 3 PEI dan 0 PEB.
+      Berdasarkan teori VSEPR, susunan tiga PEI tanpa PEB menghasilkan bentuk yang simetris dalam satu bidang.
+    `,
+    stem: "Rumus umum dan bentuk molekul BF<sub>3</sub> adalah ....",
     options: {
-      A: "AX₂E₂, bengkok",
-      B: "AX₃E, trigonal piramida",
-      C: "AX₃, trigonal planar",
-      D: "AX₄, tetrahedral",
-      E: "AX₂, linear"
+      A: "AX<sub>2</sub>E<sub>2</sub>, bengkok",
+      B: "AX<sub>3</sub>E, trigonal piramida",
+      C: "AX<sub>3</sub>, trigonal planar",
+      D: "AX<sub>4</sub>, tetrahedral",
+      E: "AX<sub>2</sub>, linear"
     }
   },
   {
     id: 7,
-    level: "C2 - Mengklasifikasikan",
-    q: "NH₃ memiliki atom pusat N dengan 3 PEI dan 1 PEB. Rumus umum dan bentuk molekulnya adalah...",
+    stimulus: `
+      Molekul NH<sub>3</sub> memiliki atom pusat N.
+      Pada atom pusat N terdapat 3 PEI dan 1 PEB.
+      Keberadaan 1 PEB menyebabkan susunan atom H tidak membentuk trigonal planar.
+    `,
+    stem: "Rumus umum dan bentuk molekul NH<sub>3</sub> adalah ....",
     options: {
-      A: "AX₃E, trigonal piramida",
-      B: "AX₃, trigonal planar",
-      C: "AX₂E₂, bengkok",
-      D: "AX₄, tetrahedral",
-      E: "AX₅, trigonal bipiramida"
+      A: "AX<sub>3</sub>E, trigonal piramida",
+      B: "AX<sub>3</sub>, trigonal planar",
+      C: "AX<sub>2</sub>E<sub>2</sub>, bengkok",
+      D: "AX<sub>4</sub>, tetrahedral",
+      E: "AX<sub>5</sub>, trigonal bipiramida"
     }
   },
   {
     id: 8,
-    level: "C2 - Menjelaskan",
-    q: "Pasangan elektron bebas dapat memengaruhi bentuk molekul karena...",
+    stimulus: `
+      Teori VSEPR menjelaskan bahwa pasangan elektron di sekitar atom pusat saling menolak.
+      Pasangan elektron bebas memiliki tolakan lebih kuat dibandingkan pasangan elektron ikatan.
+      Oleh karena itu, PEB dapat mengubah susunan atom terikat dan memperkecil sudut ikatan.
+    `,
+    stem: "Pasangan elektron bebas dapat memengaruhi bentuk molekul karena ....",
     options: {
       A: "PEB tidak memiliki gaya tolak terhadap pasangan elektron lain",
       B: "PEB selalu menghilang saat molekul terbentuk",
@@ -2062,8 +2094,12 @@ function showTeacherOnlyIfOwner(){
   },
   {
     id: 9,
-    level: "C2 - Mengklasifikasikan",
-    q: "PCl₅ memiliki 5 PEI dan 0 PEB pada atom pusat. Bentuk molekul PCl₅ adalah...",
+    stimulus: `
+      Molekul PCl<sub>5</sub> memiliki atom pusat P.
+      Pada atom pusat P terdapat 5 PEI dan 0 PEB.
+      Berdasarkan tabel VSEPR, susunan 5 PEI tanpa PEB menghasilkan bentuk trigonal bipiramida.
+    `,
+    stem: "Bentuk molekul PCl<sub>5</sub> adalah ....",
     options: {
       A: "tetrahedral",
       B: "trigonal bipiramida",
@@ -2074,8 +2110,12 @@ function showTeacherOnlyIfOwner(){
   },
   {
     id: 10,
-    level: "C2 - Mengklasifikasikan",
-    q: "SF₆ memiliki 6 PEI dan 0 PEB pada atom pusat. Bentuk molekul SF₆ adalah...",
+    stimulus: `
+      Molekul SF<sub>6</sub> memiliki atom pusat S.
+      Pada atom pusat S terdapat 6 PEI dan 0 PEB.
+      Enam pasangan elektron ikatan tersusun simetris di sekitar atom pusat.
+    `,
+    stem: "Bentuk molekul SF<sub>6</sub> adalah ....",
     options: {
       A: "linear",
       B: "trigonal planar",
@@ -2100,16 +2140,16 @@ const correctBentukAnswers = {
 };
 
 const quizBentukExplanation = {
-  1: "Bentuk molekul ditentukan oleh susunan pasangan elektron di sekitar atom pusat, baik PEI maupun PEB.",
+  1: "Bentuk molekul ditentukan oleh susunan pasangan elektron di sekitar atom pusat, yaitu pasangan elektron ikatan atau PEI dan pasangan elektron bebas atau PEB.",
   2: "PEI adalah pasangan elektron yang digunakan untuk membentuk ikatan antara atom pusat dan atom lain.",
-  3: "PEB adalah pasangan elektron pada atom pusat yang tidak digunakan untuk membentuk ikatan, tetapi tetap memengaruhi bentuk molekul.",
-  4: "CO₂ memiliki 2 PEI dan 0 PEB pada atom pusat C, sehingga susunan atomnya linear.",
-  5: "H₂O memiliki 2 PEI dan 2 PEB pada atom pusat O. Keberadaan PEB menyebabkan bentuknya bengkok.",
-  6: "BF₃ memiliki 3 PEI dan 0 PEB pada atom pusat B, sehingga rumus umumnya AX₃ dan bentuknya trigonal planar.",
-  7: "NH₃ memiliki 3 PEI dan 1 PEB pada atom pusat N, sehingga rumus umumnya AX₃E dan bentuknya trigonal piramida.",
-  8: "PEB memiliki tolakan lebih kuat dibandingkan PEI sehingga dapat menekan posisi atom terikat dan memengaruhi bentuk molekul.",
-  9: "PCl₅ memiliki 5 PEI dan 0 PEB, sehingga bentuk molekulnya trigonal bipiramida.",
-  10: "SF₆ memiliki 6 PEI dan 0 PEB, sehingga bentuk molekulnya oktahedral."
+  3: "PEB adalah pasangan elektron pada atom pusat yang tidak digunakan untuk membentuk ikatan, tetapi tetap menempati ruang dan memengaruhi bentuk molekul.",
+  4: "CO<sub>2</sub> memiliki 2 PEI dan 0 PEB pada atom pusat C. Susunan tersebut menghasilkan bentuk linear.",
+  5: "H<sub>2</sub>O memiliki 2 PEI dan 2 PEB pada atom pusat O. Keberadaan PEB menyebabkan bentuk molekulnya bengkok.",
+  6: "BF<sub>3</sub> memiliki 3 PEI dan 0 PEB pada atom pusat B, sehingga rumus umumnya AX<sub>3</sub> dan bentuknya trigonal planar.",
+  7: "NH<sub>3</sub> memiliki 3 PEI dan 1 PEB pada atom pusat N, sehingga rumus umumnya AX<sub>3</sub>E dan bentuknya trigonal piramida.",
+  8: "PEB memiliki tolakan lebih kuat dibandingkan PEI sehingga dapat menekan posisi atom terikat, mengubah bentuk molekul, dan memperkecil sudut ikatan.",
+  9: "PCl<sub>5</sub> memiliki 5 PEI dan 0 PEB pada atom pusat P, sehingga bentuk molekulnya trigonal bipiramida.",
+  10: "SF<sub>6</sub> memiliki 6 PEI dan 0 PEB pada atom pusat S, sehingga bentuk molekulnya oktahedral."
 };
 
 function lockInputsInBox(boxId){
@@ -2330,12 +2370,13 @@ function renderQuizBentuk(){
   quizBentukData.forEach(item => {
     let html = `
       <div class="section-box" id="quiz-bentuk-box-${item.id}" style="background:white;border-left:10px solid var(--gold);">
-        <p style="font-size:12px;font-weight:bold;color:#6d7f91;margin:0 0 6px 0;">
-          
-        </p>
+
+        <div style="font-size:14px;line-height:1.8;margin:0 0 12px 0;color:#3b5f7a;">
+          ${item.stimulus}
+        </div>
 
         <p style="font-size:14px;line-height:1.7;margin:0 0 10px 0;">
-          <b>${item.id}. ${item.q}</b>
+          <b>${item.id}. ${item.stem}</b>
         </p>
     `;
 

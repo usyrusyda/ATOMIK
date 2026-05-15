@@ -1028,7 +1028,7 @@
           </div>
 
           <div class="material-img-box">
-            <img src="polar.png" alt="Molekul H2O polar">
+            <img src="polar.png" alt="Molekul H₂O polar">
             <p class="material-caption">H₂O memiliki resultan dipol sehingga bersifat polar</p>
           </div>
         </div>
@@ -1284,7 +1284,7 @@
     </div>
 
     <center style="margin-top:12px;">
-      <img src="polar.png" alt="Molekul H2O polar"
+      <img src="polar.png" alt="Molekul H₂O polar"
            style="width:90%;max-width:520px;border-radius:15px;display:block;">
       <p style="font-size:12px;opacity:.8;margin:8px 0 0;">H₂O bersifat polar karena bentuknya bengkok dan memiliki resultan dipol</p>
     </center>
@@ -2310,44 +2310,60 @@ function resetAllLocksAfterSubmit(){
 const quizPolarityData = [
   {
     id: 1,
-    level: "C2 - Menjelaskan",
-    q: "Dalam ikatan kovalen, atom yang memiliki keelektronegatifan lebih tinggi akan menarik pasangan elektron lebih kuat. Akibatnya atom tersebut akan memiliki...",
+    stimulus: `
+      Dalam ikatan kovalen, pasangan elektron digunakan bersama oleh dua atom.
+      Jika salah satu atom memiliki keelektronegatifan lebih tinggi, atom tersebut menarik pasangan elektron lebih kuat.
+      Akibatnya, kerapatan elektron lebih besar berada di sekitar atom tersebut.
+    `,
+    stem: "Muatan yang dimiliki atom yang lebih elektronegatif adalah ....",
     options: {
       A: "muatan positif penuh",
       B: "muatan negatif parsial",
       C: "jumlah proton lebih sedikit",
-      D: "ikatan logam",
+      D: "muatan logam",
       E: "muatan netral sempurna"
     }
   },
   {
     id: 2,
-    level: "C2 - Menafsirkan",
-    q: "Jika dua atom memiliki keelektronegatifan yang sama atau hampir sama, maka pasangan elektron ikatan akan...",
+    stimulus: `
+      Dua atom dapat memiliki keelektronegatifan yang sama atau hampir sama.
+      Jika hal itu terjadi, pasangan elektron ikatan ditarik sama kuat oleh kedua atom.
+      Pembagian elektron menjadi lebih merata.
+    `,
+    stem: "Sifat ikatan yang terbentuk pada kondisi tersebut adalah ....",
     options: {
-      A: "berpindah sepenuhnya ke salah satu atom",
-      B: "ditarik sama kuat sehingga ikatan cenderung nonpolar",
-      C: "membentuk ion positif dan ion negatif",
-      D: "selalu menghasilkan molekul polar",
-      E: "membentuk ikatan hidrogen"
+      A: "ionik karena elektron berpindah penuh",
+      B: "nonpolar karena pasangan elektron terbagi relatif merata",
+      C: "polar karena terbentuk δ⁺ dan δ⁻ yang sangat jelas",
+      D: "logam karena terbentuk lautan elektron",
+      E: "hidrogen karena selalu melibatkan atom H"
     }
   },
   {
     id: 3,
-    level: "C2 - Menjelaskan",
-    q: "Ikatan H–Cl bersifat polar karena...",
+    stimulus: `
+      Dalam molekul HCl, atom Cl lebih elektronegatif daripada atom H.
+      Pasangan elektron ikatan H–Cl lebih tertarik ke arah atom Cl.
+      Akibatnya, distribusi elektron pada ikatan H–Cl tidak merata.
+    `,
+    stem: "Alasan ikatan H–Cl bersifat polar adalah ....",
     options: {
       A: "H dan Cl memiliki keelektronegatifan yang sama",
       B: "Cl lebih elektronegatif sehingga menarik pasangan elektron lebih kuat",
-      C: "H lebih elektronegatif sehingga menarik elektron dari Cl",
+      C: "H lebih elektronegatif sehingga menarik pasangan elektron dari Cl",
       D: "elektron berpindah sepenuhnya dari H ke Cl",
       E: "HCl tidak memiliki pasangan elektron ikatan"
     }
   },
   {
     id: 4,
-    level: "C2 - Mengklasifikasikan",
-    q: "Pasangan ikatan berikut yang paling mungkin bersifat nonpolar adalah...",
+    stimulus: `
+      Ikatan nonpolar dapat terbentuk jika pasangan elektron ikatan terbagi relatif merata.
+      Hal ini sering terjadi pada ikatan antara dua atom yang sama.
+      Dua atom yang sama memiliki nilai keelektronegatifan yang sama.
+    `,
+    stem: "Pasangan ikatan yang paling mungkin bersifat nonpolar adalah ....",
     options: {
       A: "O–H",
       B: "H–Cl",
@@ -2358,8 +2374,12 @@ const quizPolarityData = [
   },
   {
     id: 5,
-    level: "C2 - Menjelaskan",
-    q: "Panah dipol pada ikatan kovalen polar umumnya mengarah ke...",
+    stimulus: `
+      Pada ikatan kovalen polar, pasangan elektron ikatan tidak terbagi merata.
+      Atom yang lebih elektronegatif menarik pasangan elektron lebih kuat.
+      Arah panah dipol menunjukkan arah ketidakseimbangan distribusi elektron dalam ikatan.
+    `,
+    stem: "Panah dipol pada ikatan kovalen polar umumnya mengarah ke ....",
     options: {
       A: "atom yang lebih elektronegatif",
       B: "atom yang lebih elektropositif",
@@ -2370,44 +2390,60 @@ const quizPolarityData = [
   },
   {
     id: 6,
-    level: "C2 - Membandingkan",
-    q: "CO₂ memiliki ikatan C–O yang polar, tetapi molekul CO₂ bersifat nonpolar karena...",
+    stimulus: `
+      Molekul CO<sub>2</sub> memiliki dua ikatan C–O yang polar.
+      Namun, bentuk molekul CO<sub>2</sub> adalah linier dan simetris.
+      Dua dipol ikatan C–O memiliki arah berlawanan sehingga saling meniadakan.
+    `,
+    stem: "Alasan molekul CO<sub>2</sub> bersifat nonpolar adalah ....",
     options: {
-      A: "CO₂ tidak memiliki elektron valensi",
+      A: "CO<sub>2</sub> tidak memiliki elektron valensi",
       B: "ikatan C–O tidak memiliki dipol",
-      C: "bentuk CO₂ linier simetris sehingga dipol ikatan saling meniadakan",
+      C: "bentuk CO<sub>2</sub> linier simetris sehingga dipol ikatan saling meniadakan",
       D: "atom C lebih elektronegatif daripada O",
-      E: "CO₂ tersusun dari ion positif dan ion negatif"
+      E: "CO<sub>2</sub> tersusun dari ion positif dan ion negatif"
     }
   },
   {
     id: 7,
-    level: "C2 - Menjelaskan",
-    q: "H₂O bersifat polar karena...",
+    stimulus: `
+      Molekul H<sub>2</sub>O memiliki dua ikatan O–H yang polar.
+      Atom O lebih elektronegatif daripada atom H.
+      Bentuk molekul H<sub>2</sub>O adalah bengkok sehingga dipol ikatan tidak saling meniadakan.
+    `,
+    stem: "Kesimpulan yang tepat tentang kepolaran molekul H<sub>2</sub>O adalah ....",
     options: {
-      A: "molekul H₂O berbentuk linier sehingga dipol saling meniadakan",
-      B: "ikatan O–H nonpolar dan bentuknya simetris",
-      C: "molekul H₂O berbentuk bengkok sehingga dipol ikatan tidak saling meniadakan",
-      D: "H₂O tidak memiliki perbedaan keelektronegatifan",
-      E: "elektron berpindah sepenuhnya dari H ke O"
+      A: "H<sub>2</sub>O nonpolar karena bentuknya linier",
+      B: "H<sub>2</sub>O nonpolar karena ikatan O–H tidak memiliki dipol",
+      C: "H<sub>2</sub>O polar karena bentuk bengkok membuat dipol ikatan tidak saling meniadakan",
+      D: "H<sub>2</sub>O tidak memiliki perbedaan keelektronegatifan",
+      E: "H<sub>2</sub>O bersifat ionik karena elektron berpindah penuh"
     }
   },
   {
     id: 8,
-    level: "C2 - Menafsirkan",
-    q: "Suatu molekul memiliki beberapa ikatan polar, tetapi bentuk molekulnya simetris. Kemungkinan sifat molekul tersebut adalah...",
+    stimulus: `
+      Suatu molekul dapat memiliki beberapa ikatan polar.
+      Namun, kepolaran molekul tidak hanya ditentukan oleh kepolaran ikatannya.
+      Bentuk molekul dapat membuat dipol ikatan saling meniadakan.
+    `,
+    stem: "Jika suatu molekul memiliki ikatan polar tetapi bentuknya simetris, maka molekul tersebut dapat bersifat ....",
     options: {
-      A: "pasti polar karena semua ikatannya polar",
-      B: "pasti ionik karena ada dipol",
-      C: "dapat bersifat nonpolar jika dipol ikatan saling meniadakan",
+      A: "selalu polar karena semua ikatannya polar",
+      B: "selalu ionik karena memiliki dipol",
+      C: "nonpolar jika dipol ikatan saling meniadakan",
       D: "tidak memiliki elektron ikatan",
       E: "selalu larut dalam air"
     }
   },
   {
     id: 9,
-    level: "C2 - Menghubungkan",
-    q: "Minyak sulit bercampur dengan air karena...",
+    stimulus: `
+      Air merupakan molekul polar.
+      Minyak tersusun terutama dari molekul hidrokarbon yang bersifat nonpolar.
+      Zat polar umumnya lebih mudah bercampur dengan zat polar, sedangkan zat nonpolar tidak mudah bercampur dengan zat polar.
+    `,
+    stem: "Alasan minyak sulit bercampur dengan air adalah ....",
     options: {
       A: "minyak bersifat nonpolar sedangkan air bersifat polar",
       B: "minyak memiliki massa jenis lebih kecil daripada air",
@@ -2418,12 +2454,16 @@ const quizPolarityData = [
   },
   {
     id: 10,
-    level: "C2 - Menyimpulkan",
-    q: "Kesimpulan yang paling tepat tentang kepolaran molekul adalah...",
+    stimulus: `
+      Kepolaran ikatan dipengaruhi oleh perbedaan keelektronegatifan antaratom.
+      Kepolaran molekul dipengaruhi oleh kepolaran ikatan dan bentuk molekul.
+      Molekul yang bentuknya simetris dapat bersifat nonpolar jika dipol ikatannya saling meniadakan.
+    `,
+    stem: "Kesimpulan yang paling tepat tentang kepolaran molekul adalah ....",
     options: {
       A: "molekul selalu polar jika memiliki atom berbeda",
       B: "kepolaran molekul hanya ditentukan oleh massa molekul",
-      C: "kepolaran molekul ditentukan oleh kepolaran ikatan dan susunan/bentuk molekul",
+      C: "kepolaran molekul ditentukan oleh kepolaran ikatan dan susunan atau bentuk molekul",
       D: "semua molekul yang memiliki ikatan polar pasti nonpolar",
       E: "molekul nonpolar selalu memiliki ikatan ion"
     }
@@ -2444,16 +2484,16 @@ const correctPolarityAnswers = {
 };
 
 const quizPolarityExplanation = {
-  1: "Atom yang lebih elektronegatif menarik pasangan elektron lebih kuat, sehingga kerapatan elektron lebih besar berada di dekat atom tersebut. Akibatnya atom itu memiliki muatan negatif parsial atau δ⁻.",
+  1: "Atom yang lebih elektronegatif menarik pasangan elektron lebih kuat. Kerapatan elektron menjadi lebih besar di sekitar atom tersebut sehingga atom itu memiliki muatan negatif parsial atau δ⁻.",
   2: "Jika keelektronegatifan dua atom sama atau hampir sama, pasangan elektron ditarik sama kuat dan terbagi lebih merata. Ikatan seperti ini cenderung nonpolar.",
-  3: "Pada HCl, atom Cl lebih elektronegatif daripada H sehingga menarik pasangan elektron lebih kuat. Akibatnya Cl menjadi δ⁻ dan H menjadi δ⁺.",
-  4: "Ikatan Cl–Cl terjadi antara atom yang sama sehingga keelektronegatifannya sama. Pasangan elektron dibagi merata dan ikatannya nonpolar.",
-  5: "Panah dipol mengarah ke atom yang lebih elektronegatif karena atom tersebut menjadi pusat kerapatan elektron yang lebih besar.",
-  6: "CO₂ memiliki dua ikatan C–O polar, tetapi bentuknya linier dan simetris. Dipol ikatan berlawanan arah dan saling meniadakan sehingga molekulnya nonpolar.",
-  7: "H₂O memiliki ikatan O–H polar dan bentuk molekul bengkok. Karena bentuknya tidak simetris, dipol ikatan tidak saling meniadakan sehingga H₂O polar.",
+  3: "Pada HCl, atom Cl lebih elektronegatif daripada H sehingga menarik pasangan elektron lebih kuat. Akibatnya, Cl menjadi δ⁻ dan H menjadi δ⁺.",
+  4: "Ikatan Cl–Cl terjadi antara dua atom yang sama sehingga keelektronegatifannya sama. Pasangan elektron dibagi merata dan ikatannya nonpolar.",
+  5: "Panah dipol mengarah ke atom yang lebih elektronegatif karena atom tersebut menjadi pusat kerapatan elektron yang lebih besar dan bermuatan δ⁻.",
+  6: "CO<sub>2</sub> memiliki dua ikatan C–O polar, tetapi bentuknya linier dan simetris. Dipol ikatan berlawanan arah dan saling meniadakan sehingga molekulnya nonpolar.",
+  7: "H<sub>2</sub>O memiliki ikatan O–H polar dan bentuk molekul bengkok. Karena bentuknya tidak simetris, dipol ikatan tidak saling meniadakan sehingga H<sub>2</sub>O bersifat polar.",
   8: "Molekul dengan ikatan polar dapat bersifat nonpolar jika bentuknya simetris dan dipol-dipol ikatannya saling meniadakan.",
   9: "Air bersifat polar, sedangkan minyak umumnya tersusun dari molekul hidrokarbon nonpolar. Perbedaan kepolaran ini menyebabkan keduanya sulit bercampur.",
-  10: "Kepolaran molekul ditentukan oleh kepolaran ikatan dan susunan/bentuk molekul. Bentuk simetris dapat membuat dipol saling meniadakan."
+  10: "Kepolaran molekul ditentukan oleh kepolaran ikatan dan susunan atau bentuk molekul. Bentuk simetris dapat membuat dipol saling meniadakan."
 };
 
 function renderPolarityQuiz(){
@@ -2465,11 +2505,13 @@ function renderPolarityQuiz(){
   quizPolarityData.forEach(item => {
     let html = `
       <div class="section-box" id="quiz-pol-box-${item.id}" style="background:white;border-left:10px solid var(--gold);">
-        <p style="font-size:12px;font-weight:bold;color:#6d7f91;margin:0 0 6px 0;">
-        </p>
+
+        <div style="font-size:14px;line-height:1.8;margin:0 0 12px 0;color:#3b5f7a;">
+          ${item.stimulus}
+        </div>
 
         <p style="font-size:14px;line-height:1.7;margin:0 0 10px 0;">
-          <b>${item.id}. ${item.q}</b>
+          <b>${item.id}. ${item.stem}</b>
         </p>
     `;
 

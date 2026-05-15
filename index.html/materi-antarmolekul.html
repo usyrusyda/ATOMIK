@@ -1045,8 +1045,8 @@ nav strong{
   </p>
 
   <p style="font-size:14px;line-height:1.8;text-align:justify;">
-    Sisi yang memiliki elektron lebih banyak akan bermuatan parsial negatif atau <b>δ−</b>,
-    sedangkan sisi yang kekurangan elektron akan bermuatan parsial positif atau <b>δ+</b>.
+    Sisi yang memiliki elektron lebih banyak akan bermuatan parsial negatif atau <b>δ⁻</b>,
+    sedangkan sisi yang kekurangan elektron akan bermuatan parsial positif atau <b>δ⁺</b>.
     Pemisahan muatan inilah yang menyebabkan molekul dapat memiliki dipol.
   </p>
 
@@ -1055,7 +1055,7 @@ nav strong{
       <b>Contoh sederhana:</b><br>
       Molekul nonpolar awalnya tidak memiliki kutub tetap. Namun, karena elektron selalu bergerak,
       pada suatu saat elektron dapat lebih banyak berada di salah satu sisi molekul. Keadaan ini
-      membuat molekul seolah-olah memiliki sisi δ− dan δ+ untuk sementara.
+      membuat molekul seolah-olah memiliki sisi δ⁻ dan δ⁺ untuk sementara.
     </p>
   </div>
 
@@ -2156,8 +2156,12 @@ function resetElaborationGayaAfterSubmit(){
 const quizGayaData = [
   {
     id: 1,
-    level: "C2 - Menjelaskan",
-    q: "Gaya antarmolekul adalah...",
+    stimulus: `
+      Molekul-molekul dalam suatu zat dapat saling tarik-menarik.
+      Gaya tarik ini terjadi di antara molekul, bukan di dalam molekul.
+      Kekuatan gaya tersebut dapat memengaruhi sifat fisik zat, seperti titik didih dan kemudahan menguap.
+    `,
+    stem: "Pernyataan yang tepat tentang gaya antarmolekul adalah ....",
     options: {
       A: "ikatan yang menghubungkan proton dan neutron dalam inti atom",
       B: "gaya tarik-menarik yang terjadi di antara molekul-molekul",
@@ -2168,8 +2172,12 @@ const quizGayaData = [
   },
   {
     id: 2,
-    level: "C2 - Menjelaskan",
-    q: "Gaya London dapat terjadi karena...",
+    stimulus: `
+      Elektron dalam atom atau molekul selalu bergerak.
+      Pada suatu saat, persebaran elektron dapat menjadi tidak merata untuk sementara.
+      Ketidakseimbangan sementara ini dapat menghasilkan dipol sesaat dan menginduksi molekul di dekatnya.
+    `,
+    stem: "Gaya London dapat terjadi karena ....",
     options: {
       A: "molekul selalu memiliki ikatan hidrogen",
       B: "semua molekul selalu bermuatan ion",
@@ -2180,8 +2188,12 @@ const quizGayaData = [
   },
   {
     id: 3,
-    level: "C2 - Mengklasifikasikan",
-    q: "Molekul CH₄ bersifat nonpolar. Jenis gaya antarmolekul dominan pada CH₄ adalah...",
+    stimulus: `
+      Metana atau CH<sub>4</sub> merupakan molekul nonpolar.
+      Molekul nonpolar tidak memiliki dipol permanen.
+      Namun, elektron dalam CH<sub>4</sub> tetap bergerak sehingga dapat muncul dipol sesaat.
+    `,
+    stem: "Jenis gaya antarmolekul yang dominan pada CH<sub>4</sub> adalah ....",
     options: {
       A: "gaya London",
       B: "ikatan hidrogen",
@@ -2192,8 +2204,12 @@ const quizGayaData = [
   },
   {
     id: 4,
-    level: "C2 - Membedakan",
-    q: "Gaya dipol-dipol terjadi antara...",
+    stimulus: `
+      Molekul polar memiliki dipol permanen.
+      Ujung positif suatu molekul polar dapat tertarik oleh ujung negatif molekul polar lain.
+      Tarikan antarmolekul ini terjadi karena adanya perbedaan distribusi muatan dalam molekul polar.
+    `,
+    stem: "Gaya dipol-dipol terjadi antara ....",
     options: {
       A: "molekul nonpolar dengan molekul nonpolar",
       B: "molekul polar dengan molekul nonpolar",
@@ -2204,8 +2220,12 @@ const quizGayaData = [
   },
   {
     id: 5,
-    level: "C2 - Membedakan",
-    q: "Gaya dipol-dipol induksian terjadi ketika...",
+    stimulus: `
+      Molekul polar memiliki dipol permanen.
+      Ketika molekul polar berada dekat dengan molekul nonpolar, molekul polar dapat mengganggu persebaran elektron molekul nonpolar.
+      Akibatnya, molekul nonpolar dapat membentuk dipol induksian.
+    `,
+    stem: "Gaya dipol-dipol induksian terjadi ketika ....",
     options: {
       A: "molekul nonpolar menghilangkan seluruh elektronnya",
       B: "molekul polar menginduksi molekul nonpolar di dekatnya",
@@ -2216,8 +2236,12 @@ const quizGayaData = [
   },
   {
     id: 6,
-    level: "C2 - Mengidentifikasi",
-    q: "Syarat utama suatu molekul dapat membentuk ikatan hidrogen adalah...",
+    stimulus: `
+      Ikatan hidrogen merupakan salah satu gaya antarmolekul yang relatif kuat.
+      Gaya ini tidak terjadi pada semua molekul yang memiliki atom H.
+      Ikatan hidrogen terjadi jika atom H terikat langsung pada atom yang sangat elektronegatif.
+    `,
+    stem: "Syarat utama suatu molekul dapat membentuk ikatan hidrogen adalah ....",
     options: {
       A: "memiliki atom karbon dan hidrogen saja",
       B: "memiliki massa molekul sangat kecil",
@@ -2228,20 +2252,28 @@ const quizGayaData = [
   },
   {
     id: 7,
-    level: "C2 - Menghubungkan",
-    q: "H₂O dapat membentuk ikatan hidrogen karena...",
+    stimulus: `
+      Molekul H<sub>2</sub>O memiliki atom H yang terikat langsung pada atom O.
+      Atom O merupakan atom yang sangat elektronegatif.
+      Atom O juga memiliki pasangan elektron bebas yang dapat berinteraksi dengan atom H dari molekul air lain.
+    `,
+    stem: "Alasan H<sub>2</sub>O dapat membentuk ikatan hidrogen adalah ....",
     options: {
-      A: "H₂O bersifat nonpolar dan simetris",
-      B: "H₂O tidak memiliki pasangan elektron bebas",
-      C: "atom H pada H₂O terikat langsung pada atom O yang sangat elektronegatif",
-      D: "H₂O hanya memiliki gaya London",
-      E: "H₂O tidak memiliki atom elektronegatif"
+      A: "H<sub>2</sub>O bersifat nonpolar dan simetris",
+      B: "H<sub>2</sub>O tidak memiliki pasangan elektron bebas",
+      C: "atom H pada H<sub>2</sub>O terikat langsung pada atom O yang sangat elektronegatif",
+      D: "H<sub>2</sub>O hanya memiliki gaya London",
+      E: "H<sub>2</sub>O tidak memiliki atom elektronegatif"
     }
   },
   {
     id: 8,
-    level: "C2 - Menjelaskan",
-    q: "Hubungan antara gaya antarmolekul dan titik didih yang paling tepat adalah...",
+    stimulus: `
+      Untuk mendidihkan zat, molekul-molekulnya harus memperoleh energi yang cukup agar dapat saling berjauhan.
+      Jika gaya antarmolekulnya kuat, molekul lebih sulit dipisahkan.
+      Akibatnya, energi yang dibutuhkan untuk mendidihkan zat menjadi lebih besar.
+    `,
+    stem: "Hubungan antara gaya antarmolekul dan titik didih yang paling tepat adalah ....",
     options: {
       A: "semakin kuat gaya antarmolekul, titik didih cenderung semakin tinggi",
       B: "semakin kuat gaya antarmolekul, titik didih pasti selalu nol",
@@ -2252,8 +2284,12 @@ const quizGayaData = [
   },
   {
     id: 9,
-    level: "C2 - Mengklasifikasikan",
-    q: "Aseton memiliki gugus C=O sehingga bersifat polar, tetapi tidak memiliki H yang terikat langsung pada N, O, atau F. Gaya dominan pada aseton adalah...",
+    stimulus: `
+      Aseton memiliki gugus C=O sehingga molekulnya bersifat polar.
+      Namun, aseton tidak memiliki atom H yang terikat langsung pada N, O, atau F.
+      Oleh karena itu, aseton tidak membentuk ikatan hidrogen antarsesama molekul aseton.
+    `,
+    stem: "Gaya antarmolekul dominan pada aseton adalah ....",
     options: {
       A: "ikatan hidrogen antarsesama molekul aseton",
       B: "gaya London saja tanpa gaya lain",
@@ -2264,8 +2300,12 @@ const quizGayaData = [
   },
   {
     id: 10,
-    level: "C2 - Membandingkan",
-    q: "Urutan kekuatan relatif gaya antarmolekul dari yang lebih lemah ke lebih kuat adalah...",
+    stimulus: `
+      Setiap jenis gaya antarmolekul memiliki kekuatan relatif yang berbeda.
+      Gaya London umumnya lebih lemah dibandingkan gaya dipol-dipol.
+      Ikatan hidrogen termasuk gaya antarmolekul yang relatif kuat dibandingkan gaya London dan dipol-dipol biasa.
+    `,
+    stem: "Urutan kekuatan relatif gaya antarmolekul dari yang lebih lemah ke lebih kuat adalah ....",
     options: {
       A: "ikatan hidrogen < dipol-dipol < London < dipol-dipol induksian",
       B: "London < dipol-dipol induksian < dipol-dipol < ikatan hidrogen",
@@ -2290,16 +2330,16 @@ const correctGayaAnswers = {
 };
 
 const quizGayaExplanation = {
-  1: "Gaya antarmolekul adalah gaya tarik-menarik yang bekerja di antara molekul-molekul.",
-  2: "Gaya London muncul karena pergerakan elektron dapat menyebabkan dipol sesaat yang kemudian menginduksi molekul di dekatnya.",
-  3: "CH₄ bersifat nonpolar sehingga gaya dominan yang terjadi adalah gaya London.",
+  1: "Gaya antarmolekul adalah gaya tarik-menarik yang bekerja di antara molekul-molekul. Gaya ini berbeda dari ikatan kimia yang bekerja di dalam molekul.",
+  2: "Gaya London muncul karena pergerakan elektron dapat menyebabkan dipol sesaat. Dipol sesaat kemudian dapat menginduksi molekul di dekatnya sehingga terbentuk dipol induksian.",
+  3: "CH<sub>4</sub> bersifat nonpolar sehingga gaya antarmolekul dominannya adalah gaya London, yaitu gaya yang muncul akibat dipol sesaat dan dipol induksian.",
   4: "Gaya dipol-dipol terjadi antara molekul polar dengan molekul polar karena keduanya memiliki dipol permanen.",
-  5: "Gaya dipol-dipol induksian terjadi ketika molekul polar menginduksi molekul nonpolar sehingga terbentuk dipol induksian.",
+  5: "Gaya dipol-dipol induksian terjadi ketika molekul polar menginduksi molekul nonpolar sehingga molekul nonpolar membentuk dipol induksian.",
   6: "Ikatan hidrogen terjadi jika atom H terikat langsung pada atom yang sangat elektronegatif, yaitu N, O, atau F.",
-  7: "H₂O dapat membentuk ikatan hidrogen karena atom H terikat langsung pada atom O yang sangat elektronegatif.",
-  8: "Semakin kuat gaya antarmolekul, semakin besar energi yang diperlukan untuk memisahkan molekul, sehingga titik didih cenderung lebih tinggi.",
-  9: "Aseton bersifat polar karena memiliki gugus C=O, sehingga gaya dominannya adalah gaya dipol-dipol. Aseton tidak memiliki H yang terikat langsung pada N, O, atau F.",
-  10: "Secara umum, gaya London paling lemah, kemudian dipol-dipol induksian, dipol-dipol, dan ikatan hidrogen sebagai gaya antarmolekul yang relatif kuat."
+  7: "H<sub>2</sub>O dapat membentuk ikatan hidrogen karena atom H terikat langsung pada atom O yang sangat elektronegatif dan atom O memiliki pasangan elektron bebas.",
+  8: "Semakin kuat gaya antarmolekul, semakin besar energi yang diperlukan untuk memisahkan molekul. Karena itu, titik didih cenderung lebih tinggi.",
+  9: "Aseton bersifat polar karena memiliki gugus C=O, sehingga gaya dominannya adalah gaya dipol-dipol. Aseton tidak memiliki H yang terikat langsung pada N, O, atau F sehingga tidak membentuk ikatan hidrogen antarsesama molekul.",
+  10: "Secara umum, gaya London relatif paling lemah, kemudian dipol-dipol induksian, dipol-dipol, dan ikatan hidrogen sebagai gaya antarmolekul yang relatif kuat."
 };
 
 function renderQuizGaya(){
@@ -2311,12 +2351,13 @@ function renderQuizGaya(){
   quizGayaData.forEach(item => {
     let html = `
       <div class="section-box" id="quiz-gaya-box-${item.id}" style="background:white;border-left:10px solid var(--gold);">
-        <p style="font-size:12px;font-weight:bold;color:#6d7f91;margin:0 0 6px 0;">
-         
-        </p>
+
+        <div style="font-size:14px;line-height:1.8;margin:0 0 12px 0;color:#3b5f7a;">
+          ${item.stimulus}
+        </div>
 
         <p style="font-size:14px;line-height:1.7;margin:0 0 10px 0;">
-          <b>${item.id}. ${item.q}</b>
+          <b>${item.id}. ${item.stem}</b>
         </p>
     `;
 

@@ -1044,7 +1044,7 @@
       </p>
 
       <div style="background:white;border:2px dashed #d9ecff;border-radius:18px;padding:14px;margin-top:12px;color:var(--batik-blue);font-size:14px;line-height:1.8;font-weight:700;">
-        NaCl(s) → Na⁺(aq) + Cl⁻(aq)
+        NaCl(<i>s</i>) → Na<sup>+</sup>(<i>aq</i>) + Cl<sup>−</sup>(<i>aq</i>)
       </div>
     </div>
 
@@ -1393,160 +1393,211 @@
 };
 
     // ====== SOAL ======
-    const quizData = [
+   const quizData = [
   {
     id: 1,
-    q: "Atom natrium (Na) memiliki konfigurasi elektron 2,8,1. Mengapa atom Na cenderung melepas 1 elektron ketika membentuk ikatan ion?",
+    stimulus: `
+      Atom natrium (Na) memiliki nomor atom 11. Konfigurasi elektronnya adalah 2,8,1.
+      Kulit terluar atom Na berisi 1 elektron.
+      Pada pembentukan senyawa ion, atom Na dapat berubah menjadi ion Na<sup>+</sup>.
+    `,
+    stem: "Cara atom Na mencapai kestabilan berdasarkan data tersebut adalah ....",
     options: {
-      A: "Karena Na ingin memiliki lebih banyak elektron daripada gas mulia",
-      B: "Karena dengan melepas 1 elektron, Na mencapai konfigurasi stabil seperti gas mulia",
-      C: "Karena Na termasuk nonlogam yang mudah menerima elektron",
-      D: "Karena Na membentuk pasangan elektron bersama dengan Cl",
-      E: "Karena Na tidak memiliki elektron valensi"
+      A: "menerima 1 elektron sehingga kulit terluarnya berisi 2 elektron",
+      B: "melepaskan 1 elektron sehingga memiliki konfigurasi stabil seperti gas mulia",
+      C: "menerima 7 elektron sehingga kulit terluarnya berisi 8 elektron",
+      D: "menggunakan 1 elektron bersama dengan atom nonlogam",
+      E: "mempertahankan 1 elektron valensinya karena sudah stabil"
     }
   },
   {
     id: 2,
-    q: "Atom klorin (Cl) memiliki 7 elektron valensi. Pernyataan yang paling tepat untuk menjelaskan kecenderungan atom Cl adalah...",
+    stimulus: `
+      Atom klorin (Cl) memiliki nomor atom 17. Konfigurasi elektronnya adalah 2,8,7.
+      Kulit terluar atom Cl berisi 7 elektron.
+      Agar mencapai kestabilan oktet, atom Cl perlu memiliki 8 elektron pada kulit terluarnya.
+    `,
+    stem: "Kecenderungan atom Cl saat membentuk ion adalah ....",
     options: {
-      A: "Cl cenderung melepas 7 elektron agar menjadi stabil",
-      B: "Cl cenderung melepas 1 elektron agar membentuk Cl⁺",
-      C: "Cl cenderung menerima 1 elektron agar mencapai oktet dan membentuk Cl⁻",
-      D: "Cl sudah stabil karena memiliki lebih dari 2 elektron",
-      E: "Cl selalu membentuk ikatan logam dengan atom lain"
+      A: "melepaskan 1 elektron sehingga membentuk Cl<sup>+</sup>",
+      B: "melepaskan 7 elektron sehingga membentuk Cl<sup>7+</sup>",
+      C: "menerima 1 elektron sehingga membentuk Cl<sup>−</sup>",
+      D: "menerima 2 elektron sehingga membentuk Cl<sup>2−</sup>",
+      E: "menggunakan seluruh elektron valensinya secara bersama"
     }
   },
   {
     id: 3,
-    q: "Pasangan atom berikut yang paling mungkin membentuk ikatan ion adalah...",
+    stimulus: `
+      Ikatan ion umumnya terbentuk antara atom logam dan atom nonlogam.
+      Atom logam cenderung melepaskan elektron.
+      Atom nonlogam cenderung menerima elektron.
+    `,
+    stem: "Pasangan atom yang paling mungkin membentuk ikatan ion adalah ....",
     options: {
-      A: "H dan O, karena keduanya nonlogam",
-      B: "Mg dan Cl, karena Mg logam dan Cl nonlogam",
-      C: "C dan H, karena keduanya berbagi elektron",
-      D: "O dan O, karena keduanya memiliki elektron valensi sama",
-      E: "N dan H, karena keduanya membentuk ikatan hidrogen"
+      A: "H dan O",
+      B: "Mg dan Cl",
+      C: "C dan H",
+      D: "O dan O",
+      E: "N dan H"
     }
   },
   {
     id: 4,
-    q: "Ikatan ion pada NaCl terbentuk setelah terjadi perpindahan elektron dari Na ke Cl. Mengapa ion Na⁺ dan Cl⁻ kemudian dapat saling berikatan?",
+    stimulus: `
+      Pada pembentukan NaCl, atom Na melepaskan 1 elektron sehingga menjadi Na<sup>+</sup>.
+      Atom Cl menerima 1 elektron sehingga menjadi Cl<sup>−</sup>.
+      Ion Na<sup>+</sup> dan Cl<sup>−</sup> kemudian membentuk senyawa NaCl.
+    `,
+    stem: "Alasan ion Na<sup>+</sup> dan Cl<sup>−</sup> dapat saling berikatan adalah ....",
     options: {
-      A: "Karena keduanya sama-sama bermuatan positif",
-      B: "Karena keduanya sama-sama bermuatan negatif",
-      C: "Karena ion bermuatan berlawanan saling tarik-menarik secara elektrostatik",
-      D: "Karena keduanya menggunakan pasangan elektron bersama",
-      E: "Karena Na dan Cl berubah menjadi molekul nonpolar"
+      A: "keduanya memiliki muatan positif",
+      B: "keduanya memiliki muatan negatif",
+      C: "keduanya memiliki muatan berlawanan sehingga saling tarik-menarik",
+      D: "keduanya menggunakan pasangan elektron bersama",
+      E: "keduanya berubah menjadi atom netral"
     }
   },
   {
     id: 5,
-    q: "Senyawa MgF₂ terbentuk dari Mg dan F. Mg melepas 2 elektron, sedangkan setiap atom F menerima 1 elektron. Kesimpulan yang paling tepat adalah...",
+    stimulus: `
+      Atom Mg memiliki 2 elektron valensi dan dapat membentuk ion Mg<sup>2+</sup>.
+      Atom F memiliki 7 elektron valensi dan dapat membentuk ion F<sup>−</sup>.
+      Senyawa yang terbentuk dari Mg dan F adalah MgF<sub>2</sub>.
+    `,
+    stem: "Kesimpulan yang tepat berdasarkan data tersebut adalah ....",
     options: {
-      A: "Satu atom Mg berikatan dengan dua atom F agar jumlah elektron yang dilepas dan diterima seimbang",
-      B: "Dua atom Mg diperlukan untuk menerima elektron dari satu atom F",
-      C: "Mg dan F membentuk ikatan kovalen karena saling berbagi elektron",
-      D: "MgF₂ terbentuk karena Mg menerima elektron dari F",
-      E: "MgF₂ tidak termasuk senyawa ion karena mengandung lebih dari dua atom"
+      A: "satu atom Mg berikatan dengan dua atom F agar elektron yang dilepas dan diterima seimbang",
+      B: "dua atom Mg berikatan dengan satu atom F agar muatan senyawa menjadi netral",
+      C: "satu atom Mg menerima elektron dari dua atom F sehingga terbentuk MgF<sub>2</sub>",
+      D: "dua atom F melepaskan elektron kepada satu atom Mg sehingga terbentuk MgF<sub>2</sub>",
+      E: "satu atom Mg dan satu atom F cukup untuk membentuk senyawa MgF<sub>2</sub>"
     }
   },
   {
     id: 6,
-    q: "Perbedaan utama antara pembentukan ikatan ion dan ikatan kovalen adalah...",
+    stimulus: `
+      Ikatan ion dan ikatan kovalen sama-sama melibatkan elektron valensi.
+      Namun, cara keterlibatan elektron pada kedua jenis ikatan tersebut berbeda.
+      Ikatan ion umumnya terjadi antara logam dan nonlogam, sedangkan ikatan kovalen umumnya terjadi antaratom nonlogam.
+    `,
+    stem: "Perbedaan utama antara pembentukan ikatan ion dan ikatan kovalen adalah ....",
     options: {
-      A: "Ikatan ion terjadi karena pemakaian bersama elektron, sedangkan kovalen karena perpindahan elektron",
-      B: "Ikatan ion hanya terjadi antara sesama nonlogam, sedangkan kovalen antara logam dan nonlogam",
-      C: "Ikatan ion tidak melibatkan elektron valensi, sedangkan kovalen melibatkan elektron valensi",
-      D: "Ikatan ion melibatkan perpindahan elektron, sedangkan kovalen melibatkan pemakaian bersama elektron",
-      E: "Ikatan ion selalu membentuk molekul sederhana, sedangkan kovalen selalu membentuk kisi ion"
+      A: "ikatan ion terjadi karena pemakaian bersama elektron, sedangkan ikatan kovalen terjadi karena perpindahan elektron",
+      B: "ikatan ion terjadi antara sesama nonlogam, sedangkan ikatan kovalen terjadi antara logam dan nonlogam",
+      C: "ikatan ion tidak melibatkan elektron valensi, sedangkan ikatan kovalen melibatkan elektron valensi",
+      D: "ikatan ion terjadi melalui perpindahan elektron, sedangkan ikatan kovalen terjadi melalui pemakaian bersama elektron",
+      E: "ikatan ion selalu membentuk molekul sederhana, sedangkan ikatan kovalen selalu membentuk kisi kristal ion"
     }
   },
   {
     id: 7,
-    q: "Struktur Lewis digunakan dalam pembelajaran ikatan ion karena...",
+    stimulus: `
+      Struktur Lewis menggambarkan lambang unsur yang dikelilingi titik-titik elektron.
+      Titik-titik tersebut menunjukkan elektron pada kulit terluar atom.
+      Elektron pada kulit terluar berperan dalam pembentukan ikatan kimia.
+    `,
+    stem: "Informasi yang dapat diperoleh dari struktur Lewis adalah ....",
     options: {
-      A: "Menunjukkan massa atom relatif setiap unsur",
-      B: "Menunjukkan jumlah elektron valensi yang berperan dalam pembentukan ikatan",
-      C: "Menunjukkan jumlah neutron dalam inti atom",
-      D: "Menentukan warna senyawa yang terbentuk",
-      E: "Menentukan titik didih senyawa secara langsung"
+      A: "massa atom relatif unsur",
+      B: "jumlah elektron valensi atom",
+      C: "jumlah neutron dalam inti atom",
+      D: "warna senyawa yang terbentuk",
+      E: "titik leleh senyawa secara langsung"
     }
   },
   {
     id: 8,
-    q: "Mengapa senyawa ion seperti NaCl memiliki titik leleh relatif tinggi?",
+    stimulus: `
+      NaCl merupakan senyawa ion yang tersusun dari ion Na<sup>+</sup> dan Cl<sup>−</sup>.
+      Dalam keadaan padat, ion-ion tersebut tersusun teratur membentuk kisi kristal ion.
+      Gaya tarik antarion dalam kisi kristal berlangsung kuat ke berbagai arah.
+    `,
+    stem: "Berdasarkan bacaan tersebut, penyebab NaCl memiliki titik leleh relatif tinggi adalah ....",
     options: {
-      A: "Karena NaCl tersusun atas molekul-molekul kecil yang mudah dipisahkan",
-      B: "Karena ion-ion dalam NaCl tidak memiliki gaya tarik",
-      C: "Karena gaya tarik elektrostatik antara ion-ion dalam kisi kristal sangat kuat",
-      D: "Karena NaCl hanya tersusun atas atom netral",
-      E: "Karena NaCl tidak larut dalam air"
+      A: "NaCl tersusun dari molekul kecil yang mudah dipisahkan",
+      B: "ion-ion dalam NaCl tidak memiliki gaya tarik",
+      C: "gaya tarik elektrostatik antarion dalam kisi kristal sangat kuat",
+      D: "NaCl hanya tersusun dari atom-atom netral",
+      E: "NaCl tidak dapat larut dalam air"
     }
   },
   {
     id: 9,
-    q: "NaCl padat tidak menghantarkan listrik, tetapi larutan NaCl dapat menghantarkan listrik. Penjelasan yang tepat adalah...",
+    stimulus: `
+      NaCl padat tidak dapat menghantarkan listrik dengan baik.
+      Ketika NaCl dilarutkan dalam air, larutannya dapat menghantarkan listrik.
+      Dalam larutan, ion Na<sup>+</sup> dan Cl<sup>−</sup> dapat bergerak bebas.
+    `,
+    stem: "Penjelasan yang tepat untuk perbedaan daya hantar listrik tersebut adalah ....",
     options: {
-      A: "Dalam padatan, elektron NaCl bergerak bebas, sedangkan dalam larutan tidak",
-      B: "Dalam larutan, NaCl berubah menjadi atom netral yang membawa arus",
-      C: "Dalam padatan, NaCl tidak memiliki ion",
-      D: "Dalam larutan, ion Na⁺ dan Cl⁻ dapat bergerak bebas membawa muatan listrik",
-      E: "Dalam padatan, NaCl membentuk ikatan kovalen"
+      A: "dalam padatan, elektron NaCl bergerak bebas membawa arus listrik",
+      B: "dalam larutan, NaCl berubah menjadi atom netral pembawa arus listrik",
+      C: "dalam padatan, NaCl tidak tersusun dari ion-ion bermuatan",
+      D: "dalam larutan, ion Na<sup>+</sup> dan Cl<sup>−</sup> bergerak bebas membawa muatan listrik",
+      E: "dalam padatan, NaCl membentuk ikatan kovalen yang kuat"
     }
   },
   {
     id: 10,
-    q: "Pernyataan berikut yang paling tepat menggambarkan senyawa ion adalah...",
+    stimulus: `
+      Senyawa ion dapat terbentuk dari kation dan anion.
+      Kation dan anion memiliki muatan berlawanan.
+      Gaya tarik antara muatan berlawanan menyebabkan ion-ion tersebut terikat.
+    `,
+    stem: "Pernyataan yang tepat tentang senyawa ion adalah ....",
     options: {
-      A: "Senyawa yang tersusun dari kation dan anion yang terikat oleh gaya tarik elektrostatik",
-      B: "Senyawa yang selalu tersusun dari molekul-molekul netral",
-      C: "Senyawa yang terbentuk karena pemakaian bersama elektron antar nonlogam",
-      D: "Senyawa yang hanya dapat terbentuk dari dua atom yang sama",
-      E: "Senyawa yang tidak melibatkan elektron valensi"
+      A: "senyawa ion tersusun dari kation dan anion yang terikat oleh gaya tarik elektrostatik",
+      B: "senyawa ion selalu tersusun dari molekul-molekul netral sederhana",
+      C: "senyawa ion terbentuk karena pemakaian bersama elektron antar nonlogam",
+      D: "senyawa ion hanya terbentuk dari dua atom yang sama",
+      E: "senyawa ion tidak melibatkan elektron valensi dalam pembentukannya"
     }
   }
 ];
 const quizExplanation = {
   1: {
     correct: "B",
-    text: "Na memiliki konfigurasi 2,8,1. Dengan melepas 1 elektron, Na menjadi Na⁺ dan mencapai konfigurasi stabil seperti gas mulia terdekat. Ini menunjukkan kecenderungan atom mencapai kestabilan."
+    text: "Atom Na memiliki konfigurasi elektron 2,8,1. Dengan melepaskan 1 elektron, Na berubah menjadi Na<sup>+</sup> dan memiliki konfigurasi stabil seperti gas mulia."
   },
   2: {
     correct: "C",
-    text: "Cl memiliki 7 elektron valensi. Agar mencapai oktet, Cl lebih mudah menerima 1 elektron daripada melepas 7 elektron. Setelah menerima elektron, Cl menjadi Cl⁻."
+    text: "Atom Cl memiliki 7 elektron valensi. Untuk mencapai oktet, Cl lebih mudah menerima 1 elektron sehingga membentuk ion Cl<sup>−</sup>."
   },
   3: {
     correct: "B",
-    text: "Ikatan ion umumnya terbentuk antara logam dan nonlogam. Mg adalah logam yang cenderung melepas elektron, sedangkan Cl adalah nonlogam yang cenderung menerima elektron."
+    text: "Ikatan ion umumnya terbentuk antara logam dan nonlogam. Mg merupakan logam yang cenderung melepaskan elektron, sedangkan Cl merupakan nonlogam yang cenderung menerima elektron."
   },
   4: {
     correct: "C",
-    text: "Setelah Na melepas elektron dan Cl menerima elektron, terbentuk Na⁺ dan Cl⁻. Kedua ion bermuatan berlawanan ini saling tarik-menarik melalui gaya elektrostatik."
+    text: "Na<sup>+</sup> bermuatan positif dan Cl<sup>−</sup> bermuatan negatif. Muatan yang berlawanan menyebabkan kedua ion saling tarik-menarik melalui gaya elektrostatik."
   },
   5: {
     correct: "A",
-    text: "Mg melepas 2 elektron, sedangkan satu atom F hanya menerima 1 elektron. Karena itu diperlukan dua atom F agar elektron yang dilepas Mg dapat diterima seluruhnya dan muatan senyawa menjadi netral."
+    text: "Mg melepaskan 2 elektron, sedangkan setiap atom F menerima 1 elektron. Karena itu, diperlukan 2 atom F agar elektron yang dilepas Mg dapat diterima seluruhnya dan senyawa menjadi netral."
   },
   6: {
     correct: "D",
-    text: "Ikatan ion melibatkan perpindahan elektron dari atom logam ke atom nonlogam. Ikatan kovalen melibatkan pemakaian bersama pasangan elektron antar atom nonlogam."
+    text: "Ikatan ion terbentuk melalui perpindahan elektron dari atom logam ke atom nonlogam. Ikatan kovalen terbentuk melalui pemakaian bersama pasangan elektron antaratom nonlogam."
   },
   7: {
     correct: "B",
-    text: "Struktur Lewis menampilkan elektron valensi sebagai titik di sekitar lambang unsur. Elektron valensi inilah yang menentukan kecenderungan atom melepas, menerima, atau berbagi elektron."
+    text: "Struktur Lewis menunjukkan elektron valensi melalui titik-titik di sekitar lambang unsur. Elektron valensi berperan penting dalam pembentukan ikatan kimia."
   },
   8: {
     correct: "C",
-    text: "Senyawa ion memiliki titik leleh tinggi karena ion positif dan ion negatif dalam kisi kristal saling tarik-menarik kuat. Diperlukan energi besar untuk memisahkan ion-ion tersebut."
+    text: "NaCl memiliki titik leleh relatif tinggi karena ion Na<sup>+</sup> dan Cl<sup>−</sup> dalam kisi kristal saling tarik-menarik kuat melalui gaya elektrostatik."
   },
   9: {
     correct: "D",
-    text: "NaCl padat tidak menghantarkan listrik karena ion-ionnya terkunci dalam kisi kristal. Ketika larut dalam air, ion Na⁺ dan Cl⁻ bergerak bebas sehingga dapat membawa arus listrik."
+    text: "NaCl padat tidak menghantarkan listrik karena ion-ionnya tidak bebas bergerak. Ketika dilarutkan dalam air, ion Na<sup>+</sup> dan Cl<sup>−</sup> bergerak bebas sehingga dapat membawa muatan listrik."
   },
   10: {
     correct: "A",
-    text: "Senyawa ion tersusun dari kation dan anion yang berikatan melalui gaya tarik elektrostatik. Senyawa ion tidak tersusun dari molekul netral sederhana seperti senyawa kovalen."
+    text: "Senyawa ion tersusun dari kation dan anion. Ion-ion yang bermuatan berlawanan saling tarik-menarik melalui gaya elektrostatik."
   }
 };
+
     let user = null;
 let currentPhase = 0;
 
@@ -1595,17 +1646,20 @@ if(pill){
       }
     }
 
-   function renderQuiz() {
+  function renderQuiz() {
   const container = document.getElementById('quiz-container');
   container.innerHTML = "";
 
   quizData.forEach(item => {
     let html = `
       <div class="section-box" id="quiz-box-${item.id}" style="background:white; border-left:10px solid var(--gold);">
-        <p style="font-size:12px; font-weight:bold; color:#6d7f91; margin:0 0 6px 0;">
-        </p>
+        
+        <div style="font-size:14px; line-height:1.8; margin:0 0 12px 0; color:#3b5f7a;">
+          ${item.stimulus}
+        </div>
+
         <p style="font-size:14px; line-height:1.7; margin:0 0 10px 0;">
-          <b>${item.id}. ${item.q}</b>
+          <b>${item.id}. ${item.stem}</b>
         </p>
     `;
 

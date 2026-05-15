@@ -1791,11 +1791,15 @@ function backToExplorationLogam(){
     }
 
    
-    const quizLogamData = [
+   const quizLogamData = [
   {
     id: 1,
-    level: "C2 - Menjelaskan",
-    q: "Ikatan logam terbentuk karena adanya...",
+    stimulus: `
+      Atom logam cenderung memiliki elektron valensi yang mudah bergerak.
+      Dalam struktur logam, atom-atom logam dapat membentuk kation logam.
+      Elektron valensi yang bergerak bebas berada di antara kation-kation logam tersebut.
+    `,
+    stem: "Ikatan logam terbentuk karena adanya ....",
     options: {
       A: "pemakaian pasangan elektron bersama antara dua atom nonlogam",
       B: "gaya tarik antara kation logam dan elektron valensi yang bergerak bebas",
@@ -1806,8 +1810,12 @@ function backToExplorationLogam(){
   },
   {
     id: 2,
-    level: "C2 - Menafsirkan",
-    q: "Model lautan elektron pada ikatan logam menggambarkan bahwa...",
+    stimulus: `
+      Model lautan elektron digunakan untuk menjelaskan struktur ikatan logam.
+      Dalam model ini, kation-kation logam tersusun rapat.
+      Elektron valensi tidak terikat pada satu atom tertentu, tetapi dapat bergerak di antara kation-kation logam.
+    `,
+    stem: "Pernyataan yang tepat tentang model lautan elektron adalah ....",
     options: {
       A: "elektron valensi terikat kuat pada satu atom tertentu",
       B: "atom logam tidak memiliki elektron valensi",
@@ -1818,8 +1826,12 @@ function backToExplorationLogam(){
   },
   {
     id: 3,
-    level: "C2 - Menjelaskan",
-    q: "Logam dapat menghantarkan listrik karena...",
+    stimulus: `
+      Kabel listrik banyak dibuat dari tembaga atau aluminium.
+      Kedua logam tersebut dapat menghantarkan arus listrik dengan baik.
+      Di dalam logam terdapat elektron valensi bebas yang dapat bergerak ketika dihubungkan dengan sumber listrik.
+    `,
+    stem: "Alasan logam dapat menghantarkan listrik adalah ....",
     options: {
       A: "memiliki elektron valensi bebas yang dapat bergerak membawa muatan listrik",
       B: "memiliki molekul-molekul yang mudah menguap",
@@ -1830,8 +1842,12 @@ function backToExplorationLogam(){
   },
   {
     id: 4,
-    level: "C2 - Menghubungkan",
-    q: "Sifat logam sebagai penghantar panas dapat dijelaskan oleh...",
+    stimulus: `
+      Panci logam dapat menghantarkan panas dari bagian bawah ke bagian lainnya.
+      Perpindahan panas dalam logam dibantu oleh elektron bebas.
+      Susunan partikel logam yang rapat juga membantu energi panas diteruskan.
+    `,
+    stem: "Sifat logam sebagai penghantar panas dapat dijelaskan oleh ....",
     options: {
       A: "elektron yang tidak dapat bergerak sama sekali",
       B: "susunan partikel yang sangat renggang",
@@ -1842,8 +1858,12 @@ function backToExplorationLogam(){
   },
   {
     id: 5,
-    level: "C2 - Menjelaskan",
-    q: "Logam dapat ditempa atau dibentuk tanpa mudah patah karena...",
+    stimulus: `
+      Logam seperti emas, perak, dan aluminium dapat ditempa atau dibentuk.
+      Ketika diberi tekanan, lapisan kation logam dapat bergeser.
+      Walaupun bergeser, kation-kation logam tetap diikat oleh lautan elektron.
+    `,
+    stem: "Alasan logam dapat ditempa atau dibentuk tanpa mudah patah adalah ....",
     options: {
       A: "kation logam saling menolak kuat sehingga terpisah",
       B: "lapisan kation logam dapat bergeser tetapi tetap diikat oleh lautan elektron",
@@ -1854,8 +1874,12 @@ function backToExplorationLogam(){
   },
   {
     id: 6,
-    level: "C2 - Menafsirkan",
-    q: "Permukaan logam tampak mengkilap karena...",
+    stimulus: `
+      Permukaan logam yang dipoles dapat tampak mengkilap.
+      Kilap logam berkaitan dengan keberadaan elektron bebas pada permukaan logam.
+      Elektron bebas dapat berinteraksi dengan cahaya yang datang.
+    `,
+    stem: "Penyebab permukaan logam tampak mengkilap adalah ....",
     options: {
       A: "logam selalu berwarna putih",
       B: "kation logam menyerap semua cahaya",
@@ -1866,8 +1890,12 @@ function backToExplorationLogam(){
   },
   {
     id: 7,
-    level: "C2 - Mengklasifikasikan",
-    q: "Sifat logam yang paling berkaitan langsung dengan penggunaan tembaga sebagai kabel listrik adalah...",
+    stimulus: `
+      Tembaga banyak digunakan sebagai bahan kabel listrik.
+      Pemilihan tembaga berkaitan dengan kemampuannya menghantarkan arus listrik.
+      Kemampuan ini muncul karena adanya elektron valensi bebas dalam struktur logam.
+    `,
+    stem: "Sifat logam yang paling berkaitan langsung dengan penggunaan tembaga sebagai kabel listrik adalah ....",
     options: {
       A: "konduktivitas listrik",
       B: "mudah berkarat",
@@ -1878,8 +1906,12 @@ function backToExplorationLogam(){
   },
   {
     id: 8,
-    level: "C2 - Membandingkan",
-    q: "Berbeda dengan kaca yang mudah pecah ketika dipukul, logam dapat berubah bentuk karena...",
+    stimulus: `
+      Kaca dan keramik cenderung mudah pecah ketika dipukul.
+      Logam berbeda karena lapisan kationnya dapat bergeser saat diberi tekanan.
+      Lautan elektron tetap mengikat kation-kation logam meskipun susunannya bergeser.
+    `,
+    stem: "Dibandingkan kaca, logam dapat berubah bentuk karena ....",
     options: {
       A: "logam tidak memiliki susunan partikel",
       B: "kation logam tidak saling berinteraksi",
@@ -1890,8 +1922,12 @@ function backToExplorationLogam(){
   },
   {
     id: 9,
-    level: "C2 - Menghubungkan",
-    q: "Aluminium dapat dibuat menjadi aluminium foil karena aluminium...",
+    stimulus: `
+      Aluminium dapat dibuat menjadi aluminium foil.
+      Aluminium foil berbentuk lembaran sangat tipis.
+      Sifat ini menunjukkan bahwa aluminium dapat ditempa atau dibentuk tanpa mudah patah.
+    `,
+    stem: "Aluminium dapat dibuat menjadi aluminium foil karena aluminium ....",
     options: {
       A: "tidak memiliki elektron bebas",
       B: "dapat ditempa menjadi lembaran tipis",
@@ -1902,8 +1938,12 @@ function backToExplorationLogam(){
   },
   {
     id: 10,
-    level: "C2 - Menyimpulkan",
-    q: "Kesimpulan yang paling tepat tentang hubungan ikatan logam dan sifat logam adalah...",
+    stimulus: `
+      Banyak sifat logam dapat dijelaskan dengan model lautan elektron.
+      Elektron valensi bebas membantu menjelaskan daya hantar listrik, daya hantar panas, dan kilap logam.
+      Lautan elektron juga membantu menjelaskan mengapa logam dapat ditempa tanpa mudah patah.
+    `,
+    stem: "Kesimpulan yang paling tepat tentang hubungan ikatan logam dan sifat logam adalah ....",
     options: {
       A: "sifat logam tidak berhubungan dengan susunan partikelnya",
       B: "logam menghantarkan listrik karena elektron valensinya tidak dapat bergerak",
@@ -1928,7 +1968,7 @@ const correctLogamAnswers = {
 };
 
 const quizLogamExplanation = {
-  1: "Ikatan logam terbentuk karena gaya tarik antara kation logam yang bermuatan positif dan elektron valensi bebas yang bergerak di antara kation-kation tersebut.",
+  1: "Ikatan logam terbentuk karena gaya tarik elektrostatik antara kation logam yang bermuatan positif dan elektron valensi bebas yang bergerak di antara kation-kation tersebut.",
   2: "Model lautan elektron menggambarkan elektron valensi yang tidak terikat pada satu atom tertentu, tetapi bergerak bebas di antara kation-kation logam.",
   3: "Logam menghantarkan listrik karena elektron valensi bebas dapat bergerak membawa muatan listrik saat logam dihubungkan dengan sumber listrik.",
   4: "Logam menghantarkan panas karena energi dapat diteruskan melalui elektron bebas dan susunan partikel logam yang rapat.",
