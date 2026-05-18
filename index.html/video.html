@@ -52,6 +52,14 @@
       border-radius: 30px;
       border: 8px solid var(--gold);
     }
+    .button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
   </style>
 </head>
 
@@ -68,10 +76,14 @@
       </video>
     </div>
 
-    <button onclick="skipToMenu()">Lanjut ke Menu ➡️</button>
+   <div class="button-row">
+  <button onclick="goProfilPengembang()">👩‍💻 Profil Pengembang</button>
+  <button onclick="skipToMenu()">Lanjut ke Menu ➡️</button>
+</div>
   </div>
 
   <script>
+    
     function guardLogin() {
       const u = localStorage.getItem("kimia_user");
       if (!u) window.location.href = "index.html";
@@ -87,6 +99,11 @@
       if (vid) vid.pause();
       window.location.href = "menu.html";
     }
+    function goProfilPengembang() {
+  const vid = document.getElementById('intro-video');
+  if (vid) vid.pause();
+  window.location.href = "profil.html";
+}
   </script>
 </body>
 </html>
