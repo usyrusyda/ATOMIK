@@ -363,6 +363,315 @@
       width: 330px;
       text-align: center;
     }
+
+    /* =========================
+   FLOATING CHATBOT IONA
+========================= */
+.iona-floating-wrap {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iona-bubble-label {
+  background: #ffffff;
+  color: var(--batik-blue);
+  border: 2px solid #d9ecff;
+  border-radius: 999px;
+  padding: 8px 13px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(58, 124, 175, 0.14);
+  animation: ionaLabelFloat 2.5s ease-in-out infinite;
+}
+
+.iona-float-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 0;
+  border: 4px solid #ffffff;
+  background: linear-gradient(135deg, #fff7d6, #eaf6ff);
+  box-shadow: 0 10px 24px rgba(58, 124, 175, 0.28), 0 5px 0 #2a5a82;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ionaFloat 2.8s ease-in-out infinite;
+}
+
+.iona-float-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 14px 30px rgba(58, 124, 175, 0.34), 0 7px 0 #2a5a82;
+}
+
+.iona-float-btn img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+@keyframes ionaFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes ionaLabelFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.iona-chat-panel {
+  position: fixed;
+  right: 24px;
+  bottom: 110px;
+  width: 370px;
+  max-width: calc(100vw - 32px);
+  height: 500px;
+  background: #fffdf8;
+  border: 4px solid #d9ecff;
+  border-top: 8px solid var(--gold);
+  border-radius: 30px;
+  box-shadow: 0 18px 42px rgba(58, 124, 175, 0.24);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.iona-chat-panel.show {
+  display: flex;
+  animation: ionaPanelPop 0.22s ease-out;
+}
+
+@keyframes ionaPanelPop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.iona-chat-header {
+  background: linear-gradient(135deg, #ffffff, #eef8ff);
+  border-bottom: 2px solid #d9ecff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iona-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iona-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff7d6;
+  border: 3px solid #ffdf75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iona-avatar img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.iona-chat-header strong {
+  display: block;
+  color: var(--batik-blue);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 17px;
+}
+
+.iona-chat-header small {
+  display: block;
+  margin-top: 2px;
+  color: #6f8faa;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.iona-close-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fff0f0;
+  color: #d94f4f;
+  font-size: 24px;
+  line-height: 1;
+  box-shadow: 0 4px 0 #e6b4b4;
+}
+
+.iona-close-btn:hover {
+  background: #ffe4e4;
+  box-shadow: 0 5px 0 #e6b4b4;
+}
+
+.iona-chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 193, 7, 0.10), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(58, 124, 175, 0.10), transparent 35%),
+    #fcfeff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iona-msg {
+  max-width: 84%;
+  padding: 11px 14px;
+  border-radius: 18px;
+  line-height: 1.55;
+  font-size: 13px;
+  word-wrap: break-word;
+}
+
+.iona-msg.bot {
+  background: #ffffff;
+  color: #496f8c;
+  border: 2px dashed #d9ecff;
+  align-self: flex-start;
+  border-bottom-left-radius: 7px;
+}
+
+.iona-msg.user {
+  background: var(--batik-blue);
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 7px;
+  box-shadow: 0 6px 14px rgba(58, 124, 175, 0.18);
+}
+
+.iona-quick-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 2px;
+}
+
+.iona-quick-row button {
+  width: auto;
+  margin: 0;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #fff8d9;
+  color: #7a5a00;
+  border: 2px solid #ffe19b;
+  box-shadow: none;
+  font-size: 12px;
+}
+
+.iona-quick-row button:hover {
+  background: #ffefad;
+  box-shadow: none;
+}
+
+.iona-chat-input-wrap {
+  padding: 12px;
+  border-top: 2px solid #edf5fc;
+  background: #ffffff;
+  display: flex;
+  gap: 8px;
+}
+
+.iona-chat-input {
+  flex: 1;
+  border: 2px solid #d9ecff;
+  border-radius: 18px;
+  padding: 12px 13px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  outline: none;
+  color: #2f4f6b;
+}
+
+.iona-chat-input:focus {
+  border-color: #8dc1ef;
+  box-shadow: 0 0 0 4px rgba(141, 193, 239, 0.15);
+}
+
+.iona-send-btn {
+  width: 48px;
+  height: 45px;
+  padding: 0;
+  margin: 0;
+  border-radius: 16px;
+  background: var(--gold);
+  color: #5c4300;
+  font-size: 18px;
+  box-shadow: 0 5px 0 #c79a00;
+}
+
+.iona-send-btn:hover {
+  background: #ffd34d;
+  box-shadow: 0 6px 0 #c79a00;
+}
+
+@media (max-width: 768px) {
+  .iona-floating-wrap {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .iona-bubble-label {
+    display: none;
+  }
+
+  .iona-float-btn {
+    width: 64px;
+    height: 64px;
+  }
+
+  .iona-float-btn img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .iona-chat-panel {
+    right: 14px;
+    bottom: 88px;
+    width: calc(100vw - 28px);
+    height: 450px;
+  }
+}
   </style>
 </head>
 
@@ -379,8 +688,9 @@
     </div>
 
     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-  <button class="petunjuk-btn" onclick="openPetunjuk()">Petunjuk Penggunaan</button>
-  <button class="diskusi-nav-btn" onclick="openDiskusiPanel()">Ruang Diskusi</button>
+  <button class="petunjuk-btn" onclick="openPetunjuk()">Petunjuk</button>
+  <button class="petunjuk-btn" onclick="openPetaKonsep()">Peta Konsep</button>
+  <button class="diskusi-nav-btn" onclick="openDiskusiPanel()">Diskusi</button>
   <button class="logout-btn" onclick="logout()">Keluar</button>
 </div>
   </nav>
@@ -516,6 +826,10 @@ const OWNER_EMAILS = [
 
 function openPetunjuk() {
   window.location.href = "petunjuk.html";
+}
+
+function openPetaKonsep() {
+  window.location.href = "peta-konsep.html";
 }
 
 function getCurrentUserDiskusi() {
@@ -751,6 +1065,524 @@ async function hideDiskusiMessage(id) {
   }
 }
 
+function toggleIonaChat() {
+  const panel = document.getElementById("iona-chat-panel");
+  if (!panel) return;
+
+  panel.classList.toggle("show");
+}
+
+function handleIonaEnter(event) {
+  if (event.key === "Enter") {
+    sendIonaMessage();
+  }
+}
+
+function appendIonaMessage(text, sender = "bot") {
+  const body = document.getElementById("iona-chat-body");
+  if (!body) return;
+
+  const msg = document.createElement("div");
+  msg.className = `iona-msg ${sender}`;
+  msg.innerHTML = text;
+
+  body.appendChild(msg);
+  body.scrollTop = body.scrollHeight;
+}
+
+function quickAskIona(question) {
+  const input = document.getElementById("iona-chat-input");
+  if (!input) return;
+
+  input.value = question;
+  sendIonaMessage();
+}
+
+function getIonaReply(userText) {
+  const text = userText.toLowerCase().trim();
+
+  const hasAny = (keywords) => keywords.some(k => text.includes(k));
+
+  const isAskingDefinition = hasAny([
+    "apa itu", "jelaskan", "pengertian", "definisi", "maksud"
+  ]);
+
+  const isAskingWhy = hasAny([
+    "mengapa", "kenapa", "kok bisa", "alasan", "sebab"
+  ]);
+
+  const isAskingDifference = hasAny([
+    "beda", "perbedaan", "bandingkan", "dibandingkan"
+  ]);
+
+  const isAskingExample = hasAny([
+    "contoh", "misalnya", "seperti apa"
+  ]);
+
+  // SAPAAN
+  if (hasAny(["halo", "hai", "assalamualaikum", "iona"])) {
+    return `
+      Halo! Aku Iona 🌼<br>
+      Aku bisa membantumu memahami materi ikatan kimia di ATOMIK.
+      Kamu bisa bertanya tentang <b>ikatan ion</b>, <b>ikatan kovalen</b>,
+      <b>kepolaran</b>, <b>ikatan logam</b>, <b>bentuk molekul</b>, dan
+      <b>gaya antarmolekul</b>.
+    `;
+  }
+
+  // MENOLAK JAWABAN MENTAH
+  if (hasAny(["jawabannya apa", "jawaban lkpd", "tolong jawabkan", "langsung jawab", "isi jawabannya"])) {
+    return `
+      Aku bisa membantumu memahami cara berpikirnya, tapi aku tidak memberikan jawaban LKPD mentah ya 😊<br>
+      Coba kirim bagian yang membuatmu bingung, nanti aku bantu arahkan konsep dan langkah penyelesaiannya.
+    `;
+  }
+
+  // IKATAN ION
+  if (hasAny(["ikatan ion", "ionik", "kation", "anion", "nacl", "mgf", "cacl", "na+", "cl-"])) {
+    if (isAskingDifference) {
+      return `
+        Perbedaan utamanya: pada <b>ikatan ion</b> terjadi <b>perpindahan elektron</b>,
+        sedangkan pada <b>ikatan kovalen</b> terjadi <b>pemakaian pasangan elektron bersama</b>.
+        <br><br>
+        Ikatan ion umumnya terjadi antara atom logam dan nonlogam. Contohnya NaCl,
+        yaitu Na melepaskan elektron menjadi Na<sup>+</sup>, sedangkan Cl menerima elektron menjadi Cl<sup>−</sup>.
+      `;
+    }
+
+    if (isAskingWhy || text.includes("nacl")) {
+      return `
+        NaCl termasuk senyawa ion karena Na merupakan atom logam yang cenderung melepaskan 1 elektron,
+        sedangkan Cl merupakan atom nonlogam yang cenderung menerima 1 elektron.
+        <br><br>
+        Setelah itu terbentuk Na<sup>+</sup> dan Cl<sup>−</sup>. Kedua ion yang muatannya berlawanan
+        saling tarik-menarik membentuk ikatan ion.
+      `;
+    }
+
+    if (isAskingExample) {
+      return `
+        Contoh senyawa yang memiliki ikatan ion antara lain NaCl, MgF<sub>2</sub>,
+        CaCl<sub>2</sub>, dan MgO.
+        <br><br>
+        Senyawa ion terbentuk dari kation dan anion yang saling tarik-menarik karena gaya elektrostatik.
+      `;
+    }
+
+    return `
+      <b>Ikatan ion</b> adalah ikatan yang terbentuk karena adanya perpindahan elektron
+      dari atom logam ke atom nonlogam.
+      <br><br>
+      Atom logam membentuk <b>kation</b>, sedangkan atom nonlogam membentuk <b>anion</b>.
+      Kation dan anion kemudian saling tarik-menarik karena muatannya berlawanan.
+    `;
+  }
+
+  // IKATAN KOVALEN
+  if (hasAny(["kovalen", "pasangan elektron bersama", "rangkap", "koordinasi", "nh4", "h3o"])) {
+    if (isAskingDifference) {
+      return `
+        Ikatan kovalen biasa dan kovalen koordinasi sama-sama menggunakan pasangan elektron bersama.
+        Bedanya, pada <b>kovalen biasa</b> pasangan elektron berasal dari kedua atom,
+        sedangkan pada <b>kovalen koordinasi</b> pasangan elektron berasal dari salah satu atom saja.
+      `;
+    }
+
+    if (isAskingExample) {
+      return `
+        Contoh ikatan kovalen antara lain H<sub>2</sub>, O<sub>2</sub>, N<sub>2</sub>,
+        H<sub>2</sub>O, dan CO<sub>2</sub>.
+        <br><br>
+        Contoh kovalen koordinasi adalah NH<sub>4</sub><sup>+</sup>, yaitu ketika NH<sub>3</sub>
+        menyumbangkan pasangan elektron bebas kepada H<sup>+</sup>.
+      `;
+    }
+
+    if (isAskingWhy) {
+      return `
+        Ikatan kovalen terjadi karena atom-atom nonlogam cenderung membutuhkan elektron untuk mencapai kestabilan.
+        Karena sesama nonlogam tidak mudah melepas elektron sepenuhnya, atom-atom tersebut menggunakan
+        pasangan elektron secara bersama.
+      `;
+    }
+
+    return `
+      <b>Ikatan kovalen</b> adalah ikatan yang terbentuk karena dua atom menggunakan
+      pasangan elektron secara bersama.
+      <br><br>
+      Ikatan ini umumnya terjadi antara atom-atom nonlogam.
+    `;
+  }
+
+  // KEPOLARAN
+  if (hasAny(["kepolaran", "polar", "nonpolar", "dipol", "elektronegatif", "keelektronegatifan", "hcl", "co2", "h2o"])) {
+    if (text.includes("h2o") || text.includes("air")) {
+      return `
+        H<sub>2</sub>O bersifat polar karena memiliki ikatan O–H yang polar dan bentuk molekulnya bengkok.
+        <br><br>
+        Karena bentuknya tidak simetris, resultan dipolnya tidak saling meniadakan.
+        Akibatnya, molekul H<sub>2</sub>O memiliki sisi δ<sup>+</sup> dan δ<sup>−</sup>.
+      `;
+    }
+
+    if (text.includes("co2")) {
+      return `
+        CO<sub>2</sub> memiliki ikatan C=O yang polar, tetapi molekul CO<sub>2</sub> bersifat nonpolar
+        karena bentuknya linear dan simetris.
+        <br><br>
+        Dua dipol ikatan pada CO<sub>2</sub> saling meniadakan.
+      `;
+    }
+
+    if (isAskingDifference) {
+      return `
+        Molekul <b>polar</b> memiliki persebaran muatan yang tidak merata sehingga memiliki dipol.
+        Molekul <b>nonpolar</b> memiliki persebaran muatan yang merata atau dipolnya saling meniadakan.
+        <br><br>
+        Kepolaran dipengaruhi oleh perbedaan keelektronegatifan dan bentuk molekul.
+      `;
+    }
+
+    return `
+      <b>Kepolaran</b> berkaitan dengan persebaran elektron dalam ikatan atau molekul.
+      Ikatan menjadi polar jika ada perbedaan keelektronegatifan sehingga muncul muatan parsial
+      δ<sup>+</sup> dan δ<sup>−</sup>.
+      <br><br>
+      Namun, kepolaran molekul juga dipengaruhi oleh bentuk molekulnya.
+    `;
+  }
+
+  // IKATAN LOGAM
+  if (hasAny(["ikatan logam", "logam", "lautan elektron", "elektron bebas", "konduktor", "mengkilap", "ditempa", "menghantarkan listrik"])) {
+    if (isAskingWhy && hasAny(["listrik", "konduktor", "menghantarkan"])) {
+      return `
+        Logam dapat menghantarkan listrik karena memiliki elektron valensi bebas.
+        Elektron-elektron ini dapat bergerak dalam struktur logam dan membawa muatan listrik.
+      `;
+    }
+
+    if (isAskingWhy && hasAny(["ditempa", "dibentuk", "patah"])) {
+      return `
+        Logam dapat ditempa karena lapisan kation logam dapat bergeser ketika diberi tekanan.
+        Walaupun bergeser, kation-kation logam tetap diikat oleh lautan elektron sehingga logam tidak mudah patah.
+      `;
+    }
+
+    return `
+      <b>Ikatan logam</b> terjadi karena gaya tarik antara kation logam dan elektron valensi bebas.
+      Model ini disebut <b>lautan elektron</b>.
+      <br><br>
+      Model lautan elektron menjelaskan sifat logam seperti menghantarkan listrik, menghantarkan panas,
+      mengkilap, dan dapat ditempa.
+    `;
+  }
+
+  // BENTUK MOLEKUL
+  if (hasAny(["bentuk molekul", "vsepr", "pei", "peb", "atom pusat", "linear", "bengkok", "trigonal", "tetrahedral", "oktahedral", "nh3", "ch4"])) {
+    if (text.includes("pei") || text.includes("peb")) {
+      return `
+        <b>PEI</b> adalah pasangan elektron ikatan, yaitu pasangan elektron yang digunakan untuk membentuk ikatan.
+        <br><br>
+        <b>PEB</b> adalah pasangan elektron bebas, yaitu pasangan elektron pada atom pusat yang tidak digunakan
+        untuk berikatan. PEB dapat memengaruhi bentuk molekul karena tolakan PEB lebih kuat daripada PEI.
+      `;
+    }
+
+    if (text.includes("h2o")) {
+      return `
+        H<sub>2</sub>O berbentuk bengkok karena atom pusat O memiliki 2 PEI dan 2 PEB.
+        PEB menolak lebih kuat sehingga posisi atom H terdorong dan bentuk molekul menjadi bengkok.
+      `;
+    }
+
+    if (text.includes("nh3")) {
+      return `
+        NH<sub>3</sub> berbentuk trigonal piramida karena atom pusat N memiliki 3 PEI dan 1 PEB.
+        Keberadaan 1 PEB membuat bentuknya tidak trigonal planar.
+      `;
+    }
+
+    return `
+      <b>Bentuk molekul</b> dapat dijelaskan menggunakan teori VSEPR.
+      Menurut teori ini, pasangan elektron di sekitar atom pusat saling menolak dan tersusun sejauh mungkin.
+      <br><br>
+      Untuk menentukan bentuk molekul, perhatikan jumlah PEI dan PEB pada atom pusat.
+    `;
+  }
+
+  // GAYA ANTARMOLEKUL
+  if (hasAny(["gaya antarmolekul", "antar molekul", "antarmolekul", "london", "dipol-dipol", "dipol dipol", "ikatan hidrogen", "titik didih", "menguap", "aseton", "heksana"])) {
+    if (text.includes("london")) {
+      return `
+        <b>Gaya London</b> terjadi karena pergerakan elektron menghasilkan dipol sesaat.
+        Dipol sesaat ini dapat menginduksi molekul lain sehingga muncul gaya tarik antarmolekul.
+        Gaya London dapat terjadi pada molekul nonpolar.
+      `;
+    }
+
+    if (text.includes("ikatan hidrogen")) {
+      return `
+        <b>Ikatan hidrogen</b> terjadi jika atom H terikat langsung pada atom yang sangat elektronegatif,
+        yaitu N, O, atau F.
+        <br><br>
+        Contohnya terjadi antarmolekul H<sub>2</sub>O dan NH<sub>3</sub>.
+      `;
+    }
+
+    if (text.includes("titik didih") || text.includes("menguap")) {
+      return `
+        Semakin kuat gaya antarmolekul, semakin besar energi yang dibutuhkan untuk memisahkan molekul.
+        Karena itu, zat dengan gaya antarmolekul lebih kuat biasanya memiliki titik didih lebih tinggi
+        dan lebih sulit menguap.
+      `;
+    }
+
+    return `
+      <b>Gaya antarmolekul</b> adalah gaya tarik-menarik yang terjadi di antara molekul.
+      Jenisnya meliputi gaya London, dipol-dipol induksian, dipol-dipol, dan ikatan hidrogen.
+    `;
+  }
+
+  // DEFAULT
+  return `
+    Aku belum bisa menangkap maksud pertanyaanmu dengan tepat 😊<br>
+    Coba tuliskan pertanyaan dengan menyebut materi atau contohnya, misalnya:
+    <br><br>
+    • Mengapa NaCl termasuk ikatan ion?<br>
+    • Apa bedanya ion dan kovalen?<br>
+    • Mengapa H<sub>2</sub>O polar?<br>
+    • Apa itu PEI dan PEB?<br>
+    • Mengapa titik didih dipengaruhi gaya antarmolekul?
+  `;
+}
+
+function sendIonaMessage() {
+  const input = document.getElementById("iona-chat-input");
+  if (!input) return;
+
+  const text = input.value.trim();
+  if (!text) return;
+
+  appendIonaMessage(text, "user");
+  input.value = "";
+
+  setTimeout(() => {
+    appendIonaMessage(getIonaReply(text), "bot");
+  }, 450);
+}
+
+function toggleIonaChat() {
+  const panel = document.getElementById("iona-chat-panel");
+  if (!panel) return;
+
+  panel.classList.toggle("show");
+}
+
+function handleIonaEnter(event) {
+  if (event.key === "Enter") {
+    sendIonaMessage();
+  }
+}
+
+function appendIonaMessage(text, sender = "bot") {
+  const body = document.getElementById("iona-chat-body");
+  if (!body) return;
+
+  const msg = document.createElement("div");
+  msg.className = `iona-msg ${sender}`;
+  msg.innerHTML = text;
+
+  body.appendChild(msg);
+  body.scrollTop = body.scrollHeight;
+}
+
+function quickAskIona(question) {
+  const input = document.getElementById("iona-chat-input");
+  if (!input) return;
+
+  input.value = question;
+  sendIonaMessage();
+}
+
+function getIonaReply(userText) {
+  const text = userText.toLowerCase();
+
+  if (
+    text.includes("halo") ||
+    text.includes("hai") ||
+    text.includes("assalamualaikum") ||
+    text.includes("iona")
+  ) {
+    return `
+      Halo! Aku Iona 🌼<br>
+      Aku bisa membantumu memahami materi <b>ikatan ion</b>, <b>ikatan kovalen</b>, <b>kepolaran</b>,
+      <b>ikatan logam</b>, <b>bentuk molekul</b>, dan <b>gaya antarmolekul</b>.
+    `;
+  }
+
+  if (
+    text.includes("jawabannya apa") ||
+    text.includes("jawaban lkpd") ||
+    text.includes("tolong jawabkan") ||
+    text.includes("langsung jawab")
+  ) {
+    return `
+      Aku bisa membantu memahami konsepnya, tapi aku tidak memberikan jawaban LKPD mentah ya 😊
+      Kirim bagian yang membuatmu bingung, nanti aku bantu arahkan langkah berpikirnya.
+    `;
+  }
+
+  if (
+    text.includes("ikatan ion") ||
+    text.includes("ionik") ||
+    text.includes("kation") ||
+    text.includes("anion") ||
+    text.includes("nacl") ||
+    text.includes("mgf") ||
+    text.includes("cacl")
+  ) {
+    return `
+      <b>Ikatan ion</b> terjadi karena perpindahan elektron dari atom logam ke atom nonlogam.
+      Atom logam melepaskan elektron sehingga membentuk <b>kation</b>, sedangkan atom nonlogam
+      menerima elektron sehingga membentuk <b>anion</b>. Kation dan anion kemudian saling
+      tarik-menarik karena muatannya berlawanan.
+      <br><br>
+      Contoh: NaCl terbentuk dari Na<sup>+</sup> dan Cl<sup>−</sup>.
+    `;
+  }
+
+  if (
+    text.includes("kovalen") ||
+    text.includes("pasangan elektron bersama") ||
+    text.includes("rangkap") ||
+    text.includes("koordinasi") ||
+    text.includes("nh4") ||
+    text.includes("h3o")
+  ) {
+    return `
+      <b>Ikatan kovalen</b> terjadi ketika dua atom nonlogam menggunakan pasangan elektron secara bersama.
+      Ikatan kovalen dapat berupa ikatan tunggal, rangkap dua, rangkap tiga, atau kovalen koordinasi.
+      <br><br>
+      Pada <b>kovalen koordinasi</b>, pasangan elektron yang digunakan bersama berasal dari salah satu atom.
+      Contohnya pembentukan NH<sub>4</sub><sup>+</sup> dari NH<sub>3</sub> dan H<sup>+</sup>.
+    `;
+  }
+
+  if (
+    text.includes("kepolaran") ||
+    text.includes("polar") ||
+    text.includes("nonpolar") ||
+    text.includes("dipol") ||
+    text.includes("elektronegatif") ||
+    text.includes("keelektronegatifan") ||
+    text.includes("hcl") ||
+    text.includes("co2") ||
+    text.includes("h2o")
+  ) {
+    return `
+      <b>Kepolaran</b> berkaitan dengan distribusi elektron dalam ikatan atau molekul.
+      Ikatan menjadi polar jika ada perbedaan keelektronegatifan sehingga terbentuk muatan parsial
+      δ<sup>+</sup> dan δ<sup>−</sup>.
+      <br><br>
+      Namun, kepolaran molekul juga dipengaruhi oleh <b>bentuk molekul</b>.
+      CO<sub>2</sub> memiliki ikatan polar, tetapi molekulnya nonpolar karena bentuknya linear dan simetris.
+      H<sub>2</sub>O bersifat polar karena bentuknya bengkok.
+    `;
+  }
+
+  if (
+    text.includes("ikatan logam") ||
+    text.includes("logam") ||
+    text.includes("lautan elektron") ||
+    text.includes("elektron bebas") ||
+    text.includes("konduktor") ||
+    text.includes("mengkilap") ||
+    text.includes("ditempa")
+  ) {
+    return `
+      <b>Ikatan logam</b> terjadi karena gaya tarik antara kation-kation logam dan elektron valensi
+      yang bergerak bebas. Model ini disebut <b>lautan elektron</b>.
+      <br><br>
+      Elektron bebas membuat logam dapat menghantarkan listrik dan panas, tampak mengkilap,
+      serta dapat ditempa atau dibentuk tanpa mudah patah.
+    `;
+  }
+
+  if (
+    text.includes("bentuk molekul") ||
+    text.includes("vsepr") ||
+    text.includes("pei") ||
+    text.includes("peb") ||
+    text.includes("atom pusat") ||
+    text.includes("linear") ||
+    text.includes("bengkok") ||
+    text.includes("trigonal") ||
+    text.includes("tetrahedral") ||
+    text.includes("oktahedral")
+  ) {
+    return `
+      <b>Bentuk molekul</b> dapat dijelaskan menggunakan teori VSEPR.
+      Menurut VSEPR, pasangan elektron di sekitar atom pusat saling menolak dan akan tersusun
+      sejauh mungkin.
+      <br><br>
+      Untuk menentukan bentuk molekul, perhatikan jumlah <b>PEI</b> atau pasangan elektron ikatan
+      dan <b>PEB</b> atau pasangan elektron bebas pada atom pusat.
+      Contoh: CO<sub>2</sub> berbentuk linear, H<sub>2</sub>O berbentuk bengkok,
+      NH<sub>3</sub> berbentuk trigonal piramida, dan CH<sub>4</sub> berbentuk tetrahedral.
+    `;
+  }
+
+  if (
+    text.includes("gaya antarmolekul") ||
+    text.includes("antar molekul") ||
+    text.includes("antarmolekul") ||
+    text.includes("london") ||
+    text.includes("dipol-dipol") ||
+    text.includes("dipol dipol") ||
+    text.includes("ikatan hidrogen") ||
+    text.includes("titik didih") ||
+    text.includes("menguap") ||
+    text.includes("aseton") ||
+    text.includes("heksana")
+  ) {
+    return `
+      <b>Gaya antarmolekul</b> adalah gaya tarik-menarik yang terjadi di antara molekul.
+      Jenisnya antara lain <b>gaya London</b>, <b>dipol-dipol induksian</b>,
+      <b>dipol-dipol</b>, dan <b>ikatan hidrogen</b>.
+      <br><br>
+      Semakin kuat gaya antarmolekul, semakin besar energi yang dibutuhkan untuk memisahkan molekul,
+      sehingga titik didih cenderung lebih tinggi.
+      Ikatan hidrogen terjadi jika H terikat langsung pada N, O, atau F.
+    `;
+  }
+
+  return `
+    Aku belum menemukan kata kunci materi dari pertanyaanmu 😊<br>
+    Coba tanyakan dengan menyebut salah satu materi, misalnya:
+    <br><br>
+    • Apa itu ikatan ion?<br>
+    • Mengapa H<sub>2</sub>O bersifat polar?<br>
+    • Apa bedanya PEI dan PEB?<br>
+    • Mengapa logam dapat menghantarkan listrik?<br>
+    • Apa itu gaya London?
+  `;
+}
+
+function sendIonaMessage() {
+  const input = document.getElementById("iona-chat-input");
+  if (!input) return;
+
+  const text = input.value.trim();
+  if (!text) return;
+
+  appendIonaMessage(text, "user");
+  input.value = "";
+
+  setTimeout(() => {
+    appendIonaMessage(getIonaReply(text), "bot");
+  }, 450);
+}
+
 setInterval(() => {
   const panel = document.getElementById("diskusi-panel");
   if (panel && panel.classList.contains("show")) {
@@ -758,6 +1590,59 @@ setInterval(() => {
   }
 }, 7000);
   </script>
+<!-- FLOATING CHATBOT IONA - STYLE ATOMIK -->
+<div class="iona-floating-wrap">
+  <div class="iona-bubble-label">Tanya Iona ✨</div>
+
+  <button id="iona-float-btn" class="iona-float-btn" onclick="toggleIonaChat()" aria-label="Buka chatbot Iona">
+    <img src="maskot.png" alt="Iona">
+  </button>
+</div>
+
+<div id="iona-chat-panel" class="iona-chat-panel">
+  <div class="iona-chat-header">
+    <div class="iona-header-left">
+      <div class="iona-avatar">
+        <img src="maskot.png" alt="Iona">
+      </div>
+
+      <div>
+        <strong>Chat bersama Iona</strong>
+        <small>Asisten belajar ikatan kimia</small>
+      </div>
+    </div>
+
+    <button class="iona-close-btn" onclick="toggleIonaChat()">×</button>
+  </div>
+
+  <div id="iona-chat-body" class="iona-chat-body">
+    <div class="iona-msg bot">
+      <b>Hai, aku Iona! 🌼</b><br>
+      Aku bisa membantumu memahami materi ikatan kimia di ATOMIK. Coba tanyakan tentang ikatan ion, kovalen, kepolaran, logam, bentuk molekul, atau gaya antarmolekul.
+    </div>
+
+    <div class="iona-quick-row">
+      <button onclick="quickAskIona('Apa itu ikatan ion?')">Ion</button>
+      <button onclick="quickAskIona('Apa itu ikatan kovalen?')">Kovalen</button>
+      <button onclick="quickAskIona('Apa itu kepolaran?')">Kepolaran</button>
+      <button onclick="quickAskIona('Apa itu ikatan logam?')">Logam</button>
+      <button onclick="quickAskIona('Apa itu bentuk molekul?')">Bentuk Molekul</button>
+      <button onclick="quickAskIona('Apa itu gaya antarmolekul?')">Antarmolekul</button>
+    </div>
+  </div>
+
+  <div class="iona-chat-input-wrap">
+    <input
+      type="text"
+      id="iona-chat-input"
+      class="iona-chat-input"
+      placeholder="Tulis pertanyaanmu..."
+      onkeydown="handleIonaEnter(event)"
+    />
+
+    <button class="iona-send-btn" onclick="sendIonaMessage()">➤</button>
+  </div>
+</div>
 
 <!-- OVERLAY RUANG DISKUSI -->
 <div id="diskusi-overlay" class="diskusi-overlay" onclick="closeDiskusiPanel()"></div>
