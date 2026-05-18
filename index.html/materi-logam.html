@@ -1980,7 +1980,7 @@ const quizLogamExplanation = {
   10: "Model lautan elektron membantu menjelaskan berbagai sifat khas logam, seperti konduktivitas listrik, konduktivitas panas, kilap, dan sifat dapat ditempa."
 };
 
-    function renderQuizLogam(){
+   function renderQuizLogam(){
   const container = document.getElementById("quiz-logam-container");
   if(!container) return;
 
@@ -1989,12 +1989,13 @@ const quizLogamExplanation = {
   quizLogamData.forEach(item => {
     let html = `
       <div class="section-box" id="quiz-logam-box-${item.id}" style="background:white;border-left:10px solid var(--gold);">
-        <p style="font-size:12px;font-weight:bold;color:#6d7f91;margin:0 0 6px 0;">
-         
-        </p>
+
+        <div style="font-size:14px;line-height:1.8;margin:0 0 12px 0;color:#3b5f7a;">
+          ${item.stimulus}
+        </div>
 
         <p style="font-size:14px;line-height:1.7;margin:0 0 10px 0;">
-          <b>${item.id}. ${item.q}</b>
+          <b>${item.id}. ${item.stem}</b>
         </p>
     `;
 
