@@ -1,0 +1,2985 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LKPD Bentuk Molekul - 5E</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#ffc107;
+      --batik-blue:#3a7caf;
+      --cream:#fffdf2;
+      --soft-blue:#e3f2fd;
+      --green:#a8e6cf;
+      --gray:#b2bec3;
+      --white:#fff;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --red:#ff6b6b;
+    }
+    body{
+      font-family:'Quicksand',sans-serif;
+      margin:0;
+      background:var(--cream);
+      color:var(--batik-blue);
+      overflow-x:hidden;
+    }
+    h1,h2,h3,h4{font-family:'Fredoka',sans-serif;margin:10px 0}
+    .hidden{display:none !important;}
+
+    /* NAV */
+    nav{
+      background:#fff;
+      padding:8px 5%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      border-bottom-left-radius:30px;
+      border-bottom-right-radius:30px;
+      box-shadow:0 5px 20px rgba(0,0,0,.05);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .nav-left,.nav-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+    .pill{
+      display:inline-block;padding:6px 12px;border-radius:999px;
+      background:#fff;border:2px dashed #d9ecff;font-size:12px;font-weight:800;opacity:.9;
+    }
+
+    /* BUTTON */
+    button{
+      padding:12px 20px;
+      background:var(--batik-blue);
+      color:#fff;
+      border:none;
+      border-radius:50px;
+      font-family:'Fredoka',sans-serif;
+      font-size:15px;
+      cursor:pointer;
+      box-shadow:0 5px 0 #2a5a82;
+      transition:.2s;
+      position:relative;
+      display:inline-block;
+      margin:4px;
+    }
+    button:hover{background:#4a8cbf;top:-2px;box-shadow:0 7px 0 #2a5a82}
+    button:active{top:3px;box-shadow:0 2px 0 #2a5a82}
+    .btn-back{background:var(--gray);box-shadow:0 5px 0 #636e72}
+    .btn-next{background:var(--gold);box-shadow:0 5px 0 #c79a00;color:#444}
+    .btn-green{background:#27ae60;box-shadow:0 5px 0 #1e8449}
+    .btn-logout{background:var(--red);box-shadow:0 5px 0 #cc4d4d;padding:8px 15px;font-size:12px}
+    .mini{font-size:12px;padding:8px 12px}
+
+    /* LAYOUT */
+    .module-container{
+      max-width:980px;
+      margin:18px auto;
+      padding:26px;
+      background:#fff;
+      border-radius:40px;
+      border:6px solid var(--soft-blue);
+      box-shadow:var(--shadow);
+    }
+    .section-box{
+      background:var(--soft-blue);
+      padding:18px;
+      border-radius:25px;
+      margin-bottom:16px;
+      border-left:10px solid var(--gold);
+    }
+    .section-green{
+      background:var(--green);
+      border-left:10px solid #27ae60;
+    }
+    .capaian-box{
+      background:#fff;
+      border:2px solid #d9ecff;
+      border-left:10px solid var(--batik-blue);
+      border-radius:20px;
+      padding:18px;
+      margin-top:14px;
+      box-shadow:0 4px 10px rgba(0,0,0,.04);
+    }
+    .tujuan-box{
+      background:#fff;
+      border:2px solid #d9ecff;
+      border-left:10px solid var(--gold);
+      border-radius:20px;
+      padding:18px;
+      margin-top:14px;
+      box-shadow:0 4px 10px rgba(0,0,0,.04);
+    }
+    .capaian-box h4,.tujuan-box h4{color:var(--batik-blue);}
+    .capaian-box p,.tujuan-box li{color:#4d6f8f;}
+
+    /* LKPD */
+    .progress-bar{
+      width:100%;height:12px;background:#eee;border-radius:10px;
+      margin:0 0 16px 0;overflow:hidden;border:2px solid #fff;
+    }
+    .progress-fill{height:100%;background:var(--gold);width:0%;transition:.5s}
+    .badge-5e{
+      background:var(--batik-blue);color:#fff;padding:5px 14px;
+      border-radius:15px;font-size:13px;font-weight:bold;
+      margin-bottom:10px;display:inline-block;
+    }
+    .phase-card{display:none;animation:fadeIn .35s}
+    .phase-card.active{display:block}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    input,select,textarea{
+      width:100%;
+      padding:12px;
+      margin-bottom:10px;
+      border:3px solid #f0f0f0;
+      border-radius:15px;
+      font-family:'Quicksand',sans-serif;
+      font-weight:700;
+      box-sizing:border-box;
+      background:#fff;
+    }
+    textarea{min-height:86px}
+
+    .mcq-option{
+      display:block;background:#fff;padding:10px;border-radius:12px;
+      margin:6px 0;border:2px solid #eee;cursor:pointer;
+      transition:.2s;text-align:left;font-size:13px;
+    }
+    .mcq-option:hover{background:var(--soft-blue)}
+    input[type="radio"]{width:auto;margin-right:8px}
+
+    .hint{
+      background:#fff;
+      border:2px dashed #d9ecff;
+      border-radius:18px;
+      padding:12px;
+      display:none;
+      margin-top:8px;
+      font-size:13px;
+    }
+
+    .correct-box{border:3px solid #27ae60 !important; background:#f0fff4 !important;}
+    .wrong-box{border:3px solid #ff6b6b !important; background:#fff5f5 !important;}
+
+    .feedback-auto-box{
+  display:none;
+  background:#fff;
+  border:2px dashed #d9ecff;
+  border-left:10px solid #27ae60;
+  border-radius:22px;
+  padding:18px;
+  margin-top:16px;
+  color:#2f5f56;
+  box-shadow:0 6px 16px rgba(0,0,0,.05);
+}
+
+.feedback-auto-box h3{
+  margin-top:0;
+  color:#1e8449;
+}
+
+.feedback-item{
+  background:#f8fff9;
+  border:1px solid #bdebd4;
+  border-radius:16px;
+  padding:12px 14px;
+  margin-bottom:12px;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.feedback-item b{
+  color:#1e8449;
+}
+
+.locked-answer{
+  background:#f3f6f8 !important;
+  color:#555 !important;
+  border-color:#d0d7de !important;
+  cursor:not-allowed !important;
+}
+
+.teacher-only{
+  display:none;
+}
+
+.answer-key-box{
+  background:#fff;
+  border:2px dashed #d9ecff;
+  border-left:10px solid #27ae60;
+  border-radius:20px;
+  padding:16px;
+  margin-top:16px;
+  color:#2f5f56;
+}
+
+.answer-key-box h3{
+  margin-top:0;
+  color:#1e8449;
+}
+
+  </style>
+</head>
+
+<body onload="initLKPD()">
+
+  <nav>
+    <div class="nav-left">
+  <button class="btn-back mini" onclick="goMenu()">⬅️ Menu</button>
+  <button class="btn-next mini" onclick="openMateriBentuk()">📚 Materi</button>
+  <span class="pill" id="user-pill">Belum isi identitas</span>
+</div>
+
+    <strong>Bentuk Molekul</strong>
+
+    <div class="nav-right">
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="module-container">
+    <div class="progress-bar"><div id="fill" class="progress-fill"></div></div>
+
+    <!-- ================= PHASE 0 ================= -->
+    <div class="phase-card active" id="p0">
+      <center>
+        <h2 style="margin-top:0;">IDENTITAS & INFORMASI LKPD</h2>
+      </center>
+
+      <div class="section-box section-green">
+        <p style="margin:0 0 8px 0;"><b>Isi identitas dulu ya:</b></p>
+        <input type="text" id="nama" placeholder="Nama kamu...">
+        <input type="text" id="kelas" placeholder="Kelas... (contoh: X-IPA 1)">
+        <input type="date" id="tgl">
+        <button class="btn-next" onclick="saveIdentity()">Simpan Identitas ✅</button>
+      </div>
+
+      <div class="section-box">
+        <h3 style="margin-top:0;">📌 Materi: Bentuk Molekul</h3>
+
+       <div class="capaian-box">
+          <h4 style="margin-top:0; margin-bottom:8px;">📘 Capaian Pembelajaran</h4>
+          <p style="margin:0; text-align:left; font-size:14px; line-height:1.7;">
+            Pada akhir Fase F, peserta didik mampu memahami sifat, struktur, dan interaksi partikel dalam membentuk berbagai senyawa serta kaitannya dengan sifat zat dalam kehidupan sehari-hari.
+          </p>
+        </div>
+
+       <div class="tujuan-box">
+  <h4 style="margin-top:0; margin-bottom:8px;">🎯 Tujuan Pembelajaran</h4>
+  <ol style="text-align:left; font-size:14px; line-height:1.7; margin:0; padding-left:20px;">
+    <li>Siswa mampu menjelaskan pengertian bentuk molekul berdasarkan susunan pasangan elektron di sekitar atom pusat.</li>
+    <li>Siswa mampu mengelompokkan bentuk molekul berdasarkan jumlah pasangan elektron ikatan dan pasangan elektron bebas pada atom pusat.</li>
+    <li>Siswa mampu menjelaskan pengaruh pasangan elektron bebas terhadap bentuk molekul.</li>
+  </ol>
+</div>
+
+        <center>
+          <button class="btn-next" onclick="requireIdentityThenGo(1)">Mulai Engagement ➡️</button>
+        </center>
+      </div>
+    </div>
+
+ <!-- ================= PHASE 1 ================= -->
+<div class="phase-card" id="p1">
+  <span class="badge-5e">1. Engagement</span>
+
+  <!-- PENGANTAR FENOMENA -->
+  <div class="section-box" style="border-left:10px solid var(--batik-blue);">
+    <h2 style="margin-top:0;color:var(--batik-blue);">🔵 Engagement</h2>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pernahkah kamu berpikir bahwa molekul-molekul kecil di sekitar kita ternyata memiliki
+      bentuk ruang yang berbeda-beda? Air yang kita minum tersusun dari molekul H₂O, sedangkan
+      gas karbon dioksida yang kita keluarkan saat bernapas tersusun dari molekul CO₂.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Menariknya, CO₂ dan H₂O sama-sama terdiri dari <b>tiga atom</b>. CO₂ tersusun dari
+      satu atom C dan dua atom O, sedangkan H₂O tersusun dari satu atom O dan dua atom H.
+      Namun, bentuk ruang kedua molekul ini ternyata tidak sama.
+    </p>
+
+    <!-- FENOMENA UTAMA -->
+    <div style="background:#fff;padding:15px;border-radius:18px;border:2px dashed #d9ecff;margin-top:14px;">
+      <h3 style="margin-top:0;color:var(--batik-blue);">🔎 Coba Amati Fenomena Berikut</h3>
+
+      <p style="font-size:14px;line-height:1.8;text-align:justify;margin-bottom:10px;">
+        Perhatikan perbandingan sederhana berikut.
+      </p>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0;">
+  
+  <div style="background:#f4f9ff; border-radius:18px; padding:15px; box-shadow:0 4px 10px rgba(0,0,0,.05); text-align:center; display:flex; flex-direction:column; justify-content:center;">
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--batik-blue);">Molekul CO₂</p>
+    <svg width="100%" height="120" viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+      <line x1="45" y1="55" x2="85" y2="55" stroke="#555" stroke-width="5"/>
+      <line x1="45" y1="65" x2="85" y2="65" stroke="#555" stroke-width="5"/>
+      <line x1="95" y1="55" x2="135" y2="55" stroke="#555" stroke-width="5"/>
+      <line x1="95" y1="65" x2="135" y2="65" stroke="#555" stroke-width="5"/>
+      
+      <circle cx="30" cy="60" r="20" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+      <text x="30" y="66" font-family="'Quicksand', sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">O</text>
+      
+      <circle cx="90" cy="60" r="22" fill="#7f8c8d" stroke="#555" stroke-width="2"/>
+      <text x="90" y="66" font-family="'Quicksand', sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">C</text>
+      
+      <circle cx="150" cy="60" r="20" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+      <text x="150" y="66" font-family="'Quicksand', sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">O</text>
+    </svg>
+  </div>
+
+  <div style="background:#f4f9ff; border-radius:18px; padding:15px; box-shadow:0 4px 10px rgba(0,0,0,.05); text-align:center; display:flex; flex-direction:column; justify-content:center;">
+    <p style="margin:0 0 10px 0; font-weight:bold; color:var(--batik-blue);">Molekul H₂O</p>
+    <svg width="100%" height="120" viewBox="0 0 180 120" xmlns="http://www.w3.org/2000/svg">
+      <line x1="90" y1="50" x2="50" y2="90" stroke="#555" stroke-width="5"/>
+      <line x1="90" y1="50" x2="130" y2="90" stroke="#555" stroke-width="5"/>
+
+      <path d="M 55 100 A 40 40 0 0 0 125 100" fill="none" stroke="#777" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="90" y="115" font-family="'Quicksand', sans-serif" font-size="12" font-weight="bold" fill="#555" text-anchor="middle">104,5°</text>
+      
+      <circle cx="65" cy="25" r="4" fill="#2ecc71"/>
+      <circle cx="75" cy="20" r="4" fill="#2ecc71"/>
+      <circle cx="105" cy="20" r="4" fill="#2ecc71"/>
+      <circle cx="115" cy="25" r="4" fill="#2ecc71"/>
+
+      <circle cx="45" cy="95" r="16" fill="#f5f6fa" stroke="#dcdde1" stroke-width="2"/>
+      <text x="45" y="100" font-family="'Quicksand', sans-serif" font-size="14" font-weight="bold" fill="#555" text-anchor="middle">H</text>
+
+      <circle cx="135" cy="95" r="16" fill="#f5f6fa" stroke="#dcdde1" stroke-width="2"/>
+      <text x="135" y="100" font-family="'Quicksand', sans-serif" font-size="14" font-weight="bold" fill="#555" text-anchor="middle">H</text>
+
+      <circle cx="90" cy="50" r="24" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+      <text x="90" y="57" font-family="'Quicksand', sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">O</text>
+    </svg>
+  </div>
+</div>
+        <center>
+        <p style="font-size:12px;opacity:.8;margin:8px 0 0;">
+          Ilustrasi bentuk molekul CO₂ dan H₂O. CO₂ berbentuk linear, sedangkan H₂O berbentuk bengkok.
+        </p>
+      </center>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px;">
+        <div style="background:#f8fbff;border:2px solid #d9ecff;border-radius:18px;padding:14px;">
+          <h4 style="margin-top:0;color:var(--batik-blue);text-align:center;">CO₂</h4>
+          <p style="font-size:13px;line-height:1.7;margin:0;text-align:left;">
+            CO₂ tersusun dari <b>1 atom C</b> dan <b>2 atom O</b>.
+            Jumlah atomnya ada <b>3</b>. Bentuk molekul CO₂ dikenal
+            <b>linear</b> atau lurus.
+          </p>
+        </div>
+
+        <div style="background:#f8fbff;border:2px solid #d9ecff;border-radius:18px;padding:14px;">
+          <h4 style="margin-top:0;color:var(--batik-blue);text-align:center;">H₂O</h4>
+          <p style="font-size:13px;line-height:1.7;margin:0;text-align:left;">
+            H₂O tersusun dari <b>1 atom O</b> dan <b>2 atom H</b>.
+            Jumlah atomnya juga ada <b>3</b>. Namun, bentuk molekul H₂O dikenal
+            <b>bengkok</b>.
+          </p>
+        </div>
+      </div>
+      
+
+      <div style="background:#fff7d6;border-left:10px solid var(--gold);border-radius:18px;padding:14px;margin-top:14px;">
+        <p style="font-size:15px;line-height:1.8;text-align:justify;margin:0;">
+          <b>Menarik, bukan?</b> Dua molekul ini sama-sama terdiri dari tiga atom,
+          tetapi bentuknya tidak sama. CO₂ berbentuk linear, sedangkan H₂O berbentuk bengkok.
+        </p>
+      </div>
+
+      <p style="font-size:14px;line-height:1.8;text-align:justify;margin-top:12px;margin-bottom:0;">
+        Dari fenomena ini, muncul rasa ingin tahu: apakah jumlah atom saja cukup untuk
+        menentukan bentuk molekul? Atau ada faktor lain pada atom pusat yang membuat bentuk
+        molekul menjadi berbeda?
+      </p>
+    </div>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;margin-top:14px;">
+      Pada tahap ini, kamu <b>belum harus menjawab dengan benar</b>. Pertanyaan ini akan
+      kamu jawab lebih lengkap setelah mengerjakan seluruh kegiatan LKPD, mulai dari
+      Exploration, Explanation, Elaboration, hingga Evaluation.
+    </p>
+  </div>
+
+  <!-- RUMUSAN MASALAH -->
+  <div class="section-box" style="background:white;border-left:10px solid var(--batik-blue);border:2px dashed #d9ecff;">
+    <h3 style="margin-top:0;color:var(--batik-blue);">❓ Rumusan Masalah</h3>
+
+    <p style="font-size:15px;line-height:1.8;text-align:justify;margin-bottom:0;">
+      <b>
+        Mengapa zat-zat yang sama-sama tersusun dari molekul bisa memiliki titik didih dan kemudahan menguap yang sangat berbeda (seperti air dibandingkan dengan metana)?
+      </b>
+    </p>
+  </div>
+
+  <!-- HIPOTESIS AWAL -->
+  <div class="section-box" style="background:var(--green);border-left:10px solid #27ae60;">
+    <h3 style="margin-top:0;color:#1e8449;">💭 Hipotesis Awal</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Berdasarkan fenomena CO₂ dan H₂O, tuliskan dugaan awalmu untuk menjawab rumusan masalah.
+      Dugaan ini tidak harus langsung benar. 
+    </p>
+
+    <textarea id="eng1" rows="5"
+      placeholder="Contoh awal: Menurut saya, bentuk molekul CO₂ dan H₂O berbeda karena ada faktor pada atom pusat yang memengaruhi susunan atom di sekitarnya..."></textarea>
+  </div>
+
+  <!-- ARAH KEGIATAN SELANJUTNYA -->
+  <div class="section-box">
+    <h3 style="margin-top:0;">Untuk Menjawab Pertanyaan Ini Kerjakan kegiatan LKPD berikut secara berurutan!</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;margin-bottom:0;">
+      Setelah semua tahap selesai, kamu akan dapat menjawab pertanyaan utama dengan lebih lengkap
+      dan berdasarkan konsep ilmiah.
+    </p>
+  </div>
+
+  <center>
+    <button class="btn-back" onclick="nextPhase(0)">⬅️ Kembali</button>
+    <button class="btn-next" onclick="nextPhase(2)">Lanjut ke Exploration ➡️</button>
+  </center>
+</div>
+
+   <!-- ================= PHASE 2 ================= -->
+<div class="phase-card" id="p2">
+  <span class="badge-5e">2. Exploration</span>
+
+  <!-- PENGANTAR EXPLORATION -->
+  <div class="section-box" style="border-left:10px solid var(--batik-blue);">
+    <h2 style="margin-top:0;color:var(--batik-blue);">🔍 Exploration</h2>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pada tahap Engagement, kamu sudah mengamati fenomena bahwa <b>CO₂</b> dan <b>H₂O</b>
+      sama-sama terdiri dari tiga atom, tetapi bentuk molekulnya berbeda. CO₂ berbentuk
+      linear, sedangkan H₂O berbentuk bengkok.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pada tahap Exploration ini, kamu akan menyelidiki penyebab perbedaan bentuk molekul
+      dengan memperhatikan <b>atom pusat</b>, <b>pasangan elektron ikatan</b>, dan
+      <b>pasangan elektron bebas</b>. Sebelum mengisi tabel dan menjawab pertanyaan,
+      bacalah materi pendukung terlebih dahulu.
+    </p>
+
+    <center>
+      <button class="btn-next" onclick="openMateriBentuk()">📚 Baca Materi Dulu</button>
+    </center>
+  </div>
+
+  <!-- PETUNJUK KEGIATAN -->
+  <div class="section-box" style="border-left:10px solid var(--gold);">
+    <h3 style="margin-top:0;color:var(--batik-blue);">🧭 Petunjuk Kegiatan Eksplorasi</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Setelah membaca materi pendukung, lakukan kegiatan berikut secara berurutan agar kamu
+      tidak bingung saat menentukan bentuk molekul.
+    </p>
+
+    <ol style="font-size:14px;line-height:1.8;text-align:left;padding-left:22px;">
+      <li>Buka materi pendukung dengan menekan tombol <b>📚 Baca Materi Dulu</b>.</li>
+      <li>Baca materi tentang atom pusat, PEI, PEB, dan pengelompokan bentuk molekul.</li>
+      <li>Kembali ke halaman Exploration.</li>
+      <li>Amati atau gunakan simulasi PhET Molecule Shapes yang tersedia.</li>
+      <li>Pada tampilan "Molecule Shapes" pilih bagian <b>Real Molecules</b></li>
+      <li>Perhatikan beberapa molekul: CO₂, H₂O, BF₃, CH₄, dan NH₃.</li>
+      <li>Tentukan atom pusat pada setiap molekul.</li>
+      <li>Hitung jumlah pasangan elektron ikatan dan pasangan elektron bebas pada atom pusat.</li>
+      <li>Kelompokkan bentuk molekul berdasarkan jumlah PEI dan PEB.</li>
+      <li>Setelah tabel selesai, jawab pertanyaan eksplorasi di bagian bawah.</li>
+    </ol>
+
+    <p style="font-size:13px;line-height:1.7;color:#cc4d4d;font-weight:bold;">
+      Catatan: Jawaban pada tabel dan pertanyaan eksplorasi harus didasarkan pada materi pendukung,
+      pengamatan model molekul, dan hasil analisismu terhadap jumlah PEI dan PEB.
+    </p>
+  </div>
+
+  <!-- SIMULASI PHET -->
+  <div class="section-box" style="background:white;border-left:10px solid var(--batik-blue);">
+    <h3 style="margin-top:0;color:var(--batik-blue);">🧪 Simulasi PhET Molecule Shapes</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Gunakan simulasi berikut untuk membantu membayangkan susunan atom dalam ruang.
+      Simulasi ini digunakan sebagai alat bantu visual, sedangkan pengelompokan bentuk molekul
+      tetap dilakukan berdasarkan jumlah PEI dan PEB pada atom pusat.
+    </p>
+
+    <div style="width:100%;height:560px;border-radius:20px;overflow:hidden;border:3px solid #d9ecff;background:#fff;">
+      <iframe
+        src="https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_all.html"
+        width="100%"
+        height="100%"
+        style="border:none;"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p style="font-size:12px;opacity:.75;margin-top:8px;">
+      💡 Jika simulasi tidak muncul, buka langsung:
+      <a href="https://phet.colorado.edu/sims/html/molecule-shapes/latest/molecule-shapes_all.html"
+         target="_blank" rel="noopener noreferrer">
+        PhET Molecule Shapes
+      </a>
+    </p>
+  </div>
+
+  <!-- TABEL EKSPLORASI -->
+  <div class="section-box">
+    <h3 style="margin-top:0;color:var(--batik-blue);">📋 Tabel Eksplorasi</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Lengkapi tabel berikut berdasarkan materi pendukung dan hasil pengamatan model molekul.
+      Fokuskan analisismu pada jumlah pasangan elektron ikatan dan pasangan elektron bebas
+      pada atom pusat.
+    </p>
+
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:15px;overflow:hidden;font-size:13px;min-width:980px;">
+        <tr style="background:var(--batik-blue);color:#fff;">
+          <th style="padding:8px;border:1px solid var(--soft-blue);">No</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">Molekul</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">Atom Pusat</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">PEI</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">PEB</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">Jumlah Pasangan Elektron</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">Bentuk Molekul</th>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">1</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>CO₂</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_atom_1"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_pei_1"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_peb_1"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_jml_1"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_bentuk_1"></td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>H₂O</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_atom_2"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_pei_2"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_peb_2"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_jml_2"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_bentuk_2"></td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>BF₃</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_atom_3"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_pei_3"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_peb_3"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_jml_3"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_bentuk_3"></td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>CH₄</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_atom_4"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_pei_4"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_peb_4"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_jml_4"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_bentuk_4"></td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>NH₃</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_atom_5"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_pei_5"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_peb_5"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_jml_5"></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><input type="text" id="t2_bentuk_5"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PERTANYAAN EKSPLORASI -->
+  <div class="section-box" style="background:var(--green);border-left:10px solid #27ae60;">
+    <h3 style="margin-top:0;color:#1e8449;">🧠 Pertanyaan Eksplorasi</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Jawablah pertanyaan berikut setelah membaca materi pendukung, mengamati simulasi,
+      dan mengisi tabel eksplorasi.
+    </p>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      1. Perhatikan kolom-kolom pada tabel yang telah kamu lengkapi. Berdasarkan data tersebut, dua faktor apa sajakah pada atom pusat yang menjadi kunci utama untuk membedakan bentuk satu molekul dengan molekul lainnya?
+    </p>
+    <textarea id="eks-bentuk-q1" rows="4"></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      2. Berdasarkan tabel yang telah kamu isi, bandingkan jumlah PEI dan PEB pada atom pusat molekul CO₂ dan H₂O. Apa perbedaan data yang kamu temukan?
+    </p>
+    <textarea id="eks-bentuk-q2" rows="4"></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      3. Sekarang perhatikan data molekul BF₃ dan NH₃ pada tabel. Meskipun keduanya sama-sama mengikat 3 atom, apakah jumlah Pasangan Elektron Bebas (PEB) pada atom pusatnya sama? Tuliskan perbandingannya!
+    </p>
+    <textarea id="eks-bentuk-q3" rows="4"></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      4. Berdasarkan pengamatanmu pada simulasi PhET dan tabel, apa yang terjadi secara visual pada susunan atom-atom yang terikat jika pada atom pusat terdapat Pasangan Elektron Bebas (PEB)?
+    </p>
+    <textarea id="eks-bentuk-q4" rows="4"></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      5. Berdasarkan hasil eksplorasi, perhatikan CH₄, NH₃, dan H₂O pada tabel. Ketiganya sama-sama memiliki total 4 pasangan elektron di atom pusat. Kelompokkan mana yang memiliki PEB dan mana yang tidak.
+    </p>
+    <textarea id="eks-bentuk-q5" rows="4"></textarea>
+  </div>
+
+  <center>
+    <button class="btn-back" onclick="nextPhase(1)">⬅️ Kembali ke Engagement</button>
+    <button class="btn-next" onclick="nextPhase(3)">Lanjut ke Explanation ➡️</button>
+  </center>
+</div>
+
+<!-- ================= MATERI BENTUK MOLEKUL TERPISAH ================= -->
+<div class="phase-card" id="pMateriBentuk">
+  <span class="badge-5e">Materi Pendukung</span>
+
+  <!-- HEADER MATERI -->
+  <div class="section-box" style="border-left:10px solid var(--batik-blue);">
+    <h2 style="margin-top:0;color:var(--batik-blue);">📚 Materi</h2>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Bacalah materi ini terlebih dahulu sebelum mengerjakan tahap Exploration.
+      Materi ini akan membantumu memahami cara menentukan dan mengelompokkan bentuk molekul
+      berdasarkan jumlah <b>pasangan elektron ikatan</b> dan <b>pasangan elektron bebas</b>
+      pada atom pusat.
+    </p>
+
+    <center>
+      <button class="btn-back" onclick="backToExplorationBentuk()">⬅️ Kembali ke Exploration</button>
+    </center>
+  </div>
+
+  <!-- PENGERTIAN -->
+  <div class="section-box">
+    <h3 style="margin-top:0;color:var(--batik-blue);">1. Pengertian Bentuk Molekul</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Bentuk molekul adalah susunan atom-atom dalam suatu molekul secara tiga dimensi.
+      Bentuk molekul menunjukkan bagaimana atom-atom berada di sekitar atom pusat.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Bentuk molekul penting karena dapat memengaruhi sifat suatu zat, misalnya
+      kepolaran, kemampuan berinteraksi dengan zat lain, dan fungsi molekul dalam kehidupan.
+      Namun pada materi ini, fokus utama kita adalah memahami bagaimana bentuk molekul
+      dapat ditentukan dari jumlah pasangan elektron di sekitar atom pusat.
+    </p>
+
+    <div style="background:#fff;padding:15px;border-radius:18px;border:2px dashed #d9ecff;">
+      <p style="font-size:14px;line-height:1.8;margin:0;">
+        <b>Inti materi:</b><br>
+        Bentuk molekul ditentukan oleh susunan pasangan elektron di sekitar atom pusat.
+      </p>
+    </div>
+  </div>
+
+  <!-- ATOM PUSAT -->
+  <div class="section-box">
+    <h3 style="margin-top:0;color:var(--batik-blue);">2. Atom Pusat</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Atom pusat adalah atom yang berada di tengah susunan molekul dan menjadi tempat
+      atom-atom lain berikatan. Atom pusat biasanya dapat membentuk lebih dari satu ikatan.
+    </p>
+
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:15px;overflow:hidden;font-size:13px;min-width:620px;">
+        <tr style="background:var(--batik-blue);color:#fff;">
+          <th style="padding:8px;border:1px solid var(--soft-blue);">Molekul</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">Atom Pusat</th>
+          <th style="padding:8px;border:1px solid var(--soft-blue);">Atom yang Mengelilingi</th>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>CO₂</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">C</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">2 atom O</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>H₂O</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">O</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">2 atom H</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>NH₃</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">N</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">3 atom H</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px;border:1px solid var(--soft-blue);"><b>CH₄</b></td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">C</td>
+          <td style="padding:8px;border:1px solid var(--soft-blue);">4 atom H</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- PEI DAN PEB -->
+  <div class="section-box">
+    <h3 style="margin-top:0;color:var(--batik-blue);">3. Pasangan Elektron Ikatan dan Pasangan Elektron Bebas</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Untuk menentukan bentuk molekul, kita perlu memperhatikan pasangan elektron
+      di sekitar atom pusat.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="background:#fff;border:2px dashed #d9ecff;border-radius:18px;padding:14px;">
+        <h4 style="margin-top:0;color:var(--batik-blue);">Pasangan Elektron Ikatan / PEI</h4>
+        <p style="font-size:14px;line-height:1.8;text-align:justify;margin-bottom:0;">
+          PEI adalah pasangan elektron yang digunakan untuk membentuk ikatan antara atom pusat
+          dan atom lain.
+        </p>
+      </div>
+
+      <div style="background:#fff;border:2px dashed #d9ecff;border-radius:18px;padding:14px;">
+        <h4 style="margin-top:0;color:var(--batik-blue);">Pasangan Elektron Bebas / PEB</h4>
+        <p style="font-size:14px;line-height:1.8;text-align:justify;margin-bottom:0;">
+          PEB adalah pasangan elektron pada atom pusat yang tidak digunakan untuk membentuk ikatan.
+        </p>
+      </div>
+    </div>
+
+    <div style="background:#fff7d6;border-left:10px solid var(--gold);border-radius:18px;padding:14px;margin-top:14px;">
+      <p style="font-size:14px;line-height:1.8;margin:0;text-align:justify;">
+        <b>Contoh:</b> Pada CO₂, atom pusat C memiliki 2 PEI dan 0 PEB.
+        Pada H₂O, atom pusat O memiliki 2 PEI dan 2 PEB.
+        Inilah salah satu penyebab CO₂ berbentuk linear, sedangkan H₂O berbentuk bengkok.
+      </p>
+    </div>
+  </div>
+<center style="margin:16px 0 4px;">
+  <img src="pei-peb.png"
+       alt="Ilustrasi pasangan elektron ikatan dan pasangan elektron bebas pada H2O"
+       style="width:100%;max-width:850px;border-radius:22px;display:block;box-shadow:0 8px 20px rgba(0,0,0,.08);">
+
+  <p style="font-size:12px;opacity:.8;margin:8px 0 0;">
+    Ilustrasi perbedaan pasangan elektron ikatan dan pasangan elektron bebas pada atom pusat.
+  </p>
+</center>
+
+  <!-- TEORI VSEPR -->
+  <div class="section-box">
+    <h3 style="margin-top:0;color:var(--batik-blue);">4. Teori VSEPR</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Teori VSEPR digunakan untuk memprediksi bentuk molekul berdasarkan tolakan pasangan elektron
+      di sekitar atom pusat. Pasangan-pasangan elektron akan saling menjauh agar gaya tolakannya
+      sekecil mungkin.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pasangan elektron bebas memiliki gaya tolak yang lebih besar dibandingkan pasangan elektron
+      ikatan. Karena itu, keberadaan PEB dapat memengaruhi bentuk molekul dan memperkecil sudut ikatan.
+    </p>
+
+    <div style="background:#fff;padding:15px;border-radius:18px;border:2px dashed #d9ecff;">
+      <p style="font-size:14px;line-height:1.8;margin:0;">
+        <b>Urutan kekuatan tolakan:</b><br>
+        PEB–PEB &gt; PEB–PEI &gt; PEI–PEI
+      </p>
+    </div>
+  </div>
+
+<!-- TABEL LENGKAP BENTUK MOLEKUL -->
+<div class="section-box">
+  <h3 style="margin-top:0;color:var(--batik-blue);">5. Tabel Bentuk Molekul Berdasarkan Teori VSEPR</h3>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Tabel berikut menunjukkan bentuk molekul berdasarkan jumlah pasangan elektron di sekitar atom pusat.
+    Gunakan tabel ini untuk membantu mengelompokkan bentuk molekul berdasarkan jumlah PEI dan PEB.
+  </p>
+
+  <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:15px;overflow:hidden;font-size:13px;min-width:980px;">
+      <tr style="background:var(--batik-blue);color:#fff;">
+        <th style="padding:8px;border:1px solid var(--soft-blue);">BK</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Rumus Umum</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">PEI</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">PEB</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Bentuk Molekul</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Sudut Ikatan</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Contoh</th>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₂</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">0</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Linear</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">180°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">BeCl₂, CO₂</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₃</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">0</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Trigonal planar</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">120°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">BF₃, NO₃⁻</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₂E</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">1</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Bengkok / huruf V</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">&lt; 120°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">SO₂, NO₂⁻</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₄</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">0</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Tetrahedral</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">109,5°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">CH₄, NH₄⁺</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₃E</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">1</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Trigonal piramida</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">&lt; 109,5°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">NH₃, H₃O⁺</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₂E₂</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Bengkok / huruf V</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">&lt; 109,5°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">H₂O, ClO₂⁻</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AXE₃</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">1</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Linear</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">180°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">HF, OH⁻</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₅</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">0</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Trigonal bipiramida</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">90° dan 120°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">PCl₅, AsF₅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₄E</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">1</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Seesaw / jungkat-jungkit</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">&lt; 90° dan &lt; 120°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">SF₄, SeF₄</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₃E₂</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Huruf T</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">&lt; 90° dan &lt; 180°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">BrF₃, ClF₃</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₂E₃</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Linear</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">180°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">XeF₂, ICl₂⁻</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">6</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₆</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">6</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">0</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Oktahedral</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">90°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">SF₆, SeF₆</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">6</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₅E</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">1</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Piramida alas bujursangkar</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">&lt; 90°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">BrF₅, IF₅</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">6</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₄E₂</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Bujursangkar</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">90°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">XeF₄, ICl₄⁻</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">7</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">AX₇</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">7</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">0</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Pentagonal bipiramida</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">90° dan 72°</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">IF₇</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+
+<!-- LANGKAH MEMPREDIKSI BENTUK MOLEKUL -->
+<div class="section-box">
+  <h3 style="margin-top:0;color:var(--batik-blue);">6. Langkah Memprediksi Bentuk Molekul</h3>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Bentuk molekul dapat diprediksi dengan memperhatikan jumlah pasangan elektron di sekitar atom pusat.
+    Pasangan elektron tersebut terdiri atas pasangan elektron ikatan atau PEI dan pasangan elektron bebas atau PEB.
+  </p>
+
+  <ol style="font-size:14px;line-height:1.8;text-align:left;padding-left:22px;">
+    <li>Tentukan atom pusat dalam molekul.</li>
+    <li>Hitung jumlah pasangan elektron ikatan atau PEI pada atom pusat.</li>
+    <li>Hitung jumlah pasangan elektron bebas atau PEB pada atom pusat.</li>
+    <li>Jumlahkan PEI dan PEB untuk menentukan jumlah pasangan elektron di sekitar atom pusat.</li>
+    <li>Tentukan rumus umum bentuk molekul, misalnya AX₂, AX₃, AX₂E, AX₄, AX₃E, dan seterusnya.</li>
+    <li>Tentukan bentuk molekul berdasarkan tabel bentuk molekul.</li>
+  </ol>
+
+  <div style="background:#fff7d6;border-left:10px solid var(--gold);border-radius:18px;padding:14px;margin-top:14px;">
+    <p style="font-size:14px;line-height:1.8;margin:0;text-align:justify;">
+      <b>Keterangan:</b> A menyatakan atom pusat, X menyatakan atom yang terikat pada atom pusat,
+      dan E menyatakan pasangan elektron bebas pada atom pusat.
+    </p>
+  </div>
+</div>
+
+  <!-- CONTOH PREDIKSI -->
+  <div class="section-box">
+    <h3 style="margin-top:0;color:var(--batik-blue);">Contoh Prediksi Bentuk Molekul</h3>
+
+    <div style="background:#fff;border:2px dashed #d9ecff;border-radius:18px;padding:15px;margin-bottom:14px;">
+      <h4 style="margin-top:0;color:var(--batik-blue);">Contoh 1 — CO₂</h4>
+      <ol style="font-size:14px;line-height:1.8;text-align:left;padding-left:22px;margin-bottom:0;">
+        <li>Atom pusat: C.</li>
+        <li>Jumlah PEI pada atom pusat: 2.</li>
+        <li>Jumlah PEB pada atom pusat: 0.</li>
+        <li>Jumlah pasangan elektron di sekitar atom pusat: 2.</li>
+        <li>Bentuk molekul: linear.</li>
+      </ol>
+    </div>
+
+    <div style="background:#fff;border:2px dashed #d9ecff;border-radius:18px;padding:15px;">
+      <h4 style="margin-top:0;color:var(--batik-blue);">Contoh 2 — H₂O</h4>
+      <ol style="font-size:14px;line-height:1.8;text-align:left;padding-left:22px;margin-bottom:0;">
+        <li>Atom pusat: O.</li>
+        <li>Jumlah PEI pada atom pusat: 2.</li>
+        <li>Jumlah PEB pada atom pusat: 2.</li>
+        <li>Jumlah pasangan elektron di sekitar atom pusat: 4.</li>
+        <li>Bentuk molekul: bengkok.</li>
+      </ol>
+    </div>
+  </div>
+
+
+
+<!-- HIBRIDISASI -->
+<div class="section-box" style="background:white;border-left:10px solid var(--gold);border:2px dashed #d9ecff;">
+  <h3 style="margin-top:0;color:var(--batik-blue);">6. Hibridisasi dan Hubungannya dengan Bentuk Molekul</h3>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Selain menggunakan teori VSEPR, bentuk molekul juga dapat dipahami melalui
+    <b>teori hibridisasi</b>. Hibridisasi menjelaskan bagaimana orbital-orbital pada atom pusat
+    bergabung membentuk orbital baru yang setara ketika atom pusat membentuk ikatan.
+  </p>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Orbital baru hasil penggabungan tersebut disebut <b>orbital hibrida</b>. Orbital hibrida
+    inilah yang kemudian digunakan untuk membentuk ikatan dengan atom lain atau ditempati oleh
+    pasangan elektron bebas.
+  </p>
+
+  <div style="background:#fff7d6;border-left:10px solid var(--gold);border-radius:18px;padding:14px;margin-top:14px;">
+    <p style="font-size:14px;line-height:1.8;margin:0;text-align:justify;">
+      <b>Inti sederhana:</b><br>
+      Hibridisasi membantu menjelaskan mengapa pasangan elektron di sekitar atom pusat dapat
+      tersusun dengan bentuk tertentu, misalnya linear, trigonal planar, tetrahedral,
+      trigonal bipiramida, atau oktahedral.
+    </p>
+  </div>
+
+  <p style="font-size:13px;line-height:1.7;color:#cc4d4d;font-weight:bold;margin-top:12px;">
+    Catatan: VSEPR → digunakan untuk memprediksi bentuk molekul dari tolakan PEI dan PEB.
+Hibridisasi → digunakan untuk menjelaskan orbital atom pusat yang membentuk ikatan sesuai bentuk itu.
+  </p>
+</div>
+
+<!-- HUBUNGAN JUMLAH PASANGAN ELEKTRON DAN HIBRIDISASI -->
+<div class="section-box">
+  <h3 style="margin-top:0;color:var(--batik-blue);">7. Hubungan Jumlah Pasangan Elektron dengan Hibridisasi</h3>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Jumlah pasangan elektron di sekitar atom pusat dapat digunakan untuk memperkirakan
+    jenis hibridisasi. Jumlah pasangan elektron tersebut diperoleh dari jumlah
+    <b>PEI + PEB</b> pada atom pusat.
+  </p>
+
+  <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;background:#fff;border-radius:15px;overflow:hidden;font-size:13px;min-width:820px;">
+      <tr style="background:var(--batik-blue);color:#fff;">
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Jumlah PEI + PEB</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Hibridisasi</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Geometri Dasar</th>
+        <th style="padding:8px;border:1px solid var(--soft-blue);">Contoh</th>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">2</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">sp</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Linear</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">CO₂, BeCl₂</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">3</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">sp²</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Trigonal planar</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">BF₃, SO₂</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">4</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">sp³</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Tetrahedral</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">CH₄, NH₃, H₂O</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">5</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">sp³d</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Trigonal bipiramida</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">PCl₅, SF₄</td>
+      </tr>
+
+      <tr>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">6</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);text-align:center;">sp³d²</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">Oktahedral</td>
+        <td style="padding:8px;border:1px solid var(--soft-blue);">SF₆, XeF₄</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="background:#fff7d6;border-left:10px solid var(--gold);border-radius:18px;padding:14px;margin-top:14px;">
+    <p style="font-size:14px;line-height:1.8;margin:0;text-align:justify;">
+      <b>Cara cepat:</b> Hitung jumlah PEI + PEB pada atom pusat. Jika jumlahnya 4,
+      maka hibridisasinya sp³. Contohnya CH₄, NH₃, dan H₂O sama-sama memiliki jumlah
+      pasangan elektron total 4 pada atom pusat, sehingga sama-sama berkaitan dengan sp³.
+      Namun, bentuk molekulnya dapat berbeda karena jumlah PEB-nya berbeda.
+    </p>
+  </div>
+</div>
+
+<div class="section-box">
+  <h3 style="margin-top:0;color:var(--batik-blue);">8. Contoh Hibridisasi pada CH₄</h3>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Karbon (C) memiliki 4 elektron valensi. Pada keadaan dasar, terdapat dua elektron berpasangan di orbital s dan dua elektron tidak berpasangan di orbital p. Agar dapat mengikat empat atom H, satu elektron dari orbital s dipromosikan (melompat) ke orbital p yang kosong, sehingga terdapat empat elektron tidak berpasangan yang siap berikatan.
+  </p>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Ketika karbon berikatan dengan empat atom hidrogen membentuk molekul CH₄, orbital pada atom karbon mengalami hibridisasi. Satu orbital s dan tiga orbital p melebur membentuk empat orbital hibrida <b>sp³</b> yang tingkat energinya setara.
+  </p>
+
+  <div style="background:#fff;padding:15px;border-radius:18px;border:2px dashed #d9ecff;">
+    <p style="font-size:14px;line-height:1.8;margin:0;text-align:justify;">
+      Dari empat orbital hibrida sp³ pada atom C:
+      <br>• keempat orbital digunakan sepenuhnya untuk membentuk empat ikatan tunggal C–H,
+      <br>• tidak ada sisa orbital untuk pasangan elektron bebas (PEB = 0).
+    </p>
+  </div>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;margin-top:12px;">
+    Karena pada atom pusat C terdapat 4 PEI dan 0 PEB, keempat ikatan tersebut akan saling menolak secara merata ke segala arah dalam ruang tiga dimensi. Hal ini menghasilkan bentuk molekul yang simetris sempurna, yaitu <b>tetrahedral</b> dengan sudut ikatan 109,5°.
+  </p>
+
+  <div style="background:var(--green);border-left:10px solid #27ae60;border-radius:18px;padding:14px;margin-top:14px;">
+    <p style="font-size:14px;line-height:1.8;margin:0;text-align:justify;">
+      <b>Kesimpulan:</b> CH₄ memiliki hibridisasi sp³ karena jumlah total domain elektron (PEI + PEB) pada atom pusat C adalah 4. Karena seluruh orbital hibrida digunakan untuk berikatan tanpa adanya pasangan elektron bebas, bentuk geometri molekulnya adalah tetrahedral murni.
+    </p>
+  </div>
+</div>
+
+  <style>
+  /* Animasi Elektron Melompat dari s ke p */
+  @keyframes elektronTerbang {
+    0%, 10% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+      color: var(--red, #ff6b6b);
+    }
+    35% {
+      /* Terbang melengkung ke atas (puncak lompatan) */
+      transform: translate(66px, -45px) scale(1.4);
+      color: #e91e63;
+    }
+    60% {
+      /* Mendarat di kotak p yang ke-3 (jarak 133px ke kanan) */
+      transform: translate(133px, 0) scale(1);
+      color: #e91e63;
+      opacity: 1;
+    }
+    85% {
+      /* Diam sejenak di kotak p */
+      transform: translate(133px, 0) scale(1);
+      color: #e91e63;
+      opacity: 1;
+    }
+    95%, 100% {
+      /* Menghilang untuk mengulang animasi */
+      transform: translate(133px, 0) scale(1);
+      opacity: 0;
+    }
+  }
+
+  .animasi-lompat {
+    animation: elektronTerbang 2.5s ease-in-out infinite;
+    z-index: 100;
+  }
+</style>
+
+<div style="background:#fff; padding:20px; border-radius:18px; border:2px dashed #d9ecff; text-align:center; margin-top:16px;">
+  <h4 style="color:var(--batik-blue); margin-top:0;">Diagram Hibridisasi sp³ (Atom C pada Metana/CH₄)</h4>
+
+  <div style="margin-bottom:30px;">
+    <p style="font-size:14px; font-weight:bold; margin-bottom:8px; color:#444;">1. Keadaan Dasar</p>
+    <div style="display:flex; justify-content:center; align-items:flex-end; gap:15px;">
+      <div style="text-align:center;">
+        <div style="display:flex; border:2px solid var(--batik-blue); background:var(--soft-blue); width:40px; height:40px; box-sizing:border-box; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px;">⥮</div>
+        <div style="font-size:12px; margin-top:4px; font-weight:bold;">2s</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="display:flex;">
+          <div style="border:2px solid var(--batik-blue); background:var(--soft-blue); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px; border-right:none;">↿</div>
+          <div style="border:2px solid var(--batik-blue); background:var(--soft-blue); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px; border-right:none;">↿</div>
+          <div style="border:2px solid var(--batik-blue); background:var(--soft-blue); width:40px; height:40px; box-sizing:border-box;"></div>
+        </div>
+        <div style="font-size:12px; margin-top:4px; font-weight:bold;">2p</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:30px;">
+    <p style="font-size:14px; font-weight:bold; margin-bottom:20px; color:#444;">2. Keadaan Tereksitsi <span style="font-weight:normal; font-size:12px;">(Elektron 2s tereksitasi ke 2p)</span></p>
+    
+    <div style="position:relative; display:inline-flex; justify-content:center; align-items:flex-end; gap:15px;">
+      
+      <div style="text-align:center; position:relative;">
+        <div style="display:flex; border:2px solid var(--batik-blue); background:var(--soft-blue); width:40px; height:40px; box-sizing:border-box; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px;">
+          ↿
+        </div>
+        <div class="animasi-lompat" style="position:absolute; top:0; left:0; width:40px; height:40px; display:flex; justify-content:center; align-items:center; font-weight:bold; font-size:18px;">
+          ↿
+        </div>
+        <div style="font-size:12px; margin-top:4px; font-weight:bold;">2s</div>
+      </div>
+
+      <div style="text-align:center;">
+        <div style="display:flex;">
+          <div style="border:2px solid var(--batik-blue); background:var(--soft-blue); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px; border-right:none;">↿</div>
+          <div style="border:2px solid var(--batik-blue); background:var(--soft-blue); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px; border-right:none;">↿</div>
+          <div style="border:2px solid #e91e63; background:#fce4ec; width:40px; height:40px; box-sizing:border-box;"></div>
+        </div>
+        <div style="font-size:12px; margin-top:4px; font-weight:bold;">2p</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p style="font-size:14px; font-weight:bold; margin-bottom:8px; color:#444;">3. Hibridisasi sp³ <span style="font-weight:normal; font-size:12px;"></p>
+    <div style="display:flex; justify-content:center; align-items:flex-end;">
+      <div style="text-align:center;">
+        <div style="display:flex;">
+          <div style="border:2px solid #27ae60; background:var(--green); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px; border-right:none;">↿</div>
+          <div style="border:2px solid #27ae60; background:var(--green); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px; border-right:none;">↿</div>
+          <div style="border:2px solid #27ae60; background:var(--green); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px; border-right:none;">↿</div>
+          <div style="border:2px solid #27ae60; background:var(--green); width:40px; height:40px; box-sizing:border-box; display:flex; justify-content:center; align-items:center; font-weight:bold; color:var(--red); font-size:18px;">↿</div>
+        </div>
+        <div style="font-size:13px; margin-top:6px; color:#1e8449; font-weight:bold;">4 orbital hibrida sp³ siap berikatan</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- KESIMPULAN -->
+  <div class="section-box section-green">
+    <h3 style="margin-top:0;color:#1e8449;">Kesimpulan Materi</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;margin:0;">
+      Bentuk molekul dapat diprediksi dan dikelompokkan berdasarkan jumlah pasangan elektron
+      ikatan dan pasangan elektron bebas pada atom pusat. Molekul yang jumlah atomnya sama
+      belum tentu memiliki bentuk yang sama, karena keberadaan pasangan elektron bebas dapat
+      memengaruhi susunan atom dalam ruang.
+    </p>
+  </div>
+
+  <center>
+    <button class="btn-next" onclick="backToExplorationBentuk()">
+      Saya Sudah Membaca, Kembali ke Exploration ➡️
+    </button>
+  </center>
+</div>
+
+<!-- ================= PHASE 3 ================= -->
+<div class="phase-card" id="p3">
+  <span class="badge-5e">3. Explanation</span>
+
+  <!-- PENGANTAR EXPLANATION -->
+  <div class="section-box" style="border-left:10px solid var(--batik-blue);">
+    <h2 style="margin-top:0;color:var(--batik-blue);">🟡 Explanation</h2>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pada tahap Exploration, kamu sudah membaca materi pendukung, mengamati model molekul,
+      mengisi tabel atom pusat, PEI, PEB, jumlah pasangan elektron, dan bentuk molekul.
+      Sekarang, jelaskan kembali hasil eksplorasimu dengan bahasamu sendiri.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Jelaskan bukan hanya jawabannya, tetapi juga <b>alasan mengapa kamu menjawab seperti itu</b>.
+      Gunakan hasil tabel Exploration sebagai dasar penjelasanmu.
+    </p>
+  </div>
+
+  <!-- PRESENTASI PEMAHAMAN SISWA -->
+  <div class="section-box">
+    <h3 style="margin-top:0;color:var(--batik-blue);">🎤 Penjelasan Pemahaman Siswa</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Jawablah pertanyaan berikut berdasarkan tabel eksplorasi dan materi pendukung.
+      Gunakan istilah atom pusat, PEI, PEB, dan bentuk molekul dengan tepat.
+    </p>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      1. Berdasarkan hasil tabel Exploration, jelaskan secara runtut dengan bahasamu sendiri, bagaimana cara menentukan bentuk suatu molekul jika data PEI dan PEB-nya sudah diketahui!
+    </p>
+    <textarea id="exp-bentuk-q1" rows="4"
+      placeholder="Jelaskan bahwa bentuk molekul dapat dikelompokkan dengan melihat atom pusat, jumlah PEI, jumlah PEB, lalu mencocokkannya dengan pola bentuk molekul..."></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      2. Pada tahap Eksplorasi, Mengapa CO₂ berbentuk linear, sedangkan H₂O berbentuk bengkok, padahal keduanya sama-sama terdiri dari tiga atom?
+    </p>
+    <textarea id="exp-bentuk-q2" rows="4"
+      placeholder="Bandingkan jumlah PEI dan PEB pada atom pusat CO₂ dan H₂O..."></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      3. Berdasarkan prinsip tolakan pasangan elektron (VSEPR), jelaskan bagaimana keberadaan 1 PEB pada NH₃ mengubah susunan atomnya menjadi trigonal piramida, sedangkan BF₃ (tanpa PEB) tetap berbentuk datar (trigonal planar)?
+    </p>
+    <textarea id="exp-bentuk-q3" rows="4"
+      placeholder="Jelaskan perbedaan jumlah PEB pada atom pusat BF₃ dan NH₃..."></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      4. Apa pengaruh pasangan elektron bebas terhadap bentuk molekul dan sudut ikatan?
+    </p>
+    <textarea id="exp-bentuk-q4" rows="4"
+      placeholder="Jelaskan bahwa PEB memiliki tolakan lebih kuat sehingga dapat mengubah bentuk dan memperkecil sudut ikatan..."></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      5. Mengapa jumlah pasangan elektron total yang sama belum tentu menghasilkan bentuk molekul yang sama?
+    </p>
+    <textarea id="exp-bentuk-q5" rows="4"
+      placeholder="Gunakan contoh CH₄, NH₃, dan H₂O yang sama-sama memiliki 4 pasangan elektron total tetapi bentuk molekulnya berbeda..."></textarea>
+  </div>
+
+  <!-- REVISI HIPOTESIS -->
+  <div class="section-box" style="background:var(--green);border-left:10px solid #27ae60;">
+    <h3 style="margin-top:0;color:#1e8449;">🔁 Meninjau Kembali Hipotesis Awal</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Buka kembali hipotesis awalmu pada tahap Engagement. Setelah membaca materi,
+      mengamati model molekul, dan mengisi tabel, apakah hipotesismu sudah tepat?
+      Tuliskan perbaikan atau penguatan hipotesismu.
+    </p>
+
+    <textarea id="exp-bentuk-q6" rows="4"
+      placeholder="Tuliskan revisi hipotesis awalmu setelah memahami atom pusat, PEI, PEB, dan bentuk molekul..."></textarea>
+  </div>
+
+  <!-- SIMPAN DAN UMPAN BALIK -->
+  <div class="section-box" style="background:white;border-left:10px solid var(--gold);border:2px dashed #d9ecff;">
+    <h3 style="margin-top:0;color:var(--batik-blue);">💬 Simpan Jawaban dan Lihat Umpan Balik</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Setelah selesai menjawab semua pertanyaan Explanation, klik tombol berikut.
+      Jawabanmu akan disimpan dan dikunci, lalu pembahasan akan muncul sebagai umpan balik otomatis.
+    </p>
+
+    <p style="font-size:13px;line-height:1.7;color:#cc4d4d;font-weight:bold;">
+      ⚠️ Setelah menekan tombol ini, jawaban tidak dapat diubah kembali sampai jawaban akhir dikirim ke spreadsheet.
+    </p>
+
+    <center>
+      <button class="btn-next" id="btn-save-explanation-bentuk" onclick="saveExplanationBentukAndShowFeedback()">
+        💾 Simpan Jawaban & Lihat Umpan Balik
+      </button>
+    </center>
+
+    <div id="feedback-explanation-bentuk" class="feedback-auto-box">
+      <h3>✅ Umpan Balik Explanation</h3>
+
+      <div class="feedback-item">
+        <b>1. Cara Menentukan Bentuk Molekul.</b><br>
+        Langkah utamanya adalah: (1) Tentukan atom pusat, (2) Hitung jumlah Pasangan Elektron Ikatan (PEI), (3) Hitung jumlah Pasangan Elektron Bebas (PEB), (4) Jumlahkan PEI dan PEB untuk mengetahui total pasangan elektron, lalu (5) Cocokkan rumusnya dengan tabel VSEPR.
+      </div>
+
+      <div class="feedback-item">
+        <b>2. Alasan CO₂ Linear dan H₂O Bengkok.</b><br>
+        Pada H₂O, terdapat 2 PEB di atom pusat O. PEB ini menolak pasangan elektron ikatan (PEI) sehingga atom H terdorong ke bawah dan membentuk molekul bengkok. Pada CO₂, atom pusat C tidak memiliki PEB, sehingga kedua ikatan saling menjauh maksimal membentuk garis lurus (linear).
+      </div>
+
+      <div class="feedback-item">
+        <b>3. Alasan NH₃ Piramida dan BF₃ Planar.</b><br>
+        Pada NH₃, terdapat 1 PEB di atom pusat N yang mendesak tiga ikatan N-H ke bawah, sehingga susunannya menyerupai piramida (trigonal piramida). Pada BF₃, tidak ada PEB, sehingga ketiga ikatan B-F tersebar merata dan sejajar pada satu bidang datar (trigonal planar).
+      </div>
+
+      <div class="feedback-item">
+        <b>4. Teori VSEPR dan Pengaruh PEB.</b><br>
+        Berdasarkan teori VSEPR, Pasangan Elektron Bebas (PEB) memiliki daya tolak (repulsi) yang lebih besar dibandingkan Pasangan Elektron Ikatan (PEI). Tolakan yang kuat ini menekan pasangan elektron ikatan agar posisinya saling mendekat, sehingga susunan atom berubah dan sudut ikatan menjadi lebih kecil.
+      </div>
+
+      <div class="feedback-item">
+        <b>5. Total Pasangan Sama, Bentuk Berbeda.</b><br>
+        CH₄ (0 PEB), NH₃ (1 PEB), dan H₂O (2 PEB) sama-sama memiliki 4 pasangan elektron total. Namun, karena kekuatan gaya tolak PEB lebih besar dari PEI, semakin banyak PEB yang ada, semakin terdesak pula ikatan atomnya. Hal ini membuktikan bahwa yang menentukan bentuk akhir bukan hanya total pasangan elektron, melainkan proporsi PEI dan PEB-nya.
+      </div>
+    </div>
+  </div>
+
+  <div class="teacher-only answer-key-box">
+    <h3>🔐 Kunci Jawaban Guru — Explanation</h3>
+
+    <p style="font-size:13px;line-height:1.8;margin-top:0;">
+      Catatan: Jawaban siswa tidak harus sama persis dengan redaksi kunci berikut. Berikan apresiasi (nilai penuh) jika siswa mampu menggunakan konsep <b>tolakan VSEPR</b>, membedakan <b>PEI & PEB</b>, dan menghubungkannya dengan perubahan struktur ruang molekul.
+    </p>
+
+    <ol style="font-size:13px;line-height:1.8;padding-left:22px;">
+      <li>
+        <b>Cara menentukan bentuk molekul:</b><br>
+        Siswa harus menyebutkan urutan logis: mencari atom pusat ➔ menghitung PEI ➔ menghitung PEB ➔ mencocokkan pola/rumus VSEPR (AXₙEₘ).
+      </li>
+
+      <li style="margin-top:10px;">
+        <b>Mengapa H₂O bengkok & CO₂ linear?</b><br>
+        Siswa membedakan bahwa O pada H₂O memiliki 2 PEB yang "mendesak" ikatan menjadi bengkok. Sementara C pada CO₂ memiliki 0 PEB sehingga ikatannya lurus (tolakan 180°).
+      </li>
+
+      <li style="margin-top:10px;">
+        <b>Mengapa NH₃ piramida & BF₃ planar?</b><br>
+        Siswa menjelaskan bahwa 1 PEB pada NH₃ memberikan gaya tolak ke bawah sehingga ikatan N-H membentuk piramida. Tanpa PEB, BF₃ bisa tersebar merata 120° pada satu bidang (planar).
+      </li>
+
+      <li style="margin-top:10px;">
+        <b>Penjelasan teoritis gaya tolak PEB:</b><br>
+        Siswa secara eksplisit menyebutkan prinsip VSEPR: Daya tolak PEB > PEI. Karena tolakannya lebih besar, PEB memakan "ruang" lebih luas dan memaksa PEI untuk saling merapat (menyempitkan sudut ikatan).
+      </li>
+
+      <li style="margin-top:10px;">
+        <b>Analisis CH₄, NH₃, H₂O (HOTS):</b><br>
+        Siswa menyimpulkan bahwa meski jumlah domain elektronnya sama (4), komposisi pembentuknya berbeda (PEI vs PEB). Perbedaan kekuatan tolakan inilah yang menghasilkan geometri akhir yang berbeda (Tetrahedral vs Trigonal Piramida vs Bengkok).
+      </li>
+
+      <li style="margin-top:10px;">
+        <b>6. Revisi Hipotesis.</b><br>
+        Hipotesis yang baik harus menyimpulkan bahwa bentuk molekul tidak semata-mata bergantung pada jumlah atom yang terikat, melainkan sangat dipengaruhi oleh jumlah PEI dan kekuatan tolakan PEB pada atom pusat.
+      </li>
+    </ol>
+  </div>
+
+  <center>
+    <button class="btn-back" onclick="nextPhase(2)">⬅️ Kembali ke Exploration</button>
+    <button class="btn-next" onclick="nextPhase(4)">Lanjut ke Elaboration ➡️</button>
+  </center>
+</div>
+
+ <!-- ================= PHASE 4 ================= -->
+<div class="phase-card" id="p4">
+  <span class="badge-5e">4. Elaboration</span>
+
+  <!-- PENGANTAR ELABORATION -->
+  <div class="section-box" style="border-left:10px solid var(--batik-blue);">
+    <h2 style="margin-top:0;color:var(--batik-blue);">🌍 Elaboration</h2>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pada tahap Engagement, kamu sudah mengamati fenomena bahwa <b>CO₂</b> dan <b>H₂O</b>
+      sama-sama terdiri dari tiga atom, tetapi bentuknya berbeda. CO₂ berbentuk linear,
+      sedangkan H₂O berbentuk bengkok.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Setelah melakukan Exploration dan Explanation, kamu sudah mengetahui bahwa bentuk molekul
+      tidak hanya ditentukan oleh jumlah atom, tetapi juga oleh jumlah <b>pasangan elektron ikatan</b>
+      dan <b>pasangan elektron bebas</b> pada atom pusat.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Sekarang, terapkan konsep tersebut pada masalah baru yang mirip, tetapi lebih kompleks:
+      <b>NH₃</b> dan <b>BF₃</b>. Keduanya sama-sama memiliki tiga atom yang terikat pada atom pusat,
+      tetapi bentuk molekulnya berbeda.
+    </p>
+  </div>
+
+<div class="section-box">
+  <h3 style="margin-top:0;color:var(--batik-blue);">📖 Tiga Molekul, Empat Atom Terikat, Bentuk Berbeda?</h3>
+
+  <div style="background:#f8fbff;border:2px dashed #d9ecff;border-radius:18px;padding:15px;margin-top:12px;">
+    <h4 style="margin-top:0;color:var(--batik-blue);">Fenomena Baru (Pendalaman Materi)</h4>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pada kegiatan sebelumnya, kamu telah memahami bahwa jumlah atom terikat yang sama belum tentu menghasilkan bentuk molekul yang sama jika jumlah PEB-nya berbeda. Sekarang, mari kita uji pemahamanmu pada tingkat yang lebih menantang!
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Perhatikan tiga molekul berikut: <b>CH₄</b> (Metana), <b>SF₄</b> (Belerang tetrafluorida), dan <b>XeF₄</b> (Xenon tetrafluorida).
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Jika dilihat sekilas, ketiga molekul ini tampak sangat identik. Semuanya memiliki satu atom pusat yang sedang mengikat <b>tepat 4 atom lain</b>. 
+      Banyak orang yang baru belajar kimia akan langsung menebak bahwa ketiga molekul ini pasti memiliki bentuk ruang yang sama, yaitu <i>Tetrahedral</i>. 
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;margin-bottom:0;">
+      Namun, faktanya di alam, bentuk ketiga molekul ini sangat jauh berbeda! Untuk membuktikannya, kamu harus meninjau kembali jumlah elektron valensi dari masing-masing atom pusatnya: Karbon (Golongan IVA), Belerang (Golongan VIA), dan Xenon (Golongan VIIIA).
+    </p>
+  </div>
+
+  <div style="background:#fff7d6;border-left:10px solid var(--gold);border-radius:18px;padding:14px;margin-top:14px;">
+    <p style="font-size:15px;line-height:1.8;text-align:justify;margin:0;">
+      <b>Masalah yang harus kamu pecahkan:</b><br>
+      Buktikan mengapa CH₄, SF₄, dan XeF₄ yang sama-sama memiliki 4 pasangan elektron ikatan (PEI = 4) ternyata memiliki bentuk geometri molekul yang sama sekali berbeda!
+    </p>
+  </div>
+</div>
+
+<div class="section-box" style="background:var(--green);border-left:10px solid #27ae60;">
+  <h3 style="margin-top:0;color:#1e8449;">✍️ Pertanyaan Elaborasi</h3>
+
+  <p style="font-size:14px;line-height:1.8;text-align:justify;">
+    Jawablah pertanyaan berikut dengan menggunakan prinsip penentuan atom pusat, PEI, PEB, dan teori VSEPR yang ada di materi pendukung.
+  </p>
+
+  <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+    1. Tentukan atom pusat pada CH₄, SF₄, dan XeF₄, lalu tuliskan jumlah Pasangan Elektron Ikatan (PEI) dari ketiganya!
+  </p>
+  <textarea id="elab-bentuk-q1" rows="4" placeholder="Sebutkan atom pusat masing-masing dan berapa jumlah PEI-nya..."></textarea>
+
+  <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+    2. Hitunglah jumlah Pasangan Elektron Bebas (PEB) pada masing-masing atom pusat tersebut! (Petunjuk: ingat elektron valensi C = 4, S = 6, Xe = 8).
+  </p>
+  <textarea id="elab-bentuk-q2" rows="4" placeholder="Hitung sisa elektron yang tidak berikatan, lalu bagi 2 untuk mencari PEB..."></textarea>
+
+  <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+    3. Berdasarkan jumlah PEI dan PEB yang telah kamu temukan, tuliskan rumus umum (AXₙEₘ) untuk CH₄, SF₄, dan XeF₄!
+  </p>
+  <textarea id="elab-bentuk-q3" rows="4" placeholder="Contoh: CH4 rumus umumnya AX..."></textarea>
+
+  <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+    4. Cocokkan rumus umum tersebut dengan Tabel VSEPR di materi. Tuliskan nama bentuk molekul untuk CH₄, SF₄, dan XeF₄!
+  </p>
+  <textarea id="elab-bentuk-q4" rows="4" placeholder="Sebutkan bentuk akhirnya..."></textarea>
+
+  <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+    5. Apa kesimpulan akhirmu mengenai pentingnya memperhitungkan Pasangan Elektron Bebas (PEB) dalam memprediksi suatu molekul?
+  </p>
+  <textarea id="elab-bentuk-q5" rows="4" placeholder="Tuliskan kesimpulan akhirmu di sini..."></textarea>
+</div>
+
+  <!-- SIMPAN DAN UMPAN BALIK -->
+  <div class="section-box" style="background:white;border-left:10px solid var(--gold);border:2px dashed #d9ecff;">
+    <h3 style="margin-top:0;color:var(--batik-blue);">💬 Simpan Jawaban dan Lihat Umpan Balik</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Setelah menjawab semua pertanyaan elaborasi, klik tombol berikut.
+      Jawabanmu akan dikunci, lalu pembahasan otomatis akan muncul.
+    </p>
+
+    <p style="font-size:13px;line-height:1.7;color:#cc4d4d;font-weight:bold;">
+      ⚠️ Setelah menekan tombol ini, jawaban tidak dapat diubah kembali sampai jawaban akhir dikirim ke spreadsheet.
+    </p>
+
+    <center>
+      <button class="btn-next" id="btn-save-elaboration-bentuk" onclick="saveElaborationBentukAndShowFeedback()">
+        💾 Simpan Jawaban & Lihat Umpan Balik
+      </button>
+    </center>
+
+  <div id="feedback-elaboration-bentuk" class="feedback-auto-box">
+  <h3>✅ Umpan Balik Elaboration</h3>
+
+  <div class="feedback-item">
+    <b>1. Atom Pusat & PEI.</b><br>
+    Atom pusat CH₄ adalah C, SF₄ adalah S, dan XeF₄ adalah Xe. Karena ketiganya mengikat 4 atom lain di sekitarnya, maka ketiganya sama-sama memiliki <b>4 Pasangan Elektron Ikatan (4 PEI)</b>.
+  </div>
+
+  <div class="feedback-item">
+    <b>2. Jumlah PEB.</b><br>
+    • <b>CH₄:</b> Atom C memiliki 4 elektron valensi. Keempatnya dipakai berikatan, sehingga tersisa 0 elektron. Jadi, <b>PEB = 0</b>.<br>
+    • <b>SF₄:</b> Atom S memiliki 6 elektron valensi. Dipakai 4 untuk berikatan, tersisa 2 elektron bebas (1 pasang). Jadi, <b>PEB = 1</b>.<br>
+    • <b>XeF₄:</b> Atom Xe memiliki 8 elektron valensi. Dipakai 4 untuk berikatan, tersisa 4 elektron bebas (2 pasang). Jadi, <b>PEB = 2</b>.
+  </div>
+
+  <div class="feedback-item">
+    <b>3. Rumus Umum VSEPR.</b><br>
+    Berdasarkan PEI dan PEB, rumus umumnya adalah:<br>
+    CH₄ = <b>AX₄</b> | SF₄ = <b>AX₄E</b> | XeF₄ = <b>AX₄E₂</b>
+  </div>
+
+  <div class="feedback-item">
+    <b>4. Bentuk Molekul.</b><br>
+    Berdasarkan tabel VSEPR:<br>
+    CH₄ = <b>Tetrahedral</b><br>
+    <div style="background:#fff; padding:20px; border-radius:18px; border:2px dashed #d9ecff; text-align:center; margin-top:16px;">
+  <h4 style="color:var(--batik-blue); margin-top:0; margin-bottom:15px;">Struktur 3D Molekul CH₄ (Tetrahedral)</h4>
+  
+  <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+    <line x1="110" y1="110" x2="135" y2="175" stroke="#999" stroke-width="3" stroke-dasharray="5,4"/>
+    
+    <line x1="110" y1="110" x2="110" y2="40" stroke="#555" stroke-width="4"/>
+    
+    <line x1="110" y1="110" x2="185" y2="130" stroke="#555" stroke-width="4"/>
+    
+    <polygon points="110,110 45,175 60,188" fill="#555"/>
+
+    <circle cx="140" cy="180" r="12" fill="#e0e0e0" stroke="#bbb" stroke-width="2"/>
+    <text x="140" y="184" font-family="'Quicksand', sans-serif" font-size="12" font-weight="bold" fill="#666" text-anchor="middle">H</text>
+
+    <circle cx="110" cy="110" r="24" fill="var(--batik-blue)" stroke="#2a5a82" stroke-width="2"/>
+    <text x="110" y="116" font-family="'Quicksand', sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">C</text>
+
+    <circle cx="110" cy="30" r="16" fill="#fff" stroke="#bbb" stroke-width="2"/>
+    <text x="110" y="36" font-family="'Quicksand', sans-serif" font-size="15" font-weight="bold" fill="#444" text-anchor="middle">H</text>
+
+    <circle cx="195" cy="135" r="16" fill="#fff" stroke="#bbb" stroke-width="2"/>
+    <text x="195" y="141" font-family="'Quicksand', sans-serif" font-size="15" font-weight="bold" fill="#444" text-anchor="middle">H</text>
+
+    <circle cx="50" cy="185" r="18" fill="#fff" stroke="#888" stroke-width="2"/>
+    <text x="50" y="191" font-family="'Quicksand', sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">H</text>
+
+    <path d="M 110 65 A 45 45 0 0 1 145 118" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="3,3"/>
+    
+    <rect x="132" y="65" width="48" height="20" rx="10" fill="#fce4ec" />
+    <text x="156" y="80" font-family="'Quicksand', sans-serif" font-size="12" font-weight="bold" fill="#e91e63" text-anchor="middle">109,5°</text>
+  </svg>
+
+  <p style="font-size:13px; line-height:1.7; color:#4d6f8f; margin-top:10px; margin-bottom:0; text-align:justify;">
+    <b>Keterangan:</b> Garis tebal menunjukkan atom H mengarah ke depan (mendekati pengamat), garis putus-putus menunjukkan atom H mengarah ke belakang, dan garis biasa berada tepat pada bidang datar. Hal ini membuat sudut antar ikatan menjadi simetris sebesar 109,5°.
+  </p>
+</div>
+    SF₄ = <b>Seesaw (Jungkat-jungkit)</b><br>
+    <div style="background:#fff; padding:20px; border-radius:18px; border:2px dashed #d9ecff; text-align:center; margin-top:16px;">
+  <h4 style="color:var(--batik-blue); margin-top:0; margin-bottom:15px;">Struktur 3D Molekul SF₄ (Seesaw / Jungkat-jungkit)</h4>
+  
+  <svg width="240" height="230" viewBox="0 0 240 230" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+    
+    <path d="M 120 120 C 80 80, 80 15, 120 15 C 160 15, 160 80, 120 120" fill="#fff3cd" stroke="#ffc107" stroke-width="2" stroke-dasharray="4,3"/>
+    <circle cx="110" cy="45" r="4" fill="#555"/>
+    <circle cx="130" cy="45" r="4" fill="#555"/>
+
+    <line x1="120" y1="120" x2="40" y2="140" stroke="#555" stroke-width="4"/>
+    
+    <line x1="120" y1="120" x2="200" y2="140" stroke="#555" stroke-width="4"/>
+
+    <line x1="120" y1="120" x2="160" y2="180" stroke="#999" stroke-width="3" stroke-dasharray="5,4"/>
+
+    <polygon points="120,120 70,185 90,200" fill="#555"/>
+
+    <circle cx="165" cy="185" r="14" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="165" y="190" font-family="'Quicksand', sans-serif" font-size="14" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="35" cy="140" r="15" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="35" y="145" font-family="'Quicksand', sans-serif" font-size="15" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="205" cy="140" r="15" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="205" y="145" font-family="'Quicksand', sans-serif" font-size="15" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="75" cy="195" r="17" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="75" y="201" font-family="'Quicksand', sans-serif" font-size="16" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="120" cy="120" r="22" fill="var(--gold)" stroke="#d4a000" stroke-width="2"/>
+    <text x="120" y="127" font-family="'Quicksand', sans-serif" font-size="20" font-weight="bold" fill="#fff" text-anchor="middle">S</text>
+
+  </svg>
+
+  <p style="font-size:13px; line-height:1.7; color:#4d6f8f; margin-top:10px; margin-bottom:0; text-align:justify;">
+    <b>Keterangan:</b> Adanya 1 Pasangan Elektron Bebas (PEB) di bagian atas memberikan gaya tolak yang kuat. Tolakan ini mendesak keempat atom Fluorin (F) ke bawah, sehingga membentuk struktur seperti mainan <b>jungkat-jungkit (seesaw)</b> dengan dua atom sebagai "kaki penyangga" (depan & belakang) dan dua atom sebagai "papan" di sisi kiri-kanan.
+  </p>
+</div>
+
+    XeF₄ = <b>Segiempat Planar (Bujur sangkar)</b>
+    <div style="background:#fff; padding:20px; border-radius:18px; border:2px dashed #d9ecff; text-align:center; margin-top:16px;">
+  <h4 style="color:var(--batik-blue); margin-top:0; margin-bottom:15px;">Struktur 3D Molekul XeF₄ (Segiempat Planar)</h4>
+  
+  <svg width="240" height="260" viewBox="0 0 240 260" xmlns="http://www.w3.org/2000/svg" style="max-width:100%; height:auto;">
+    
+    <polygon points="60,105 180,105 200,175 40,175" fill="#e3f2fd" opacity="0.6" stroke="#3a7caf" stroke-width="2" stroke-dasharray="4,4" />
+
+    <path d="M 120 140 C 80 90, 90 25, 120 25 C 150 25, 160 90, 120 140" fill="#fff3cd" stroke="#ffc107" stroke-width="2" stroke-dasharray="4,3"/>
+    <circle cx="110" cy="55" r="4" fill="#555"/>
+    <circle cx="130" cy="55" r="4" fill="#555"/>
+
+    <path d="M 120 140 C 80 190, 90 255, 120 255 C 150 255, 160 190, 120 140" fill="#fff3cd" stroke="#ffc107" stroke-width="2" stroke-dasharray="4,3"/>
+    <circle cx="110" cy="225" r="4" fill="#555"/>
+    <circle cx="130" cy="225" r="4" fill="#555"/>
+
+    <line x1="120" y1="140" x2="60" y2="105" stroke="#999" stroke-width="3" stroke-dasharray="5,4"/>
+    
+    <line x1="120" y1="140" x2="180" y2="105" stroke="#999" stroke-width="3" stroke-dasharray="5,4"/>
+
+    <polygon points="120,140 35,170 45,185" fill="#555"/>
+    
+    <polygon points="120,140 195,185 205,170" fill="#555"/>
+
+    <circle cx="60" cy="105" r="14" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="60" y="110" font-family="'Quicksand', sans-serif" font-size="14" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="180" cy="105" r="14" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="180" y="110" font-family="'Quicksand', sans-serif" font-size="14" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="40" cy="175" r="16" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="40" y="181" font-family="'Quicksand', sans-serif" font-size="15" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="200" cy="175" r="16" fill="#f0fcf6" stroke="#27ae60" stroke-width="2"/>
+    <text x="200" y="181" font-family="'Quicksand', sans-serif" font-size="15" font-weight="bold" fill="#1e8449" text-anchor="middle">F</text>
+
+    <circle cx="120" cy="140" r="23" fill="#9c27b0" stroke="#7b1fa2" stroke-width="2"/>
+    <text x="120" y="147" font-family="'Quicksand', sans-serif" font-size="20" font-weight="bold" fill="#fff" text-anchor="middle">Xe</text>
+
+  </svg>
+
+  <p style="font-size:13px; line-height:1.7; color:#4d6f8f; margin-top:10px; margin-bottom:0; text-align:justify;">
+    <b>Keterangan:</b> Xenon (Xe) memiliki <b>2 Pasangan Elektron Bebas (PEB)</b>. Untuk meminimalkan tolakan, kedua PEB ini mengambil posisi saling menjauh di sumbu vertikal (satu lurus ke atas, satu ke bawah). Akibatnya, keempat atom Fluorin (F) berada pada satu bidang datar yang rata, membentuk persegi atau <b>segiempat planar</b>.
+  </p>
+</div>
+  </div>
+
+  <div class="feedback-item">
+    <b>5. Kesimpulan.</b><br>
+    Molekul dengan jumlah pasangan elektron ikatan (PEI) yang sama ternyata dapat memiliki bentuk ruang yang sangat berbeda. Hal ini terjadi karena perbedaan jumlah Pasangan Elektron Bebas (PEB) pada atom pusat, yang mengubah susunan struktur secara drastis akibat tolakan elektron.
+  </div>
+</div>
+
+<div class="teacher-only answer-key-box">
+  <h3>🔐 Kunci Jawaban Guru — Elaboration</h3>
+
+  <p style="font-size:13px;line-height:1.8;margin-top:0;">
+    Catatan: Jawaban siswa tidak harus sama persis dengan kunci berikut. Jawaban dianggap benar
+    jika siswa mampu menghitung sisa elektron valensi untuk menemukan <b>PEB</b>, menentukan
+    <b>rumus umum AXₙEₘ</b>, dan menyimpulkan bentuk molekul yang berbeda.
+  </p>
+
+  <ol style="font-size:13px;line-height:1.8;padding-left:22px;">
+    <li>
+      <b>Tentukan atom pusat dan PEI:</b><br>
+      Atom pusat metana adalah C, belerang tetrafluorida adalah S, dan xenon tetrafluorida adalah Xe. Karena semuanya mengikat 4 atom terminal, maka ketiganya memiliki <b>4 PEI</b>.
+    </li>
+
+    <li style="margin-top:10px;">
+      <b>Hitung jumlah PEB:</b><br>
+      • <b>C (Gol. IVA):</b> 4 e.valensi - 4 PEI = 0. <b>(0 PEB)</b><br>
+      • <b>S (Gol. VIA):</b> 6 e.valensi - 4 PEI = 2 e bebas = 1 pasang. <b>(1 PEB)</b><br>
+      • <b>Xe (Gol. VIIIA):</b> 8 e.valensi - 4 PEI = 4 e bebas = 2 pasang. <b>(2 PEB)</b>
+    </li>
+
+    <li style="margin-top:10px;">
+      <b>Rumus Umum AXₙEₘ:</b><br>
+      • CH₄ dengan 4 PEI dan 0 PEB dirumuskan sebagai <b>AX₄</b>.<br>
+      • SF₄ dengan 4 PEI dan 1 PEB dirumuskan sebagai <b>AX₄E</b>.<br>
+      • XeF₄ dengan 4 PEI dan 2 PEB dirumuskan sebagai <b>AX₄E₂</b>.
+    </li>
+
+    <li style="margin-top:10px;">
+      <b>Nama Bentuk Molekul:</b><br>
+      Sesuai tabel VSEPR:<br>
+      • CH₄ = <b>Tetrahedral</b><br>
+      • SF₄ = <b>Seesaw (Jungkat-jungkit)</b><br>
+      • XeF₄ = <b>Segiempat Planar / Bujur Sangkar</b>
+    </li>
+
+    <li style="margin-top:10px;">
+      <b>Kesimpulan Akhir:</b><br>
+      Bentuk geometri suatu molekul tidak bisa hanya ditebak dari jumlah atom yang diikatnya. Perhitungan jumlah Pasangan Elektron Bebas (PEB) pada atom pusat sangat krusial, karena kehadiran PEB akan mengubah susunan geometri molekul secara nyata (seperti berubah dari tetrahedral murni menjadi seesaw atau bujur sangkar).
+    </li>
+  </ol>
+</div>
+
+
+  <center>
+    <button class="btn-back" onclick="nextPhase(3)">⬅️ Kembali ke Explanation</button>
+    <button class="btn-next" onclick="nextPhase(5)">Lanjut ke Evaluation ➡️</button>
+  </center>
+</div>
+</div>
+
+  <!-- ================= PHASE 5 ================= -->
+<div class="phase-card" id="p5">
+  <span class="badge-5e">5. Evaluation</span>
+
+  <!-- PENGANTAR EVALUATION -->
+  <div class="section-box" style="border-left:10px solid var(--batik-blue);">
+    <h2 style="margin-top:0;color:var(--batik-blue);">⭐ Evaluation</h2>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Tahap ini berisi soal evaluasi umum tentang materi bentuk molekul. Soal-soal berikut
+      tidak lagi berfokus pada kasus sebelumnya, tetapi digunakan untuk mengukur pemahamanmu
+      setelah mempelajari konsep bentuk molekul.
+    </p>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Pilih satu jawaban yang paling tepat. Setelah selesai, klik tombol
+      <b>Simpan Evaluasi & Lihat Pembahasan</b>. Jawaban akan dikunci dan pembahasan otomatis akan muncul.
+    </p>
+
+    <p style="font-size:13px;line-height:1.7;color:#cc4d4d;font-weight:bold;">
+      ⚠️ Setelah evaluasi disimpan, jawaban tidak dapat diubah kembali sampai jawaban akhir dikirim ke spreadsheet.
+    </p>
+  </div>
+
+  <!-- SOAL EVALUASI -->
+  <div class="section-box" id="quiz-bentuk-container"></div>
+
+  <center>
+    <button class="btn-next" id="btn-save-evaluation-bentuk" onclick="saveEvaluationBentukAndShowFeedback()">
+      💾 Simpan Evaluasi & Lihat Pembahasan
+    </button>
+  </center>
+
+  <!-- HASIL SKOR -->
+  <div id="skor-evaluation-bentuk-box" class="section-box section-green hidden" style="text-align:center;">
+    <h3 style="margin-top:0;">🏆 Hasil Evaluasi</h3>
+    <p id="skor-evaluation-bentuk-text" style="font-size:22px;font-weight:bold;margin:8px 0;"></p>
+    <p id="skor-evaluation-bentuk-message" style="font-size:14px;line-height:1.7;margin:0;"></p>
+  </div>
+
+  <!-- PEMBAHASAN OTOMATIS -->
+  <div id="feedback-evaluation-bentuk" class="feedback-auto-box">
+    <h3>✅ Pembahasan Evaluasi Bentuk Molekul</h3>
+    <div id="evaluation-bentuk-feedback-content"></div>
+  </div>
+
+  <!-- KUNCI JAWABAN GURU - EVALUATION -->
+  <div class="teacher-only answer-key-box">
+    <h3>🔐 Kunci Jawaban Guru — Evaluation Bentuk Molekul</h3>
+
+    <table>
+      <tr>
+        <th>No</th>
+        <th>Kunci</th>
+        <th>Pembahasan Singkat</th>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>B</td>
+        <td>Bentuk molekul ditentukan oleh susunan pasangan elektron di sekitar atom pusat.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>C</td>
+        <td>PEI adalah pasangan elektron yang digunakan untuk membentuk ikatan.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>A</td>
+        <td>PEB adalah pasangan elektron pada atom pusat yang tidak digunakan untuk berikatan.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>D</td>
+        <td>CO₂ memiliki 2 PEI dan 0 PEB sehingga berbentuk linear.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>B</td>
+        <td>H₂O memiliki 2 PEI dan 2 PEB sehingga berbentuk bengkok.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>C</td>
+        <td>BF₃ memiliki rumus umum AX₃ dan bentuk trigonal planar.</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>A</td>
+        <td>NH₃ memiliki rumus umum AX₃E dan bentuk trigonal piramida.</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>D</td>
+        <td>PEB memiliki tolakan lebih kuat sehingga memengaruhi bentuk dan sudut ikatan.</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>B</td>
+        <td>PCl₅ memiliki 5 PEI dan 0 PEB sehingga berbentuk trigonal bipiramida.</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>C</td>
+        <td>SF₆ memiliki 6 PEI dan 0 PEB sehingga berbentuk oktahedral.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- REFLEKSI PEMBELAJARAN -->
+  <div class="section-box" style="margin-top:18px;border-left:10px solid #9c27b0;background:#f4ecff;">
+    <h2 style="margin-top:0;color:#9c27b0;">🪞 Refleksi Pembelajaran</h2>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Bagian ini bukan bagian dari skor evaluasi. Refleksi digunakan untuk mengetahui
+      pemahaman dan kesulitanmu setelah mempelajari materi bentuk molekul.
+    </p>
+
+    <table style="width:100%;border-collapse:collapse;font-size:13px;background:white;border-radius:15px;overflow:hidden;">
+      <tr style="background:#9c27b0;color:#fff;">
+        <th style="padding:10px;border:1px solid #ead7ff;">Pernyataan</th>
+        <th style="padding:10px;border:1px solid #ead7ff;">Ya</th>
+        <th style="padding:10px;border:1px solid #ead7ff;">Tidak</th>
+      </tr>
+
+      <tr>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:left;">
+          Saya memahami cara menentukan atom pusat dalam molekul.
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-1" value="Ya">
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-1" value="Tidak">
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:left;">
+          Saya dapat membedakan pasangan elektron ikatan dan pasangan elektron bebas.
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-2" value="Ya">
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-2" value="Tidak">
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:left;">
+          Saya dapat menentukan bentuk molekul berdasarkan jumlah PEI dan PEB pada atom pusat.
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-3" value="Ya">
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-3" value="Tidak">
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:left;">
+          Saya memahami bahwa PEB dapat memengaruhi bentuk molekul dan sudut ikatan.
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-4" value="Ya">
+        </td>
+        <td style="padding:10px;border:1px solid #ead7ff;text-align:center;">
+          <input type="radio" name="ref-bentuk-4" value="Tidak">
+        </td>
+      </tr>
+    </table>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      Bagian mana yang paling mudah kamu pahami?
+    </p>
+    <textarea id="ref-bentuk-teks-1" rows="3"></textarea>
+
+    <p style="font-size:14px;font-weight:bold;margin-bottom:6px;">
+      Bagian mana yang masih membingungkan atau perlu kamu pelajari kembali?
+    </p>
+    <textarea id="ref-bentuk-teks-2" rows="3"></textarea>
+  </div>
+
+  <!-- KIRIM AKHIR -->
+  <div class="section-box" style="background:var(--green);border-left:10px solid #27ae60;">
+    <h3 style="margin-top:0;color:#1e8449;">📤 Kirim Jawaban Akhir</h3>
+
+    <p style="font-size:14px;line-height:1.8;text-align:justify;">
+      Setelah menyelesaikan evaluasi dan refleksi, klik tombol berikut untuk mengirim seluruh
+      jawaban LKPD ke spreadsheet Guru Rusyda.
+    </p>
+
+    <center>
+      <button class="btn-green" id="btn-final-submit-bentuk" onclick="finalSubmitBentuk()">
+        ✨ SELESAI & KIRIM ✨
+      </button>
+    </center>
+  </div>
+
+  <center>
+    <button class="btn-back" onclick="nextPhase(4)">⬅️ Kembali ke Elaboration</button>
+  </center>
+</div>
+
+  </div>
+
+  <script>
+   const ID_KEY = "bentuk_molekul_identity";
+let currentPhase = 0;
+let skorEvaluasi = 0;
+
+const OWNER_EMAILS = [
+  "rusydarama@gmail.com"
+];
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKpCSPf89k27shqjsCq14blROlcfsYU4wuwwU9bwzjdc6yQTqrV-IDcCvz0RpE9TU/exec";
+
+  function initLKPD(){
+  const tgl=document.getElementById("tgl");
+  if(tgl && !tgl.value){
+    const now=new Date();
+    const yyyy=now.getFullYear();
+    const mm=String(now.getMonth()+1).padStart(2,'0');
+    const dd=String(now.getDate()).padStart(2,'0');
+    tgl.value=`${yyyy}-${mm}-${dd}`;
+  }
+
+ loadIdentity();
+updateProgress();
+showTeacherOnlyIfOwner();
+
+renderQuizBentuk();
+setTimeout(restoreEvaluationBentukLock, 0);
+
+restoreExplanationBentukLock();
+restoreElaborationBentukLock();
+
+  if(!localStorage.getItem(ID_KEY)){
+    const uStr = localStorage.getItem("kimia_user");
+    if(uStr){
+      try{
+        const u = JSON.parse(uStr);
+        if(u?.nama){
+          document.getElementById("nama").value = u.nama;
+        }
+      }catch(e){}
+    }
+  }
+}
+
+function openMateriBentuk(){
+  document.querySelectorAll(".phase-card").forEach(x => x.classList.remove("active"));
+  document.getElementById("pMateriBentuk").classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function backToExplorationBentuk(){
+  document.querySelectorAll(".phase-card").forEach(x => x.classList.remove("active"));
+  document.getElementById("p2").classList.add("active");
+  currentPhase = 2;
+  updateProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function getCurrentUserEmail(){
+  try{
+    const rawUser = localStorage.getItem("kimia_user");
+    if(rawUser){
+      const u = JSON.parse(rawUser);
+      return String(u.email || u.gmail || u.username || u.userEmail || "").toLowerCase().trim();
+    }
+  }catch(e){}
+
+  return String(
+    localStorage.getItem("email") ||
+    localStorage.getItem("userEmail") ||
+    ""
+  ).toLowerCase().trim();
+}
+
+function isOwner(){
+  const email = getCurrentUserEmail();
+  return OWNER_EMAILS.map(e => e.toLowerCase().trim()).includes(email);
+}
+
+function showTeacherOnlyIfOwner(){
+  const show = isOwner();
+
+  document.querySelectorAll(".teacher-only").forEach(function(el){
+    el.style.display = show ? "block" : "none";
+  });
+
+  console.log("Email login:", getCurrentUserEmail());
+  console.log("Mode guru aktif:", show);
+}
+    function goMenu(){ window.location.href="menu.html"; }
+    function logout(){
+      localStorage.removeItem("kimia_user");
+      window.location.href="index.html";
+    }
+
+    function nextPhase(p){
+      document.querySelectorAll(".phase-card").forEach(x=>x.classList.remove("active"));
+      const target=document.getElementById("p"+p);
+      if(target) target.classList.add("active");
+      currentPhase=p;
+      updateProgress();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+
+    function updateProgress(){
+      document.getElementById("fill").style.width = (currentPhase/5*100) + "%";
+    }
+
+    function val(id){
+      const el=document.getElementById(id);
+      return el ? el.value.trim() : "";
+    }
+
+    function saveIdentity(){
+      const n=val("nama");
+      const k=val("kelas");
+      const t=document.getElementById("tgl").value;
+      if(!n || !k || !t){ alert("Lengkapi Nama, Kelas, dan Tanggal ya 😊"); return; }
+      localStorage.setItem(ID_KEY, JSON.stringify({nama:n, kelas:k, tgl:t}));
+      document.getElementById("user-pill").innerText = `${n} • ${k}`;
+      alert("Identitas tersimpan ✅");
+    }
+
+    function loadIdentity(){
+      const raw=localStorage.getItem(ID_KEY);
+      if(!raw) return;
+      try{
+        const id=JSON.parse(raw);
+        if(id?.nama) document.getElementById("nama").value=id.nama;
+        if(id?.kelas) document.getElementById("kelas").value=id.kelas;
+        if(id?.tgl) document.getElementById("tgl").value=id.tgl;
+        if(id?.nama && id?.kelas){
+          document.getElementById("user-pill").innerText = `${id.nama} • ${id.kelas}`;
+        }
+      }catch(e){ localStorage.removeItem(ID_KEY); }
+    }
+
+    function identityComplete(){
+      const n=val("nama"), k=val("kelas"), t=document.getElementById("tgl").value;
+      return !!(n && k && t);
+    }
+
+    function requireIdentityThenGo(phase){
+      if(!identityComplete()){ alert("Isi identitas (Nama, Kelas, Tanggal) dulu ya 😊"); nextPhase(0); return; }
+      nextPhase(phase);
+    }
+
+    // MCQ Evaluation
+    const answers = { mcq1:'c', mcq2:'b', mcq3:'a', mcq4:'b', mcq5:'b' };
+    const hints = {
+      mcq1: { c: '✅ Benar! NH₃ memiliki 3 PEI dan 1 PEB, sehingga berbentuk trigonal piramida.', wrong: '❌ Kurang tepat. NH₃ punya 3 ikatan dan 1 PEB — ingat, PEB mendorong ikatan ke bawah.' },
+      mcq2: { b: '✅ Benar! PEB memiliki gaya tolak lebih kuat sehingga mempersempit sudut ikatan.', wrong: '❌ Kurang tepat. PEB justru menekan pasangan ikatan sehingga sudut ikatan mengecil.' },
+      mcq3: { a: '✅ Benar! BF₃ trigonal planar dan simetris — semua momen dipol saling meniadakan.', wrong: '❌ Kurang tepat. BF₃ tidak punya PEB dan simetris, sehingga momen dipol bernilai nol.' },
+      mcq4: { b: '✅ Benar! H₂O (bengkok) dan NH₃ (trigonal piramida) keduanya asimetris dan polar.', wrong: '❌ Kurang tepat. CO₂, BF₃, dan CH₄ simetris sehingga nonpolar.' },
+      mcq5: { b: '✅ Benar! VSEPR = Valence Shell Electron Pair Repulsion — teori tolakan pasangan elektron valensi.', wrong: '❌ Kurang tepat. Teori VSEPR-lah yang digunakan untuk memprediksi bentuk berdasarkan tolakan pasangan elektron.' }
+    };
+
+   const quizBentukData = [
+  {
+    id: 1,
+    stimulus: `
+      Bentuk molekul menunjukkan susunan atom-atom dalam ruang tiga dimensi.
+      Untuk menentukan bentuk molekul, perlu diperhatikan atom pusat dan pasangan elektron di sekitarnya.
+      Pasangan elektron tersebut terdiri atas pasangan elektron ikatan dan pasangan elektron bebas.
+    `,
+    stem: "Faktor utama yang digunakan untuk menentukan bentuk molekul adalah ....",
+    options: {
+      A: "warna atom penyusun molekul",
+      B: "susunan pasangan elektron di sekitar atom pusat",
+      C: "massa molekul relatif suatu senyawa",
+      D: "jumlah neutron dalam inti atom",
+      E: "wujud zat pada suhu ruang"
+    }
+  },
+  {
+    id: 2,
+    stimulus: `
+      Pada suatu molekul, atom pusat berikatan dengan atom-atom lain.
+      Pasangan elektron yang digunakan untuk membentuk ikatan antara atom pusat dan atom lain disebut PEI.
+      PEI berperan dalam menentukan susunan atom di sekitar atom pusat.
+    `,
+    stem: "Pernyataan yang tepat tentang pasangan elektron ikatan atau PEI adalah ....",
+    options: {
+      A: "pasangan elektron yang tidak berada pada atom pusat",
+      B: "pasangan elektron yang hanya terdapat pada atom bebas",
+      C: "pasangan elektron yang digunakan untuk membentuk ikatan",
+      D: "pasangan proton yang membentuk inti atom",
+      E: "pasangan elektron yang selalu menyebabkan molekul linear"
+    }
+  },
+  {
+    id: 3,
+    stimulus: `
+      Selain PEI, atom pusat dapat memiliki pasangan elektron yang tidak digunakan untuk berikatan.
+      Pasangan elektron tersebut tetap menempati ruang di sekitar atom pusat.
+      Keberadaannya dapat memengaruhi bentuk molekul.
+    `,
+    stem: "Pernyataan yang tepat tentang pasangan elektron bebas atau PEB adalah ....",
+    options: {
+      A: "pasangan elektron pada atom pusat yang tidak digunakan untuk membentuk ikatan",
+      B: "pasangan elektron yang selalu digunakan untuk membentuk ikatan rangkap",
+      C: "pasangan elektron yang hanya terdapat pada atom hidrogen",
+      D: "pasangan elektron yang tidak memengaruhi bentuk molekul",
+      E: "pasangan elektron yang selalu berada di antara dua atom"
+    }
+  },
+  {
+    id: 4,
+    stimulus: `
+      Molekul CO<sub>2</sub> memiliki atom pusat C.
+      Pada atom pusat C terdapat 2 PEI dan 0 PEB.
+      Susunan pasangan elektron tersebut membuat atom-atom dalam CO<sub>2</sub> berada pada satu garis lurus.
+    `,
+    stem: "Bentuk molekul CO<sub>2</sub> berdasarkan data tersebut adalah ....",
+    options: {
+      A: "bengkok",
+      B: "trigonal piramida",
+      C: "tetrahedral",
+      D: "linear",
+      E: "oktahedral"
+    }
+  },
+  {
+    id: 5,
+    stimulus: `
+      Molekul H<sub>2</sub>O memiliki atom pusat O.
+      Pada atom pusat O terdapat 2 PEI dan 2 PEB.
+      Pasangan elektron bebas memberikan tolakan yang memengaruhi posisi atom H di sekitar atom O.
+    `,
+    stem: "Bentuk molekul H<sub>2</sub>O berdasarkan data tersebut adalah ....",
+    options: {
+      A: "linear",
+      B: "bengkok",
+      C: "trigonal planar",
+      D: "tetrahedral sempurna",
+      E: "trigonal bipiramida"
+    }
+  },
+  {
+    id: 6,
+    stimulus: `
+      Molekul BF<sub>3</sub> memiliki atom pusat B.
+      Pada atom pusat B terdapat 3 PEI dan 0 PEB.
+      Berdasarkan teori VSEPR, susunan tiga PEI tanpa PEB menghasilkan bentuk yang simetris dalam satu bidang.
+    `,
+    stem: "Rumus umum dan bentuk molekul BF<sub>3</sub> adalah ....",
+    options: {
+      A: "AX<sub>2</sub>E<sub>2</sub>, bengkok",
+      B: "AX<sub>3</sub>E, trigonal piramida",
+      C: "AX<sub>3</sub>, trigonal planar",
+      D: "AX<sub>4</sub>, tetrahedral",
+      E: "AX<sub>2</sub>, linear"
+    }
+  },
+  {
+    id: 7,
+    stimulus: `
+      Molekul NH<sub>3</sub> memiliki atom pusat N.
+      Pada atom pusat N terdapat 3 PEI dan 1 PEB.
+      Keberadaan 1 PEB menyebabkan susunan atom H tidak membentuk trigonal planar.
+    `,
+    stem: "Rumus umum dan bentuk molekul NH<sub>3</sub> adalah ....",
+    options: {
+      A: "AX<sub>3</sub>E, trigonal piramida",
+      B: "AX<sub>3</sub>, trigonal planar",
+      C: "AX<sub>2</sub>E<sub>2</sub>, bengkok",
+      D: "AX<sub>4</sub>, tetrahedral",
+      E: "AX<sub>5</sub>, trigonal bipiramida"
+    }
+  },
+  {
+    id: 8,
+    stimulus: `
+      Teori VSEPR menjelaskan bahwa pasangan elektron di sekitar atom pusat saling menolak.
+      Pasangan elektron bebas memiliki tolakan lebih kuat dibandingkan pasangan elektron ikatan.
+      Oleh karena itu, PEB dapat mengubah susunan atom terikat dan memperkecil sudut ikatan.
+    `,
+    stem: "Pasangan elektron bebas dapat memengaruhi bentuk molekul karena ....",
+    options: {
+      A: "PEB tidak memiliki gaya tolak terhadap pasangan elektron lain",
+      B: "PEB selalu menghilang saat molekul terbentuk",
+      C: "PEB hanya terdapat pada atom hidrogen",
+      D: "PEB memiliki tolakan lebih kuat sehingga dapat mengubah susunan atom terikat",
+      E: "PEB selalu membuat semua molekul menjadi linear"
+    }
+  },
+  {
+    id: 9,
+    stimulus: `
+      Molekul PCl<sub>5</sub> memiliki atom pusat P.
+      Pada atom pusat P terdapat 5 PEI dan 0 PEB.
+      Berdasarkan tabel VSEPR, susunan 5 PEI tanpa PEB menghasilkan bentuk trigonal bipiramida.
+    `,
+    stem: "Bentuk molekul PCl<sub>5</sub> adalah ....",
+    options: {
+      A: "tetrahedral",
+      B: "trigonal bipiramida",
+      C: "bengkok",
+      D: "trigonal piramida",
+      E: "linear"
+    }
+  },
+  {
+    id: 10,
+    stimulus: `
+      Molekul SF<sub>6</sub> memiliki atom pusat S.
+      Pada atom pusat S terdapat 6 PEI dan 0 PEB.
+      Enam pasangan elektron ikatan tersusun simetris di sekitar atom pusat.
+    `,
+    stem: "Bentuk molekul SF<sub>6</sub> adalah ....",
+    options: {
+      A: "linear",
+      B: "trigonal planar",
+      C: "oktahedral",
+      D: "bengkok",
+      E: "seesaw"
+    }
+  }
+];
+
+const correctBentukAnswers = {
+  q1: "B",
+  q2: "C",
+  q3: "A",
+  q4: "D",
+  q5: "B",
+  q6: "C",
+  q7: "A",
+  q8: "D",
+  q9: "B",
+  q10: "C"
+};
+
+const quizBentukExplanation = {
+  1: "Bentuk molekul ditentukan oleh susunan pasangan elektron di sekitar atom pusat, yaitu pasangan elektron ikatan atau PEI dan pasangan elektron bebas atau PEB.",
+  2: "PEI adalah pasangan elektron yang digunakan untuk membentuk ikatan antara atom pusat dan atom lain.",
+  3: "PEB adalah pasangan elektron pada atom pusat yang tidak digunakan untuk membentuk ikatan, tetapi tetap menempati ruang dan memengaruhi bentuk molekul.",
+  4: "CO<sub>2</sub> memiliki 2 PEI dan 0 PEB pada atom pusat C. Susunan tersebut menghasilkan bentuk linear.",
+  5: "H<sub>2</sub>O memiliki 2 PEI dan 2 PEB pada atom pusat O. Keberadaan PEB menyebabkan bentuk molekulnya bengkok.",
+  6: "BF<sub>3</sub> memiliki 3 PEI dan 0 PEB pada atom pusat B, sehingga rumus umumnya AX<sub>3</sub> dan bentuknya trigonal planar.",
+  7: "NH<sub>3</sub> memiliki 3 PEI dan 1 PEB pada atom pusat N, sehingga rumus umumnya AX<sub>3</sub>E dan bentuknya trigonal piramida.",
+  8: "PEB memiliki tolakan lebih kuat dibandingkan PEI sehingga dapat menekan posisi atom terikat, mengubah bentuk molekul, dan memperkecil sudut ikatan.",
+  9: "PCl<sub>5</sub> memiliki 5 PEI dan 0 PEB pada atom pusat P, sehingga bentuk molekulnya trigonal bipiramida.",
+  10: "SF<sub>6</sub> memiliki 6 PEI dan 0 PEB pada atom pusat S, sehingga bentuk molekulnya oktahedral."
+};
+
+function lockInputsInBox(boxId){
+  const box = document.getElementById(boxId);
+  if(!box) return;
+
+  const fields = box.querySelectorAll("input, textarea, select");
+  fields.forEach(function(field){
+    field.disabled = true;
+    field.classList.add("locked-answer");
+  });
+}
+
+function unlockInputsInBox(boxId){
+  const box = document.getElementById(boxId);
+  if(!box) return;
+
+  const fields = box.querySelectorAll("input, textarea, select");
+  fields.forEach(function(field){
+    field.disabled = false;
+    field.classList.remove("locked-answer");
+  });
+}
+
+function saveExplanationBentukAndShowFeedback(){
+  const requiredIds = [
+    "exp-bentuk-q1",
+    "exp-bentuk-q2",
+    "exp-bentuk-q3",
+    "exp-bentuk-q4",
+    "exp-bentuk-q5",
+    "exp-bentuk-q6"
+  ];
+
+  for(const id of requiredIds){
+    const el = document.getElementById(id);
+    if(!el || !el.value.trim()){
+      alert("Lengkapi semua jawaban Explanation dulu ya 😊");
+      return;
+    }
+  }
+
+  const savedExplanation = {
+    q1: val("exp-bentuk-q1"),
+    q2: val("exp-bentuk-q2"),
+    q3: val("exp-bentuk-q3"),
+    q4: val("exp-bentuk-q4"),
+    q5: val("exp-bentuk-q5"),
+    q6: val("exp-bentuk-q6"),
+    savedAt: new Date().toLocaleString()
+  };
+
+  localStorage.setItem("bentuk_explanation_saved", JSON.stringify(savedExplanation));
+
+  lockInputsInBox("p3");
+
+  const feedbackBox = document.getElementById("feedback-explanation-bentuk");
+  if(feedbackBox){
+    feedbackBox.style.display = "block";
+    feedbackBox.scrollIntoView({behavior:"smooth"});
+  }
+
+  const btn = document.getElementById("btn-save-explanation-bentuk");
+  if(btn){
+    btn.innerText = "✅ Jawaban Tersimpan";
+    btn.disabled = true;
+  }
+
+  alert("Jawaban Explanation sudah disimpan dan dikunci ✅");
+}
+
+function restoreExplanationBentukLock(){
+  const raw = localStorage.getItem("bentuk_explanation_saved");
+  if(!raw) return;
+
+  try{
+    const data = JSON.parse(raw);
+
+    if(document.getElementById("exp-bentuk-q1")) document.getElementById("exp-bentuk-q1").value = data.q1 || "";
+    if(document.getElementById("exp-bentuk-q2")) document.getElementById("exp-bentuk-q2").value = data.q2 || "";
+    if(document.getElementById("exp-bentuk-q3")) document.getElementById("exp-bentuk-q3").value = data.q3 || "";
+    if(document.getElementById("exp-bentuk-q4")) document.getElementById("exp-bentuk-q4").value = data.q4 || "";
+    if(document.getElementById("exp-bentuk-q5")) document.getElementById("exp-bentuk-q5").value = data.q5 || "";
+    if(document.getElementById("exp-bentuk-q6")) document.getElementById("exp-bentuk-q6").value = data.q6 || "";
+
+    lockInputsInBox("p3");
+
+    const feedbackBox = document.getElementById("feedback-explanation-bentuk");
+    if(feedbackBox){
+      feedbackBox.style.display = "block";
+    }
+
+    const btn = document.getElementById("btn-save-explanation-bentuk");
+    if(btn){
+      btn.innerText = "✅ Jawaban Tersimpan";
+      btn.disabled = true;
+    }
+  }catch(e){
+    localStorage.removeItem("bentuk_explanation_saved");
+  }
+}
+
+function resetExplanationBentukAfterSubmit(){
+  localStorage.removeItem("bentuk_explanation_saved");
+
+  unlockInputsInBox("p3");
+
+  const feedbackBox = document.getElementById("feedback-explanation-bentuk");
+  if(feedbackBox){
+    feedbackBox.style.display = "none";
+  }
+
+  const btn = document.getElementById("btn-save-explanation-bentuk");
+  if(btn){
+    btn.innerText = "💾 Simpan Jawaban & Lihat Umpan Balik";
+    btn.disabled = false;
+  }
+}
+
+function saveElaborationBentukAndShowFeedback(){
+  const requiredIds = [
+    "elab-bentuk-q1",
+    "elab-bentuk-q2",
+    "elab-bentuk-q3",
+    "elab-bentuk-q4",
+    "elab-bentuk-q5"
+  ];
+
+  for(const id of requiredIds){
+    const el = document.getElementById(id);
+    if(!el || !el.value.trim()){
+      alert("Lengkapi semua jawaban Elaboration dulu ya 😊");
+      return;
+    }
+  }
+
+  const savedElaboration = {
+    q1: val("elab-bentuk-q1"),
+    q2: val("elab-bentuk-q2"),
+    q3: val("elab-bentuk-q3"),
+    q4: val("elab-bentuk-q4"),
+    q5: val("elab-bentuk-q5"),
+    savedAt: new Date().toLocaleString()
+  };
+
+  localStorage.setItem("bentuk_elaboration_saved", JSON.stringify(savedElaboration));
+
+  lockInputsInBox("p4");
+
+  const feedbackBox = document.getElementById("feedback-elaboration-bentuk");
+  if(feedbackBox){
+    feedbackBox.style.display = "block";
+    feedbackBox.scrollIntoView({behavior:"smooth"});
+  }
+
+  const btn = document.getElementById("btn-save-elaboration-bentuk");
+  if(btn){
+    btn.innerText = "✅ Jawaban Tersimpan";
+    btn.disabled = true;
+  }
+
+  alert("Jawaban Elaboration sudah disimpan dan dikunci ✅");
+}
+
+function restoreElaborationBentukLock(){
+  const raw = localStorage.getItem("bentuk_elaboration_saved");
+  if(!raw) return;
+
+  try{
+    const data = JSON.parse(raw);
+
+    if(document.getElementById("elab-bentuk-q1")) document.getElementById("elab-bentuk-q1").value = data.q1 || "";
+    if(document.getElementById("elab-bentuk-q2")) document.getElementById("elab-bentuk-q2").value = data.q2 || "";
+    if(document.getElementById("elab-bentuk-q3")) document.getElementById("elab-bentuk-q3").value = data.q3 || "";
+    if(document.getElementById("elab-bentuk-q4")) document.getElementById("elab-bentuk-q4").value = data.q4 || "";
+    if(document.getElementById("elab-bentuk-q5")) document.getElementById("elab-bentuk-q5").value = data.q5 || "";
+
+    lockInputsInBox("p4");
+
+    const feedbackBox = document.getElementById("feedback-elaboration-bentuk");
+    if(feedbackBox){
+      feedbackBox.style.display = "block";
+    }
+
+    const btn = document.getElementById("btn-save-elaboration-bentuk");
+    if(btn){
+      btn.innerText = "✅ Jawaban Tersimpan";
+      btn.disabled = true;
+    }
+  }catch(e){
+    localStorage.removeItem("bentuk_elaboration_saved");
+  }
+}
+
+function resetElaborationBentukAfterSubmit(){
+  localStorage.removeItem("bentuk_elaboration_saved");
+
+  unlockInputsInBox("p4");
+
+  const feedbackBox = document.getElementById("feedback-elaboration-bentuk");
+  if(feedbackBox){
+    feedbackBox.style.display = "none";
+  }
+
+  const btn = document.getElementById("btn-save-elaboration-bentuk");
+  if(btn){
+    btn.innerText = "💾 Simpan Jawaban & Lihat Umpan Balik";
+    btn.disabled = false;
+  }
+}
+
+function renderQuizBentuk(){
+  const container = document.getElementById("quiz-bentuk-container");
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  quizBentukData.forEach(item => {
+    let html = `
+      <div class="section-box" id="quiz-bentuk-box-${item.id}" style="background:white;border-left:10px solid var(--gold);">
+
+        <div style="font-size:14px;line-height:1.8;margin:0 0 12px 0;color:#3b5f7a;">
+          ${item.stimulus}
+        </div>
+
+        <p style="font-size:14px;line-height:1.7;margin:0 0 10px 0;">
+          <b>${item.id}. ${item.stem}</b>
+        </p>
+    `;
+
+    Object.entries(item.options).forEach(([key, val]) => {
+      html += `
+        <label class="mcq-option">
+          <input type="radio" name="qbentuk${item.id}" value="${key}">
+          <b>${key}.</b> ${val}
+        </label>
+      `;
+    });
+
+    html += `</div>`;
+    container.innerHTML += html;
+  });
+}
+
+function lockEvaluationBentuk(){
+  for(let i = 1; i <= 10; i++){
+    document.querySelectorAll(`input[name="qbentuk${i}"]`).forEach(function(input){
+      input.disabled = true;
+    });
+  }
+}
+
+function unlockEvaluationBentuk(){
+  for(let i = 1; i <= 10; i++){
+    document.querySelectorAll(`input[name="qbentuk${i}"]`).forEach(function(input){
+      input.disabled = false;
+    });
+  }
+}
+
+function saveEvaluationBentukAndShowFeedback(){
+  let score = 0;
+  const savedAnswers = {};
+
+  for(let i = 1; i <= 10; i++){
+    const pick = document.querySelector(`input[name="qbentuk${i}"]:checked`)?.value;
+
+    if(!pick){
+      alert("Jawab semua soal evaluasi terlebih dahulu ya 😊");
+      return;
+    }
+
+    savedAnswers["q" + i] = pick;
+
+    if(pick === correctBentukAnswers["q" + i]){
+      score += 10;
+    }
+  }
+
+  skorEvaluasi = score;
+
+  localStorage.setItem("bentuk_evaluation_saved", JSON.stringify({
+    answers: savedAnswers,
+    score: score,
+    savedAt: new Date().toLocaleString()
+  }));
+
+  lockEvaluationBentuk();
+
+  const skorBox = document.getElementById("skor-evaluation-bentuk-box");
+  const skorText = document.getElementById("skor-evaluation-bentuk-text");
+  const skorMsg = document.getElementById("skor-evaluation-bentuk-message");
+
+  if(skorBox && skorText && skorMsg){
+    skorBox.classList.remove("hidden");
+    skorText.innerText = `Skor kamu: ${score}/100`;
+
+    if(score >= 80){
+      skorMsg.innerText = "🌟 Bagus sekali! Pemahaman konsep bentuk molekulmu sudah kuat.";
+    }else if(score >= 60){
+      skorMsg.innerText = "👍 Cukup baik. Bacalah pembahasan untuk memperkuat bagian yang masih keliru.";
+    }else{
+      skorMsg.innerText = "💪 Tetap semangat. Gunakan pembahasan untuk memahami kembali atom pusat, PEI, PEB, dan bentuk molekul.";
+    }
+  }
+
+  const feedbackContent = document.getElementById("evaluation-bentuk-feedback-content");
+  let html = "";
+
+  quizBentukData.forEach(item => {
+    const userPick = savedAnswers["q" + item.id];
+    const correct = correctBentukAnswers["q" + item.id];
+    const benar = userPick === correct;
+
+    html += `
+      <div class="feedback-item">
+        <b>Soal ${item.id}</b><br>
+        Jawaban kamu: <b>${userPick}</b><br>
+        Kunci jawaban: <b>${correct}</b><br>
+        Status: <b style="color:${benar ? '#1e8449' : '#cc4d4d'};">${benar ? 'Benar' : 'Perlu diperbaiki'}</b><br>
+        Pembahasan: ${quizBentukExplanation[item.id]}
+      </div>
+    `;
+  });
+
+  if(feedbackContent){
+    feedbackContent.innerHTML = html;
+  }
+
+  const feedbackBox = document.getElementById("feedback-evaluation-bentuk");
+  if(feedbackBox){
+    feedbackBox.style.display = "block";
+    feedbackBox.scrollIntoView({behavior:"smooth"});
+  }
+
+  const btn = document.getElementById("btn-save-evaluation-bentuk");
+  if(btn){
+    btn.innerText = "✅ Evaluasi Tersimpan";
+    btn.disabled = true;
+  }
+}
+
+function restoreEvaluationBentukLock(){
+  const raw = localStorage.getItem("bentuk_evaluation_saved");
+  if(!raw) return;
+
+  try{
+    const data = JSON.parse(raw);
+    const answers = data.answers || {};
+    skorEvaluasi = data.score || 0;
+
+    Object.entries(answers).forEach(([name, value]) => {
+      const nomor = name.replace("q", "");
+      const input = document.querySelector(`input[name="qbentuk${nomor}"][value="${value}"]`);
+      if(input) input.checked = true;
+    });
+
+    lockEvaluationBentuk();
+
+    const skorBox = document.getElementById("skor-evaluation-bentuk-box");
+    const skorText = document.getElementById("skor-evaluation-bentuk-text");
+    const skorMsg = document.getElementById("skor-evaluation-bentuk-message");
+
+    if(skorBox && skorText && skorMsg){
+      skorBox.classList.remove("hidden");
+      skorText.innerText = `Skor kamu: ${data.score}/100`;
+
+      if(data.score >= 80){
+        skorMsg.innerText = "🌟 Bagus sekali! Pemahaman konsep bentuk molekulmu sudah kuat.";
+      }else if(data.score >= 60){
+        skorMsg.innerText = "👍 Cukup baik. Bacalah pembahasan untuk memperkuat bagian yang masih keliru.";
+      }else{
+        skorMsg.innerText = "💪 Tetap semangat. Gunakan pembahasan untuk memahami kembali atom pusat, PEI, PEB, dan bentuk molekul.";
+      }
+    }
+
+    const feedbackContent = document.getElementById("evaluation-bentuk-feedback-content");
+    if(feedbackContent){
+      let html = "";
+
+      quizBentukData.forEach(item => {
+        const userPick = answers["q" + item.id];
+        const correct = correctBentukAnswers["q" + item.id];
+        const benar = userPick === correct;
+
+        html += `
+          <div class="feedback-item">
+            <b>Soal ${item.id}</b><br>
+            Jawaban kamu: <b>${userPick}</b><br>
+            Kunci jawaban: <b>${correct}</b><br>
+            Status: <b style="color:${benar ? '#1e8449' : '#cc4d4d'};">${benar ? 'Benar' : 'Perlu diperbaiki'}</b><br>
+            Pembahasan: ${quizBentukExplanation[item.id]}
+          </div>
+        `;
+      });
+
+      feedbackContent.innerHTML = html;
+    }
+
+    const feedbackBox = document.getElementById("feedback-evaluation-bentuk");
+    if(feedbackBox){
+      feedbackBox.style.display = "block";
+    }
+
+    const btn = document.getElementById("btn-save-evaluation-bentuk");
+    if(btn){
+      btn.innerText = "✅ Evaluasi Tersimpan";
+      btn.disabled = true;
+    }
+  }catch(e){
+    localStorage.removeItem("bentuk_evaluation_saved");
+  }
+}
+
+function resetEvaluationBentukAfterSubmit(){
+  localStorage.removeItem("bentuk_evaluation_saved");
+
+  unlockEvaluationBentuk();
+
+  const skorBox = document.getElementById("skor-evaluation-bentuk-box");
+  if(skorBox){
+    skorBox.classList.add("hidden");
+  }
+
+  const feedbackBox = document.getElementById("feedback-evaluation-bentuk");
+  if(feedbackBox){
+    feedbackBox.style.display = "none";
+  }
+
+  const feedbackContent = document.getElementById("evaluation-bentuk-feedback-content");
+  if(feedbackContent){
+    feedbackContent.innerHTML = "";
+  }
+
+  const btn = document.getElementById("btn-save-evaluation-bentuk");
+  if(btn){
+    btn.innerText = "💾 Simpan Evaluasi & Lihat Pembahasan";
+    btn.disabled = false;
+  }
+}
+
+function resetAllBentukLocksAfterSubmit(){
+  if(typeof resetExplanationBentukAfterSubmit === "function"){
+    resetExplanationBentukAfterSubmit();
+  }
+
+  if(typeof resetElaborationBentukAfterSubmit === "function"){
+    resetElaborationBentukAfterSubmit();
+  }
+
+  if(typeof resetEvaluationBentukAfterSubmit === "function"){
+    resetEvaluationBentukAfterSubmit();
+  }
+}
+function finalSubmitBentuk(){
+  // ================== HELPER ==================
+  const getVal = (id) => {
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+  };
+
+  const getRadio = (name) => {
+    return document.querySelector(`input[name="${name}"]:checked`)?.value || "";
+  };
+
+  const getQuizAnswer = (i) => {
+    return document.querySelector(`input[name="qbentuk${i}"]:checked`)?.value || "";
+  };
+
+  // ================== IDENTITAS ==================
+  const namaSiswa = getVal("nama");
+  const kelasSiswa = getVal("kelas");
+  const tanggalLKPD = document.getElementById("tgl")?.value || "";
+
+  if(!namaSiswa || !kelasSiswa || !tanggalLKPD){
+    alert("Isi identitas Nama, Kelas, dan Tanggal terlebih dahulu ya 😊");
+    nextPhase(0);
+    return;
+  }
+
+  // ================== CEK EVALUASI ==================
+  let score = 0;
+  const jawabanEvaluasi = {};
+
+  for(let i = 1; i <= 10; i++){
+    const pick = getQuizAnswer(i);
+
+    if(!pick){
+      alert("Jawab semua soal evaluasi terlebih dahulu ya 😊");
+      nextPhase(5);
+      return;
+    }
+
+    jawabanEvaluasi[`Evaluasi_Q${i}`] = pick;
+
+    if(pick === correctBentukAnswers[`q${i}`]){
+      score += 10;
+    }
+  }
+
+  // ================== CEK REFLEKSI ==================
+  if(
+    !getRadio("ref-bentuk-1") ||
+    !getRadio("ref-bentuk-2") ||
+    !getRadio("ref-bentuk-3") ||
+    !getRadio("ref-bentuk-4")
+  ){
+    alert("Lengkapi semua pilihan refleksi Ya/Tidak terlebih dahulu ya 😊");
+    nextPhase(5);
+    return;
+  }
+
+  if(!getVal("ref-bentuk-teks-1") || !getVal("ref-bentuk-teks-2")){
+    alert("Lengkapi refleksi teks terlebih dahulu ya 😊");
+    nextPhase(5);
+    return;
+  }
+
+  // ================== STATUS SIMPAN ==================
+  const explanationSaved = localStorage.getItem("bentuk_explanation_saved") ? "Sudah disimpan" : "Belum disimpan";
+  const elaborationSaved = localStorage.getItem("bentuk_elaboration_saved") ? "Sudah disimpan" : "Belum disimpan";
+  const evaluationSaved = localStorage.getItem("bentuk_evaluation_saved") ? "Sudah disimpan" : "Belum disimpan";
+
+  // ================== DATA LENGKAP ==================
+  const jawabanLengkap = {
+    timestamp: new Date().toLocaleString(),
+    nama: namaSiswa,
+    kelas: kelasSiswa,
+    tanggal: tanggalLKPD,
+    materi: "Bentuk Molekul",
+    skor: score,
+
+    // ================== ENGAGEMENT ==================
+    Engagement_Hipotesis_Awal: getVal("eng1"),
+    Engagement_Rumusan_Masalah:
+      "Bagaimana bentuk molekul dapat dikelompokkan berdasarkan jumlah pasangan elektron ikatan dan pasangan elektron bebas pada atom pusat?",
+
+    // ================== EXPLORATION - TABEL ==================
+    Eksplorasi_CO2_Atom_Pusat: getVal("t2_atom_1"),
+    Eksplorasi_CO2_PEI: getVal("t2_pei_1"),
+    Eksplorasi_CO2_PEB: getVal("t2_peb_1"),
+    Eksplorasi_CO2_Jumlah_Pasangan_Elektron: getVal("t2_jml_1"),
+    Eksplorasi_CO2_Bentuk_Molekul: getVal("t2_bentuk_1"),
+
+    Eksplorasi_H2O_Atom_Pusat: getVal("t2_atom_2"),
+    Eksplorasi_H2O_PEI: getVal("t2_pei_2"),
+    Eksplorasi_H2O_PEB: getVal("t2_peb_2"),
+    Eksplorasi_H2O_Jumlah_Pasangan_Elektron: getVal("t2_jml_2"),
+    Eksplorasi_H2O_Bentuk_Molekul: getVal("t2_bentuk_2"),
+
+    Eksplorasi_BF3_Atom_Pusat: getVal("t2_atom_3"),
+    Eksplorasi_BF3_PEI: getVal("t2_pei_3"),
+    Eksplorasi_BF3_PEB: getVal("t2_peb_3"),
+    Eksplorasi_BF3_Jumlah_Pasangan_Elektron: getVal("t2_jml_3"),
+    Eksplorasi_BF3_Bentuk_Molekul: getVal("t2_bentuk_3"),
+
+    Eksplorasi_CH4_Atom_Pusat: getVal("t2_atom_4"),
+    Eksplorasi_CH4_PEI: getVal("t2_pei_4"),
+    Eksplorasi_CH4_PEB: getVal("t2_peb_4"),
+    Eksplorasi_CH4_Jumlah_Pasangan_Elektron: getVal("t2_jml_4"),
+    Eksplorasi_CH4_Bentuk_Molekul: getVal("t2_bentuk_4"),
+
+    Eksplorasi_NH3_Atom_Pusat: getVal("t2_atom_5"),
+    Eksplorasi_NH3_PEI: getVal("t2_pei_5"),
+    Eksplorasi_NH3_PEB: getVal("t2_peb_5"),
+    Eksplorasi_NH3_Jumlah_Pasangan_Elektron: getVal("t2_jml_5"),
+    Eksplorasi_NH3_Bentuk_Molekul: getVal("t2_bentuk_5"),
+
+    // ================== EXPLORATION - PERTANYAAN ==================
+    Eksplorasi_Q1_Cara_Menentukan_Bentuk: getVal("eks-bentuk-q1"),
+    Eksplorasi_Q2_CO2_H2O: getVal("eks-bentuk-q2"),
+    Eksplorasi_Q3_BF3_NH3: getVal("eks-bentuk-q3"),
+    Eksplorasi_Q4_Pengaruh_PEB: getVal("eks-bentuk-q4"),
+    Eksplorasi_Q5_Kelompok_PEB: getVal("eks-bentuk-q5"),
+
+    // ================== EXPLANATION ==================
+    Explanation_Q1_Pengelompokan_Bentuk: getVal("exp-bentuk-q1"),
+    Explanation_Q2_CO2_H2O: getVal("exp-bentuk-q2"),
+    Explanation_Q3_BF3_NH3: getVal("exp-bentuk-q3"),
+    Explanation_Q4_Pengaruh_PEB: getVal("exp-bentuk-q4"),
+    Explanation_Q5_Pasangan_Total_Sama: getVal("exp-bentuk-q5"),
+    Explanation_Q6_Revisi_Hipotesis: getVal("exp-bentuk-q6"),
+    Explanation_Status_Simpan: explanationSaved,
+
+    // ================== ELABORATION ==================
+    Elaboration_Q1_Atom_Pusat_CH4_SF4_XeF4: getVal("elab-bentuk-q1"),
+    Elaboration_Q2_PEI_CH4_SF4_XeF4: getVal("elab-bentuk-q2"),
+    Elaboration_Q3_PEB_CH4_SF4_XeF4: getVal("elab-bentuk-q3"),
+    Elaboration_Q4_Rumus_Umum_Dan_Bentuk: getVal("elab-bentuk-q4"),
+    Elaboration_Q5_Kesimpulan_CH4_SF4_XeF4: getVal("elab-bentuk-q5"),
+    Elaboration_Status_Simpan: elaborationSaved,
+
+    // ================== EVALUATION ==================
+    ...jawabanEvaluasi,
+    Skor_Evaluasi: score,
+    Evaluation_Status_Simpan: evaluationSaved,
+
+    // ================== REFLEKSI ==================
+    Refleksi_Atom_Pusat: getRadio("ref-bentuk-1"),
+    Refleksi_PEI_PEB: getRadio("ref-bentuk-2"),
+    Refleksi_Menentukan_Bentuk_Molekul: getRadio("ref-bentuk-3"),
+    Refleksi_Pengaruh_PEB: getRadio("ref-bentuk-4"),
+    Refleksi_Bagian_Mudah: getVal("ref-bentuk-teks-1"),
+    Refleksi_Bagian_Membingungkan: getVal("ref-bentuk-teks-2")
+  };
+
+  // ================== SIMPAN LOKAL CADANGAN ==================
+  const LOCAL_KEY = "db_bentuk_molekul_final";
+  const db = JSON.parse(localStorage.getItem(LOCAL_KEY) || "[]");
+  db.push(jawabanLengkap);
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(db));
+
+  // ================== KIRIM KE GOOGLE SHEETS ==================
+  const btnSubmit = document.getElementById("btn-final-submit-bentuk") || document.querySelector('button[onclick="finalSubmitBentuk()"]');
+
+  if(btnSubmit){
+    btnSubmit.innerText = "Sedang mengirim... ⏳";
+    btnSubmit.disabled = true;
+  }
+
+  const payload = {
+    timestamp: new Date().toLocaleString(),
+    nama: namaSiswa,
+    kelas: kelasSiswa,
+    materi: "Bentuk Molekul",
+    skor: score,
+    jawabanLengkap: jawabanLengkap
+  };
+
+  console.log("PAYLOAD BENTUK MOLEKUL YANG DIKIRIM:", payload);
+
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    alert(`✅ LKPD selesai!\nSkor evaluasi kamu: ${score}/100\nJawaban berhasil dikirim ke spreadsheet Guru Rusyda! 🌈`);
+
+    resetAllBentukLocksAfterSubmit();
+
+    if(btnSubmit){
+      btnSubmit.innerText = "✅ Sudah Terkirim";
+      btnSubmit.disabled = true;
+    }
+  })
+  .catch((err) => {
+    console.error("Gagal kirim ke spreadsheet:", err);
+
+    alert(`Evaluasi selesai!\nSkor kamu: ${score}/100\n⚠️ Gagal kirim, cek koneksi internet atau URL Apps Script.`);
+
+    if(btnSubmit){
+      btnSubmit.innerText = "✨ SELESAI & KIRIM ✨";
+      btnSubmit.disabled = false;
+    }
+  });
+}
+
+  </script>
+
+</body>
+</html>
