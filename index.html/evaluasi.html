@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluasi Akhir - Ikatan Kimia</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #ffc107;
+      --batik-blue: #3a7caf;
+      --cream: #fffdf2;
+      --soft-blue: #e3f2fd;
+      --green: #27ae60;
+      --light-green: #a8e6cf;
+      --gray: #b2bec3;
+      --red: #ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      background: var(--cream);
+      color: var(--batik-blue);
+    }
+    h1, h2, h3, h4 { font-family: 'Fredoka', sans-serif; margin-top: 0; }
+
+    nav {
+      background: #fff;
+      padding: 10px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    button {
+      padding: 10px 18px;
+      border-radius: 50px;
+      border: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      color: #fff;
+      transition: 0.2s;
+    }
+    .btn-back { background: var(--gray); box-shadow: 0 5px 0 #636e72; }
+    .btn-back:active { box-shadow: 0 2px 0 #636e72; transform: translateY(3px); }
+    .btn-submit { background: var(--green); box-shadow: 0 5px 0 #1e8449; font-size: 16px; padding: 14px 24px; }
+    .btn-submit:hover { background: #2ecc71; }
+    .btn-submit:active { box-shadow: 0 2px 0 #1e8449; transform: translateY(3px); }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 30px;
+      border: 5px solid var(--soft-blue);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .header-banner {
+      background: linear-gradient(135deg, var(--green), #2ecc71);
+      color: #fff;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 20px rgba(39, 174, 96, 0.2);
+    }
+    .header-banner h1 { margin-bottom: 5px; font-size: 28px; }
+    .header-banner p { margin: 0; font-size: 15px; font-weight: 600; opacity: 0.9; }
+
+    .topic-title {
+      background: var(--soft-blue);
+      color: var(--batik-blue);
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin: 30px 0 15px 0;
+      font-size: 18px;
+      border-left: 8px solid var(--batik-blue);
+    }
+
+    .question-card {
+      background: #fdfdfd;
+      border: 2px solid #edf2f7;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .question-stem { font-size: 15px; font-weight: 700; margin-bottom: 15px; color: #2c3e50; line-height: 1.6; }
+
+    .mcq-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      border: 2px solid #e2e8f0;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 14px;
+      color: #4a5568;
+    }
+    .mcq-option:hover { background: var(--soft-blue); border-color: #cbd5e0; }
+    .mcq-option input[type="radio"] { margin-top: 3px; cursor: pointer; }
+
+    .locked-option { cursor: not-allowed; opacity: 0.8; }
+    .locked-option:hover { background: #fff; border-color: #e2e8f0; }
+
+    .feedback-box {
+      display: none;
+      background: #f0fdf4;
+      border: 2px dashed #86efac;
+      border-left: 8px solid var(--green);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 25px;
+    }
+
+    .result-score {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--green);
+      margin: 10px 0;
+    }
+
+    .item-feedback {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .status-benar { color: var(--green); font-weight: bold; }
+    .status-salah { color: var(--red); font-weight: bold; }
+
+  </style>
+</head>
+<body onload="initEvaluasi()">
+
+  <nav>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="btn-back" onclick="window.location.href='menu.html'">⬅️ Kembali ke Menu</button>
+    </div>
+    <strong style="font-size: 18px;">ATOMIK Evaluasi</strong>
+    <div style="width: 140px;"></div> </nav>
+
+  <div class="container">
+    <div class="header-banner">
+      <h1>📝 Evaluasi Akhir Ikatan Kimia</h1>
+      <p>30 Soal Komprehensif | Kerjakan dengan teliti!</p>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <center style="margin-top: 35px;">
+      <button id="btn-submit" class="btn-submit" onclick="submitEvaluasi()">Kunci & Lihat Hasil 🏆</button>
+    </center>
+
+    <div id="feedback-section" class="feedback-box">
+      <h2 style="text-align:center; color: var(--green);">Hasil Evaluasi Kamu</h2>
+      <div class="result-score" id="final-score">Skor: 0/100</div>
+      <p style="text-align:center; margin-bottom:20px; font-weight:600; color:#4a5568;" id="final-message"></p>
+      
+      <div id="feedback-items"></div>
+    </div>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // DATABASE SOAL (5 Soal per Materi)
+    // ==========================================
+    const soalData = [
+      // --- MATERI 1: IKATAN ION ---
+      {
+        id: 1, topic: "Ikatan Ion",
+        stem: "Ikatan ion terbentuk melalui gaya tarik-menarik elektrostatik. Syarat utama terjadinya ikatan ion adalah...",
+        options: {
+          A: "Pemakaian pasangan elektron bersama oleh dua atom logam",
+          B: "Serah terima elektron antara atom logam dan atom nonlogam",
+          C: "Penggunaan pasangan elektron bebas dari salah satu atom",
+          D: "Tumpang tindih orbital atom dari unsur-unsur golongan gas mulia",
+          E: "Pergerakan elektron valensi yang bebas melintasi kisi kristal"
+        }, answer: "B",
+        explanation: "Ikatan ion terjadi akibat perpindahan (serah terima) elektron dari atom logam (membentuk kation) ke atom nonlogam (membentuk anion)."
+      },
+      {
+        id: 2, topic: "Ikatan Ion",
+        stem: "Unsur X dengan nomor atom 11 berikatan dengan unsur Y dengan nomor atom 17. Senyawa yang terbentuk dan jenis ikatannya adalah...",
+        options: {
+          A: "XY, Ikatan ion",
+          B: "XY2, Ikatan ion",
+          C: "XY, Ikatan kovalen polar",
+          D: "X2Y, Ikatan kovalen nonpolar",
+          E: "X2Y, Ikatan ion"
+        }, answer: "A",
+        explanation: "Unsur X (Na, gol IA) melepas 1 elektron membentuk X+. Unsur Y (Cl, gol VIIA) menangkap 1 elektron membentuk Y-. Terbentuk senyawa ionik XY (NaCl)."
+      },
+      {
+        id: 3, topic: "Ikatan Ion",
+        stem: "Manakah dari sifat berikut yang TIDAK dimiliki oleh senyawa ionik?",
+        options: {
+          A: "Titik leleh dan titik didih yang sangat tinggi",
+          B: "Menghantarkan listrik dalam keadaan lelehan (leburan)",
+          C: "Mudah menguap pada suhu ruang (volatil)",
+          D: "Larut dalam pelarut polar seperti air",
+          E: "Menghantarkan listrik dalam bentuk larutan berair"
+        }, answer: "C",
+        explanation: "Senyawa ion memiliki gaya elektrostatis yang sangat kuat, sehingga titik didihnya tinggi dan sangat sulit menguap (non-volatil)."
+      },
+      {
+        id: 4, topic: "Ikatan Ion",
+        stem: "Pada senyawa kalsium klorida (CaCl2), kalsium (Ca) yang merupakan unsur golongan IIA melepaskan elektron membentuk...",
+        options: {
+          A: "Ion kalsium bermuatan -1",
+          B: "Ion kalsium bermuatan +1",
+          C: "Ion kalsium bermuatan -2",
+          D: "Ion kalsium bermuatan +2",
+          E: "Molekul diatomik kalsium"
+        }, answer: "D",
+        explanation: "Golongan IIA memiliki 2 elektron valensi, sehingga akan melepaskan 2 elektron tersebut untuk mencapai kestabilan (membentuk kation Ca2+)."
+      },
+      {
+        id: 5, topic: "Ikatan Ion",
+        stem: "Mengapa garam dapur (NaCl) dalam wujud kristal padat tidak dapat menghantarkan arus listrik?",
+        options: {
+          A: "Karena tidak terdapat elektron valensi",
+          B: "Karena ion-ionnya terikat kuat pada kisi kristal dan tidak dapat bergerak bebas",
+          C: "Karena NaCl merupakan senyawa kovalen nonpolar",
+          D: "Karena logam natrium bersifat isolator",
+          E: "Karena klorin memblokir aliran elektron"
+        }, answer: "B",
+        explanation: "Dalam wujud padat, ion Na+ dan Cl- terkunci rapat dalam kisi kristal sehingga tidak ada partikel bermuatan yang bebas bergerak untuk menghantarkan listrik."
+      },
+
+      // --- MATERI 2: IKATAN KOVALEN ---
+      {
+        id: 6, topic: "Ikatan Kovalen",
+        stem: "Ikatan kovalen terbentuk akibat penggunaan pasangan elektron secara bersama. Ikatan ini umumnya terjadi antara...",
+        options: {
+          A: "Sesama atom nonlogam",
+          B: "Sesama atom logam",
+          C: "Atom logam dan atom nonlogam",
+          D: "Atom logam dan gas mulia",
+          E: "Ion positif dan elektron bebas"
+        }, answer: "A",
+        explanation: "Ikatan kovalen terbentuk karena unsur-unsur nonlogam sama-sama cenderung menarik elektron, sehingga mereka memakai elektron secara bersama-sama."
+      },
+      {
+        id: 7, topic: "Ikatan Kovalen",
+        stem: "Di antara senyawa berikut, manakah yang memiliki ikatan kovalen rangkap dua?",
+        options: {
+          A: "H2",
+          B: "N2",
+          C: "O2",
+          D: "Cl2",
+          E: "CH4"
+        }, answer: "C",
+        explanation: "Oksigen (O2) bergolongan VIA, butuh 2 elektron untuk oktet. Dua atom O akan berbagi 2 pasang elektron, membentuk ikatan rangkap dua (O=O)."
+      },
+      {
+        id: 8, topic: "Ikatan Kovalen",
+        stem: "Ikatan kovalen koordinasi terjadi jika...",
+        options: {
+          A: "Kedua atom sama-sama menyumbangkan satu elektron",
+          B: "Pasangan elektron yang digunakan bersama berasal dari salah satu atom saja",
+          C: "Terjadi serah terima pasangan elektron bebas",
+          D: "Terjadi pemakaian elektron secara tidak merata karena perbedaan keelektronegatifan",
+          E: "Elektron bergerak bebas membentuk lautan elektron"
+        }, answer: "B",
+        explanation: "Kovalen koordinasi adalah ikatan kovalen di mana pasangan elektron yang digunakan bersama (PEB) disumbangkan secara penuh oleh hanya satu pihak/atom."
+      },
+      {
+        id: 9, topic: "Ikatan Kovalen",
+        stem: "Senyawa SF6 (Belerang heksafluorida) merupakan senyawa stabil meskipun tidak memenuhi kaidah oktet. Penyimpangan yang terjadi pada molekul ini adalah...",
+        options: {
+          A: "Oktet tidak lengkap (kurang dari 8 elektron)",
+          B: "Oktet berkembang (lebih dari 8 elektron valensi pada atom pusat)",
+          C: "Senyawa dengan elektron ganjil",
+          D: "Terbentuknya ikatan ion",
+          E: "Kovalen polar yang terionisasi sebagian"
+        }, answer: "B",
+        explanation: "Atom S pada molekul SF6 dikelilingi oleh 12 elektron (6 pasangan ikatan), sehingga merupakan contoh penyimpangan oktet berkembang (expanded octet)."
+      },
+      {
+        id: 10, topic: "Ikatan Kovalen",
+        stem: "Molekul amonia bereaksi dengan ion H+ membentuk ion amonium (NH4+). Ikatan yang terbentuk antara molekul amonia dengan ion hidrogen adalah ikatan...",
+        options: {
+          A: "Ion",
+          B: "Kovalen tunggal biasa",
+          C: "Kovalen rangkap dua",
+          D: "Kovalen koordinasi",
+          E: "Ikatan hidrogen"
+        }, answer: "D",
+        explanation: "Molekul NH3 memiliki 1 Pasangan Elektron Bebas (PEB) pada atom N yang disumbangkan untuk mengikat ion H+ (yang tidak punya elektron), membentuk ikatan kovalen koordinasi."
+      },
+
+      // --- MATERI 3: BENTUK MOLEKUL ---
+      {
+        id: 11, topic: "Bentuk Molekul (VSEPR)",
+        stem: "Berdasarkan teori VSEPR, geometri molekul ditentukan oleh tolakan antar pasangan elektron di sekitar atom pusat. Urutan kekuatan tolakan yang paling besar adalah...",
+        options: {
+          A: "PEI-PEI > PEB-PEI > PEB-PEB",
+          B: "PEI-PEI > PEB-PEB > PEB-PEI",
+          C: "PEB-PEB > PEB-PEI > PEI-PEI",
+          D: "PEB-PEI > PEI-PEI > PEB-PEB",
+          E: "Semua tolakan sama kuat"
+        }, answer: "C",
+        explanation: "Pasangan Elektron Bebas (PEB) tidak terikat pada dua inti atom sehingga memakan ruang yang lebih besar. Akibatnya, tolakan PEB-PEB adalah yang paling kuat."
+      },
+      {
+        id: 12, topic: "Bentuk Molekul (VSEPR)",
+        stem: "Molekul CH4 memiliki 4 Pasangan Elektron Ikatan (PEI) dan 0 Pasangan Elektron Bebas (PEB). Bentuk molekul CH4 adalah...",
+        options: {
+          A: "Linear",
+          B: "Trigonal planar",
+          C: "Tetrahedral",
+          D: "Oktahedral",
+          E: "Bengkok (V-shape)"
+        }, answer: "C",
+        explanation: "Molekul dengan tipe AX4 (4 domain elektron ikatan) akan membentuk ruang tetrahedral dengan sudut ikatan ideal 109,5 derajat."
+      },
+      {
+        id: 13, topic: "Bentuk Molekul (VSEPR)",
+        stem: "Air (H2O) dan Karbon Dioksida (CO2) sama-sama terdiri dari 3 atom. Namun, H2O berbentuk bengkok (V-shape) sedangkan CO2 berbentuk linear. Hal ini disebabkan oleh...",
+        options: {
+          A: "Ukuran atom O lebih besar dari C",
+          B: "Keberadaan pasangan elektron bebas (PEB) pada atom pusat oksigen di H2O",
+          C: "Perbedaan massa molekul",
+          D: "Ikatan C=O adalah ikatan kovalen koordinasi",
+          E: "Air berwujud cair sedangkan karbon dioksida berwujud gas"
+        }, answer: "B",
+        explanation: "Atom O pada H2O memiliki 2 PEB yang mendesak pasangan elektron ikatan ke bawah, sehingga molekul berbentuk bengkok. Sedangkan atom C pada CO2 tidak memiliki PEB sehingga bentuknya lurus (linear)."
+      },
+      {
+        id: 14, topic: "Bentuk Molekul (VSEPR)",
+        stem: "Molekul BF3 memiliki 3 Pasangan Elektron Ikatan tanpa adanya pasangan elektron bebas pada atom Boron. Bentuk geometri BF3 adalah...",
+        options: {
+          A: "Trigonal piramida",
+          B: "Trigonal planar (segitiga datar)",
+          C: "Tetrahedral",
+          D: "Linear",
+          E: "Bipiramida trigonal"
+        }, answer: "B",
+        explanation: "Tipe molekul AX3 dengan 0 PEB akan menyusun dirinya sejauh mungkin membentuk segitiga datar atau trigonal planar dengan sudut 120 derajat."
+      },
+      {
+        id: 15, topic: "Bentuk Molekul (VSEPR)",
+        stem: "Pada molekul NH3 (Amonia), terdapat 3 PEI dan 1 PEB. Keberadaan 1 PEB ini mendesak sudut ikatan H-N-H sehingga bentuk ruang molekul NH3 adalah...",
+        options: {
+          A: "Tetrahedral",
+          B: "Trigonal piramida",
+          C: "Trigonal planar",
+          D: "Bentuk T",
+          E: "Bujur sangkar"
+        }, answer: "B",
+        explanation: "Empat domain elektron dengan salah satunya adalah PEB (tipe AX3E) menghasilkan bentuk bangun trigonal piramida (piramida segitiga)."
+      },
+
+      // --- MATERI 4: KEPOLARAN ---
+      {
+        id: 16, topic: "Kepolaran",
+        stem: "Kepolaran suatu ikatan kovalen (seperti pada molekul HCl) secara mikroskopis disebabkan oleh...",
+        options: {
+          A: "Perbedaan massa atom",
+          B: "Perbedaan fase zat",
+          C: "Perbedaan keelektronegatifan atom yang berikatan",
+          D: "Adanya lautan elektron",
+          E: "Interaksi dengan pelarut air"
+        }, answer: "C",
+        explanation: "Atom yang lebih elektronegatif (seperti Cl) akan menarik elektron ikatan lebih kuat ke arahnya, membentuk kutub negatif parsial dan kutub positif parsial."
+      },
+      {
+        id: 17, topic: "Kepolaran",
+        stem: "Suatu molekul dapat bersifat nonpolar meskipun memiliki ikatan-ikatan polar, asalkan...",
+        options: {
+          A: "Terdiri dari atom logam dan nonlogam",
+          B: "Memiliki bentuk molekul yang simetris sehingga resultan momen dipolnya sama dengan nol",
+          C: "Berwujud gas pada suhu ruang",
+          D: "Memiliki pasangan elektron bebas di atom pusat",
+          E: "Massa atom pusatnya sangat kecil"
+        }, answer: "B",
+        explanation: "Seperti pada molekul CCl4 atau CO2, meskipun ikatan C-Cl dan C=O bersifat polar, letaknya yang simetris membuat vektor tarikannya saling meniadakan (momen dipol = 0)."
+      },
+      {
+        id: 18, topic: "Kepolaran",
+        stem: "Berdasarkan prinsip 'Like dissolves like', zat manakah di bawah ini yang paling mudah bercampur dengan air (H2O) yang bersifat polar?",
+        options: {
+          A: "Gas Metana (CH4)",
+          B: "Minyak goreng",
+          C: "Bensin (Heksana)",
+          D: "Amonia (NH3)",
+          E: "Gas Karbon Dioksida (CO2)"
+        }, answer: "D",
+        explanation: "Prinsip like dissolves like menyatakan pelarut polar akan melarutkan zat polar. NH3 adalah molekul polar sehingga mudah larut dalam air (polar). Senyawa lainnya bersifat nonpolar."
+      },
+      {
+        id: 19, topic: "Kepolaran",
+        stem: "Mengapa molekul CH4 (Tetrahedral) bersifat nonpolar, sedangkan molekul CH3Cl bersifat polar?",
+        options: {
+          A: "CH4 tidak memiliki atom karbon",
+          B: "Ikatan C-H pada CH4 adalah ikatan ion",
+          C: "Atom Cl pada CH3Cl merusak kesimetrisan penyebaran elektron, sehingga resultan dipol tidak nol",
+          D: "CH4 berwujud gas, CH3Cl berwujud cair",
+          E: "Atom H lebih elektronegatif dibanding Cl"
+        }, answer: "C",
+        explanation: "Adanya satu atom Cl yang sangat elektronegatif menarik distribusi elektron condong ke satu sisi (asimetris), sehingga CH3Cl menjadi polar."
+      },
+      {
+        id: 20, topic: "Kepolaran",
+        stem: "Dalam skala keelektronegatifan Pauling, manakah dari kelompok molekul diatomik berikut yang merupakan molekul nonpolar murni?",
+        options: {
+          A: "HCl, HBr, HI",
+          B: "O2, N2, Cl2",
+          C: "CO, NO, SO",
+          D: "H2O, NH3, HF",
+          E: "NaCl, KBr, LiF"
+        }, answer: "B",
+        explanation: "Molekul unsur (molekul yang tersusun dari atom sejenis) memiliki perbedaan keelektronegatifan nol (karena atomnya sama), sehingga ikatannya 100% nonpolar."
+      },
+
+      // --- MATERI 5: GAYA ANTARMOLEKUL ---
+      {
+        id: 21, topic: "Gaya Antarmolekul",
+        stem: "Gaya London terjadi akibat pergerakan elektron yang acak dan membentuk dipol sesaat. Gaya ini paling dominan menentukan titik didih pada zat...",
+        options: {
+          A: "Air (H2O)",
+          B: "Alkohol (C2H5OH)",
+          C: "Gas Mulia (He, Ne, Ar) dan Metana (CH4)",
+          D: "Amonia (NH3)",
+          E: "Hidrogen fluorida (HF)"
+        }, answer: "C",
+        explanation: "Gaya London adalah satu-satunya gaya antarmolekul yang bekerja pada atom dan molekul yang sepenuhnya nonpolar (seperti gas mulia dan hidrokarbon simetris)."
+      },
+      {
+        id: 22, topic: "Gaya Antarmolekul",
+        stem: "Ikatan hidrogen merupakan interaksi antarmolekul yang sangat kuat (dipol khusus). Syarat mutlak terbentuknya ikatan hidrogen adalah...",
+        options: {
+          A: "Semua molekul yang mengandung atom Hidrogen (H)",
+          B: "Atom H yang terikat langsung pada unsur yang sangat elektronegatif (N, O, atau F)",
+          C: "Hanya terjadi antara unsur golongan alkali dengan hidrogen",
+          D: "Adanya ikatan rangkap pada atom karbon",
+          E: "Terjadi antara molekul nonpolar yang berukuran besar"
+        }, answer: "B",
+        explanation: "Elektronegativitas N, O, dan F yang ekstrem membuat H menjadi sangat positif parsial, sehingga ditarik kuat oleh PEB dari molekul tetangganya."
+      },
+      {
+        id: 23, topic: "Gaya Antarmolekul",
+        stem: "Berdasarkan gaya antarmolekulnya, mengapa titik didih air (H2O = 100°C) jauh melampaui hidrogen sulfida (H2S = -60°C), padahal O dan S berada di golongan yang sama?",
+        options: {
+          A: "Molekul H2S memiliki ukuran yang lebih kecil",
+          B: "Air memiliki gaya London yang lebih besar dari H2S",
+          C: "Molekul H2O membentuk jaringan ikatan hidrogen yang sangat kuat",
+          D: "Ikatan kovalen O-H lebih mudah putus",
+          E: "Air berbentuk bengkok sedangkan H2S lurus"
+        }, answer: "C",
+        explanation: "Atom O memenuhi syarat untuk membentuk ikatan hidrogen yang kuat, sedangkan S tidak. Memutuskan ikatan hidrogen butuh energi (suhu) sangat tinggi."
+      },
+      {
+        id: 24, topic: "Gaya Antarmolekul",
+        stem: "Gaya dipol-dipol induksian terjadi antara...",
+        options: {
+          A: "Molekul polar dengan molekul polar",
+          B: "Molekul polar dengan molekul nonpolar",
+          C: "Ion bermuatan dengan molekul polar",
+          D: "Molekul nonpolar dengan molekul nonpolar",
+          E: "Kation logam dengan lautan elektron"
+        }, answer: "B",
+        explanation: "Molekul polar (memiliki dipol permanen) akan menginduksi awan elektron dari molekul nonpolar tetangganya sehingga membentuk kutub sementara (dipol induksian)."
+      },
+      {
+        id: 25, topic: "Gaya Antarmolekul",
+        stem: "Ketika garam dapur (NaCl) dilarutkan ke dalam air, ion Na+ akan dikelilingi oleh ujung negatif dari molekul air (atom O). Gaya ini disebut...",
+        options: {
+          A: "Gaya dipol-dipol",
+          B: "Gaya London",
+          C: "Ikatan hidrogen",
+          D: "Interaksi ion-dipol",
+          E: "Ikatan kovalen koordinasi"
+        }, answer: "D",
+        explanation: "Tarikan antara ion yang bermuatan penuh (kation/anion) dengan pelarut yang bersifat dipol (seperti molekul polar air) dinamakan interaksi ion-dipol (proses hidrasi)."
+      },
+
+      // --- MATERI 6: IKATAN LOGAM ---
+      {
+        id: 26, topic: "Ikatan Logam",
+        stem: "Menurut teori lautan elektron, ikatan logam merupakan gaya tarik elektrostatik yang terjadi antara...",
+        options: {
+          A: "Proton dan neutron dalam inti atom",
+          B: "Kation-kation logam dengan elektron valensi yang terdelokalisasi (bergerak bebas)",
+          C: "Ion positif dan ion negatif yang berselang-seling",
+          D: "Kation logam dengan kation logam tetangganya",
+          E: "Atom logam dengan atom gas dari udara"
+        }, answer: "B",
+        explanation: "Elektron valensi dari atom logam dilepaskan menjadi milik bersama (terdelokalisasi), mengalir di sela-sela kation logam seperti lautan yang merekatkan mereka."
+      },
+      {
+        id: 27, topic: "Ikatan Logam",
+        stem: "Logam merupakan konduktor (penghantar) listrik dan panas yang sangat baik karena...",
+        options: {
+          A: "Logam memiliki massa jenis yang tinggi",
+          B: "Permukaan logam dapat memantulkan spektrum cahaya tampak",
+          C: "Kation logam bergetar sangat cepat dari satu ujung ke ujung lain",
+          D: "Terdapat elektron valensi bebas yang mudah bergerak membawa arus/energi",
+          E: "Logam mudah berkarat atau teroksidasi"
+        }, answer: "D",
+        explanation: "Adanya elektron yang bergerak bebas (mobile) memudahkan aliran arus listrik dan perambatan kalor ke seluruh penjuru batangan logam."
+      },
+      {
+        id: 28, topic: "Ikatan Logam",
+        stem: "Berbeda dengan kristal garam (ionik) yang mudah hancur saat dipukul, logam dapat ditempa menjadi pelat (malleable) tanpa patah. Hal ini karena...",
+        options: {
+          A: "Logam sangat lunak seperti karet",
+          B: "Saat lapisan kation logam bergeser, mereka tetap direkatkan oleh lautan elektron yang fleksibel",
+          C: "Elektron logam memiliki efek pegas",
+          D: "Kation saling tolak-menolak kuat saat dipukul",
+          E: "Logam menyerap udara di sekitarnya saat ditempa"
+        }, answer: "B",
+        explanation: "Lautan elektron bertindak seperti lem yang fleksibel. Ketika palu memukul logam, inti/kation bergeser, tetapi elektron bebas langsung menyesuaikan dan menahannya agar tidak pecah."
+      },
+      {
+        id: 29, topic: "Ikatan Logam",
+        stem: "Titik leleh dari aluminium (Al) jauh lebih tinggi daripada natrium (Na). Berdasarkan teori ikatan logam, hal ini disebabkan karena...",
+        options: {
+          A: "Aluminium tidak memiliki lautan elektron",
+          B: "Natrium berwujud gas pada suhu ruang",
+          C: "Aluminium mendonorkan lebih banyak elektron valensi (3 elektron) ke 'lautan' dibanding Natrium (1 elektron), sehingga ikatannya lebih kuat",
+          D: "Aluminium berikatan kovalen, sedangkan natrium berikatan logam",
+          E: "Aluminium termasuk logam alkali tanah"
+        }, answer: "C",
+        explanation: "Semakin banyak elektron valensi yang didonorkan (Al = gol 3A, Na = gol 1A), lautan elektron makin padat dan muatan kation makin besar, membuat tarikannya makin kuat."
+      },
+      {
+        id: 30, topic: "Ikatan Logam",
+        stem: "Sebagian logam murni di alam, seperti besi pada suhu ruang, memiliki tatanan struktur kristal tertentu yang sangat kaku yang disebut...",
+        options: {
+          A: "Tetrahedral",
+          B: "BCC (Body-Centered Cubic / Kubus Pusat Badan)",
+          C: "Polimer rantai panjang",
+          D: "Amorf",
+          E: "Segitiga bipiramida"
+        }, answer: "B",
+        explanation: "Pada suhu ruang, atom-atom besi tersusun dalam struktur kristal BCC (kubus berpusat badan), yang menyebabkannya sangat keras dan kaku."
+      }
+    ];
+
+    // ==========================================
+    // SCRIPT RENDER DAN EVALUASI
+    // ==========================================
+
+    function initEvaluasi() {
+      const container = document.getElementById("quiz-container");
+      let html = "";
+      let currentTopic = "";
+
+      soalData.forEach((soal, index) => {
+        // Tampilkan judul topik jika berganti materi
+        if (soal.topic !== currentTopic) {
+          html += `<div class="topic-title">Materi: <b>${soal.topic}</b></div>`;
+          currentTopic = soal.topic;
+        }
+
+        html += `
+          <div class="question-card" id="qcard-${soal.id}">
+            <div class="question-stem">${index + 1}. ${soal.stem}</div>
+        `;
+
+        // Render opsi A-E
+        Object.entries(soal.options).forEach(([key, val]) => {
+          html += `
+            <label class="mcq-option" id="opt-${soal.id}-${key}">
+              <input type="radio" name="q${soal.id}" value="${key}">
+              <strong>${key}.</strong> ${val}
+            </label>
+          `;
+        });
+
+        html += `</div>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function submitEvaluasi() {
+      // 1. Validasi: cek apakah semua soal sudah dijawab
+      let allAnswered = true;
+      const userAnswers = {};
+
+      for (const soal of soalData) {
+        const checked = document.querySelector(`input[name="q${soal.id}"]:checked`);
+        if (!checked) {
+          allAnswered = false;
+          break;
+        }
+        userAnswers[soal.id] = checked.value;
+      }
+
+      if (!allAnswered) {
+        alert("Ops! Pastikan kamu sudah menjawab ke-30 soal sebelum mengumpulkan. 😊");
+        return;
+      }
+
+      // Konfirmasi sebelum submit
+      if(!confirm("Yakin ingin menyelesaikan evaluasi? Jawabanmu akan dikunci.")) {
+        return;
+      }
+
+      // 2. Kunci Form & Hitung Skor
+      let correctCount = 0;
+      const totalSoal = soalData.length;
+      let feedbackHtml = "";
+
+      for (const soal of soalData) {
+        const userAns = userAnswers[soal.id];
+        const isCorrect = userAns === soal.answer;
+        if (isCorrect) correctCount++;
+
+        // Disable semua radio button & tandai style
+        const radios = document.querySelectorAll(`input[name="q${soal.id}"]`);
+        radios.forEach(r => {
+          r.disabled = true;
+          r.parentElement.classList.add("locked-option");
+          
+          // Warnai opsi yang dipilih pengguna atau jawaban benar
+          if (r.value === soal.answer) {
+             r.parentElement.style.borderColor = "var(--green)";
+             r.parentElement.style.background = "#f0fdf4";
+          } else if (r.value === userAns && !isCorrect) {
+             r.parentElement.style.borderColor = "var(--red)";
+             r.parentElement.style.background = "#fff5f5";
+          }
+        });
+
+        // Susun kotak pembahasan
+        feedbackHtml += `
+          <div class="item-feedback">
+            <strong>Soal ${soal.id} (${soal.topic})</strong><br>
+            Jawaban Kamu: <b>${userAns}</b> | Kunci: <b>${soal.answer}</b><br>
+            Status: <span class="${isCorrect ? 'status-benar' : 'status-salah'}">
+               ${isCorrect ? '✅ Benar' : '❌ Salah'}
+            </span>
+            <div style="margin-top:8px; padding-top:8px; border-top:1px dashed #cbd5e0; color:#4a5568;">
+              <b>Pembahasan:</b> ${soal.explanation}
+            </div>
+          </div>
+        `;
+      }
+
+      // 3. Tampilkan Nilai & Pembahasan
+      const finalScore = Math.round((correctCount / totalSoal) * 100);
+      document.getElementById("btn-submit").style.display = "none";
+      
+      const feedbackSection = document.getElementById("feedback-section");
+      document.getElementById("final-score").innerText = `Skor Akhir: ${finalScore} / 100`;
+      
+      const msgBox = document.getElementById("final-message");
+      if (finalScore >= 85) msgBox.innerText = "🌟 Luar biasa! Pemahamanmu tentang Ikatan Kimia sudah setingkat Master!";
+      else if (finalScore >= 70) msgBox.innerText = "👍 Hebat! Pemahamanmu sangat baik. Silakan cek pembahasan untuk soal yang terlewat.";
+      else msgBox.innerText = "💪 Tetap semangat! Baca kembali pembahasannya pelan-pelan ya. Kesalahan adalah guru terbaik.";
+
+      document.getElementById("feedback-items").innerHTML = feedbackHtml;
+      feedbackSection.style.display = "block";
+      
+      // Auto-scroll ke hasil
+      feedbackSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Opsi: Simpan nilai ke LocalStorage (bila dibutuhkan)
+      localStorage.setItem("evaluasi_akhir_score", finalScore);
+    }
+  </script>
+
+</body>
+</html>
