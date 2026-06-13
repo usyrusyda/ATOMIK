@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Peta Konsep - ATOMIK</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #ffc107;
+      --batik-blue: #3a7caf;
+      --cream: #fffdf2;
+      --red-accent: #ff6b6b;
+      --soft-blue: #e3f2fd;
+      --dark-blue: #2a5a82;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      background-color: var(--cream);
+      color: var(--batik-blue);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    .bg-mascot-decor {
+      position: fixed;
+      z-index: -1;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    #bg-1 {
+      width: 350px;
+      top: -50px;
+      left: -80px;
+      animation: float 10s infinite;
+    }
+
+    #bg-2 {
+      width: 250px;
+      bottom: 20px;
+      right: -40px;
+      animation: float 8s infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-30px) rotate(8deg);
+      }
+    }
+
+    nav {
+      background: white;
+      padding: 8px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      color: var(--batik-blue);
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: var(--batik-blue);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 5px 0 var(--dark-blue);
+      transition: 0.2s;
+      margin: 5px;
+    }
+
+    button:hover {
+      background: #4a8cbf;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 var(--dark-blue);
+    }
+
+    .back-btn {
+      background: #b2bec3;
+      box-shadow: 0 5px 0 #7f8c8d;
+    }
+
+    .back-btn:hover {
+      background: #c5ced3;
+      box-shadow: 0 7px 0 #7f8c8d;
+    }
+
+    .container {
+      width: 100%;
+      padding: 30px 5% 50px;
+    }
+
+    .header-card {
+      max-width: 1100px;
+      margin: 0 auto 22px;
+      background: white;
+      border: 4px solid var(--soft-blue);
+      border-left: 12px solid var(--gold);
+      border-radius: 34px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 8px 22px rgba(58, 124, 175, 0.08);
+    }
+
+    .header-card h1 {
+      margin: 0 0 8px;
+      color: var(--batik-blue);
+      font-size: clamp(28px, 4vw, 44px);
+    }
+
+    .header-card p {
+      margin: 0;
+      color: #52799b;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .map-card {
+      max-width: 1180px;
+      margin: 0 auto;
+      background: white;
+      border: 4px solid var(--soft-blue);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(58, 124, 175, 0.08);
+    }
+
+    .map-frame {
+      background: #fffdf8;
+      border: 2px dashed #d9ecff;
+      border-radius: 24px;
+      padding: 16px;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    .map-frame img {
+      width: 100%;
+      max-width: 1100px;
+      border-radius: 18px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .note-box {
+      max-width: 1100px;
+      margin: 18px auto 0;
+      background: #eef9ff;
+      border: 2px dashed #b9def8;
+      border-radius: 22px;
+      padding: 14px 18px;
+      color: #4e718c;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .container {
+        padding: 22px 4% 40px;
+      }
+
+      .header-card {
+        padding: 20px 16px;
+      }
+
+      .map-card {
+        padding: 12px;
+      }
+
+      .map-frame {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body onload="guardLogin()">
+
+  <img src="maskot.png" class="bg-mascot-decor" id="bg-1" alt="">
+  <img src="maskot.png" class="bg-mascot-decor" id="bg-2" alt="">
+
+  <nav>
+    <div class="brand">
+      <img src="maskot.png" alt="Maskot Iona">
+      <strong>ATOMIK</strong>
+    </div>
+
+    <div>
+      <button class="back-btn" onclick="goMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <section class="header-card">
+      <h1>🗺️ Peta Konsep Ikatan Kimia</h1>
+      <p>
+        Peta konsep ini menunjukkan hubungan antar konsep utama pada materi ikatan kimia,
+        mulai dari ikatan ion, ikatan kovalen, ikatan logam, kepolaran, bentuk molekul,
+        hingga gaya antarmolekul.
+      </p>
+    </section>
+
+    <section class="map-card">
+      <div class="map-frame">
+        <img 
+          src="peta-konsep-ikatan-kimia.png" 
+          alt="Peta Konsep Ikatan Kimia"
+        >
+      </div>
+    </section>
+
+    <div class="note-box">
+      Bacalah peta konsep dari bagian atas menuju cabang-cabang konsep di bawahnya.
+      Perhatikan kata penghubung pada garis untuk memahami hubungan antar konsep.
+    </div>
+
+  </main>
+
+  <script>
+    function guardLogin() {
+      const user = localStorage.getItem("kimia_user");
+
+      if (!user) {
+        window.location.href = "index.html";
+      }
+    }
+
+    function goMenu() {
+      window.location.href = "menu.html";
+    }
+  </script>
+
+</body>
+</html>
