@@ -363,6 +363,10 @@
       width: 330px;
       text-align: center;
     }
+    /* Membuat ukuran kartu pas, KECUALI kartu paling terakhir (Ruang Tambahan) */
+    .cards-wrap .card:not(:last-child) {
+      height: fit-content;
+    }
 
     /* =========================
    FLOATING CHATBOT IONA
@@ -733,6 +737,12 @@
       <button onclick="mulaiBelajarLogam()">Mulai Belajar 🚀</button>
     </div>
 
+    <div class="card" style="border-color: #27ae60; height: fit-content;">
+      <h3 style="color: #27ae60;">📝 Evaluasi Akhir</h3>
+      <p>Uji pemahamanmu untuk seluruh materi ikatan kimia!</p>
+      <button style="background: #27ae60; box-shadow: 0 5px 0 #1e8449; color: white;" onclick="mulaiEvaluasi()">Mulai Evaluasi 🚀</button>
+    </div>
+
     <div class="card" style="width: 700px; max-width: 95%;">
       <h3>📎 Ruang Tambahan & Admin</h3>
       <p>Eksplor pengetahuan kimia lebih jauh! 🌟</p>
@@ -816,6 +826,7 @@
     function mulaiBelajarLogam() { window.location.href = "materi-logam.html"; }
     function mulaiBelajarBentuk() { window.location.href = "materi-bentukk.html"; }
     function mulaiBelajarAntarmolekul() { window.location.href = "materi-antarmolekul.html"; }
+    function mulaiEvaluasi() { window.location.href = "evaluasi.html"; }
 
    const DISKUSI_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzZnMrGqMf9fff2ZnhfmLpM_sjdt87nIdpMQAK_BP271JVEDkMithgP4vB9SWf2WAzv/exec";
 
